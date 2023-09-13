@@ -58,7 +58,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
   - [React Bootstrap](https://react-bootstrap.github.io/)
   - [Material UI](https://material-ui.com/)
   - [Headless UI](https://headlessui.com/)
-  - [Tailwind CSS](https://tailwindcss.com/)
+  - [Tailwind CSS](https://tailwindcss.com/) | [Tailwind Elements](https://tailwind-elements.com/docs/standard/forms/inputs/)
   - [Shadcn/UI](https://ui.shadcn.com/)
   - [Horizon UI](https://horizon-ui.com/)
   - [Next UI](https://nextui.org/)
@@ -96,3 +96,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [`useState(value|{...{}}|[...[]])`](https://members.codewithmosh.com/courses/ultimate-react-part1/lectures/45915783)
 - [Simplifying Update Logic with Immer](https://members.codewithmosh.com/courses/ultimate-react-part1/lectures/45915730). [Docs: **Introduction to Immer**](https://immerjs.github.io/immer/)
 - The component that holds the state is responsible for updating it. [Docs: **Sharing State Between Components**](https://react.dev/learn/sharing-state-between-components)
+
+### Building Forms
+
+- [Zod](https://www.npmjs.com/package/zod-form-data) for form validation
