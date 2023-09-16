@@ -80,7 +80,7 @@ const tailwindConfig: import("tailwindcss").Config = {
 			},
 		},
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [require("tailwindcss-animate"), require("@tailwindcss/forms")],
 };
 
 export default tailwindConfig;

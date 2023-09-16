@@ -24,14 +24,14 @@
 		--muted: 210 40% 96.1%;
 		--muted-foreground: 215.4 16.3% 46.9%;
 		--accent: 46, 100%, 50%; /* hsl(46, 100%, 50%) */
-		--accent-opacity: hsla(46, 100%, 50%, 0.867);
+		--accent-opacity: hsl(46deg 100% 50% / 86.7%);
 		--accent-foreground: 0, 0%, 24%; /* hsl(0, 0%, 24%) */
 		--destructive: 0 84.2% 60.2%;
 		--destructive-foreground: 210 40% 98%;
 		--border: 214.3 31.8% 91.4%;
 		--input: 214.3 31.8% 91.4%;
 		--ring: 42, 100%, 50%; /* hsl(42, 100%, 50%) */
-		--ring-opacity: hsla(42, 100%, 50%, 0.867);
+		--ring-opacity: hsl(42deg 100% 50% / 86.7%);
 		--radius: 0.5rem;
 		--scrollbar-width: 12px;
 	}
@@ -151,4 +151,25 @@ body [data-radix-select-viewport]::-webkit-scrollbar {
 
 .logo-cls-5 {
 	fill: #ffb300;
+}
+
+/* Form */
+.form_field_text_input {
+	@apply block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-300 sm:text-sm sm:leading-6;
+}
+
+.form_text_input_label {
+	@apply block leading-6 text-gray-900;
+}
+
+.form_text_input_label > p {
+	@apply mb-2;
+}
+
+.form_submit_btn {
+	@apply border font-semibold rounded-md px-6 py-2 text-white bg-blue-600 hover:bg-blue-900 mt-2 active:bg-white active:text-blue-700;
+}
+
+.form_input_error_message {
+	@apply text-sm text-red-500 -mt-7 mb-2;
 }

@@ -1,5 +1,8 @@
 {
 	"Home": {
 		"helloWorld": "Hello world!"
+	},
+	"Form": {
+		"btnSubmit": "Submit"
 	}
 }

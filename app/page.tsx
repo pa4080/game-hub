@@ -1,11 +1,20 @@
+"use client";
+
 import React from "react";
 
-import messages from "@/messages/en.json";
+import Form from "@/components/form/Form";
+
+// import messages from "@/messages/en.json";
 
 const Home: React.FC = () => {
+	const handleSubmit = (data: unknown) => {
+		// eslint-disable-next-line no-console
+		console.log(data);
+	};
+
 	return (
-		<main className="flex min-h-screen items-center justify-center">
-			<h1>{messages.Home.helloWorld}</h1>
+		<main className="p-8">
+			<Form onSubmit={handleSubmit} />
 		</main>
 	);
 };

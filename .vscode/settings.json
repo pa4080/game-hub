@@ -1,15 +1,25 @@
 {
 	"cSpell.words": [
 		"'",
+		"Boxicoens",
 		"callout",
+		"Chakra",
+		"clsx",
 		"Codacy",
 		"ecma",
 		"googleusercontent",
 		"Hamedani",
+		"Iconify",
+		"Iconoir",
 		"imagemagick",
 		"ipapi",
+		"Mantine",
 		"maxage",
-		"RAWG"
+		"Onsen",
+		"RAWG",
+		"Reakit",
+		"Shadcn",
+		"Tabler"
 	],
 	"material-icon-theme.folders.associations": {
 		// https://github.com/PKief/vscode-material-icon-theme
@@ -25,10 +35,26 @@
 	// https://stackoverflow.com/a/76125894/6543935
 	// https://github.com/microsoft/vscode/issues/170589
 	"css.customData": [".vscode/css-linting-vscode-workarounds.json"],
-	"compile-hero.disable-compile-files-on-did-save-code": true,
 	"editor.guides.bracketPairs": true,
 	"editor.guides.highlightActiveBracketPair": true,
 	"editor.guides.highlightActiveIndentation": true,
 	"editor.guides.bracketPairsHorizontal": "active",
-	"editor.bracketPairColorization.enabled": true
+	"editor.bracketPairColorization.enabled": true,
+	"reactTsScss.autoComplete": true,
+	"reactTsScss.definition": true,
+	"reactTsScss.peekProperties": true,
+	"reactTsScss.cssAutoComplete": true,
+	"reactTsScss.cssDefinitions": true,
+	"reactTsScss.diagnostics": true,
+	"reactTsScss.baseDir": "./",
+	"reactTsScss.cssSyntaxColor": true,
+	"reactTsScss.cleanUpDefs": [
+		"*.module.css",
+		"*.module.scss",
+		"*.module.sass",
+		"*.module.less",
+		"*.module.styl"
+	],
+	"reactTsScss.references": true,
+	"reactTsScss.codelens": true
 }
