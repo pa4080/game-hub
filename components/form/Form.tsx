@@ -1,45 +1,24 @@
-import React, { FormEvent, useEffect, useRef, useState } from "react";
+import React from "react";
+import { FieldValues, useForm } from "react-hook-form";
 
 import messages from "@/messages/en.json";
 
-import Form_Input from "./Form_Input";
+import Input from "./Input";
 
 interface Props {
-	onSubmit: (arg: unknown) => void;
+	onSubmit: (data: FieldValues) => void;
 }
 
 const Form: React.FC<Props> = ({ onSubmit }) => {
-	const nameRef = useRef<HTMLInputElement>(null);
-	const ageRef = useRef<HTMLInputElement>(null);
-	const [person, setPerson] = useState({
-		name: "",
-		age: 0,
-	});
+	const { register, handleSubmit } = useForm();
 
-	const handleSubmit = (event: FormEvent) => {
-		event.preventDefault();
-
-		if (nameRef.current) {
-			const name = nameRef.current.value.trim();
-
-			setPerson((prev) => ({ ...prev, name }));
-		}
-
-		if (ageRef.current) {
-			const age = parseInt(ageRef.current.value.trim());
-
-			setPerson((prev) => ({ ...prev, age }));
-		}
-	};
-
-	useEffect(() => {
-		onSubmit(person);
-	}, [onSubmit, person]);
+	// eslint-disable-next-line no-console
+	console.log(register("name"));
 
 	return (
-		<form onSubmit={handleSubmit}>
-			<Form_Input ref={nameRef} label="Name" type="text" />
-			<Form_Input ref={ageRef} label="Age" type="number" />
+		<form onSubmit={handleSubmit(onSubmit)}>
+			<Input {...register("name")} label="Name" type="text" />
+			<Input {...register("age")} label="Age" type="number" />
 
 			<button className="form_submit_btn transition-colors duration-150">
 				{messages.Form.btnSubmit}

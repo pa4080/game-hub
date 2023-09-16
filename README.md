@@ -85,7 +85,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
   - [Lucide Icons](https://lucide.dev/)
   - [Hero Icons](https://heroicons.com/)
   - [Remix Icon](https://remixicon.com/)
-  - [Boxicons](https://boxicons.com/)
+  - [Boxicoens](https://boxicons.com/)
   - [Bootstrap Icons](https://icons.getbootstrap.com/)
   - [Iconify](https://iconify.design/)
   - [IconPark](https://iconpark.oceanengine.com/)
@@ -99,4 +99,6 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ### Building Forms
 
-- [Zod](https://www.npmjs.com/package/zod-form-data) for form validation
+- [**Mapping Forms with React hook Form**](https://members.codewithmosh.com/courses/ultimate-react-part1/lectures/45915810)
+- [React Hook Form](https://react-hook-form.com/).
+- [Zod](https://www.npmjs.com/package/zod-form-data) for form validation.

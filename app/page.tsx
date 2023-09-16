@@ -7,9 +7,9 @@ import Form from "@/components/form/Form";
 // import messages from "@/messages/en.json";
 
 const Home: React.FC = () => {
-	const handleSubmit = (arg: unknown) => {
+	const handleSubmit = (data: unknown) => {
 		// eslint-disable-next-line no-console
-		console.log(arg);
+		console.log(data);
 	};
 
 	return (
