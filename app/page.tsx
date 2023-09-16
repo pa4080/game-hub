@@ -13,7 +13,7 @@ const Home: React.FC = () => {
 	};
 
 	return (
-		<main className="p-4">
+		<main className="p-8">
 			<Form onSubmit={handleSubmit} />
 		</main>
 	);

@@ -5,20 +5,53 @@ import messages from "@/messages/en.json";
 
 import Input from "./Input";
 
+export interface FormData {
+	name: string;
+	age: number;
+}
+
 interface Props {
 	onSubmit: (data: FieldValues) => void;
 }
 
 const Form: React.FC<Props> = ({ onSubmit }) => {
-	const { register, handleSubmit } = useForm();
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<FormData>();
 
-	// eslint-disable-next-line no-console
-	console.log(register("name"));
+	const minAge = 18;
+
+	// console.log(formState);
+	// console.log(formState.errors);
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
-			<Input {...register("name")} label="Name" type="text" />
-			<Input {...register("age")} label="Age" type="number" />
+			<Input
+				{...register("name", {
+					// This object have many options,
+					// ref to: https://react-hook-form.com/api/useform/register
+					required: true,
+					minLength: 4,
+				})}
+				label="Name"
+				type="text"
+			/>
+			{errors.name?.type === "required" && (
+				<p className="form_input_error_message">Your name is required!</p>
+			)}
+			{errors.name?.type === "minLength" && (
+				<p className="form_input_error_message">Your name must be at least 4 characters!</p>
+			)}
+
+			<Input {...register("age", { required: true, min: minAge })} label="Age" type="number" />
+			{errors.age?.type === "required" && (
+				<p className="form_input_error_message">Your age is required!</p>
+			)}
+			{errors.age?.type === "min" && (
+				<p className="form_input_error_message">Your age must be at least {minAge}!</p>
+			)}
 
 			<button className="form_submit_btn transition-colors duration-150">
 				{messages.Form.btnSubmit}

@@ -99,6 +99,10 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ### Building Forms
 
-- [**Mapping Forms with React hook Form**](https://members.codewithmosh.com/courses/ultimate-react-part1/lectures/45915810)
+- [Mapping Forms with React hook Form](https://members.codewithmosh.com/courses/ultimate-react-part1/lectures/45915810)
+- [Applying Validation with React hook Form](https://members.codewithmosh.com/courses/ultimate-react-part1/lectures/45915813)
+
+References:
+
 - [React Hook Form](https://react-hook-form.com/).
 - [Zod](https://www.npmjs.com/package/zod-form-data) for form validation.

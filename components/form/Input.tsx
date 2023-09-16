@@ -15,9 +15,9 @@ const Input = forwardRef((props: Props, ref: ForwardedRef<HTMLInputElement>) => 
 	const id = `form-field-${label.toLowerCase().replace(" ", "-")}`;
 
 	return (
-		<div className="sm:col-span-3 mb-2 last:mb-0">
+		<div className="sm:col-span-3 mb-8">
 			<label className="form_text_input_label" htmlFor={id}>
-				<span>{label}</span>
+				<p>{label}</p>
 				<div className="mt-1">
 					<input {...otherProps} ref={ref} className="form_field_text_input" id={id} />
 				</div>
@@ -26,6 +26,6 @@ const Input = forwardRef((props: Props, ref: ForwardedRef<HTMLInputElement>) => 
 	);
 });
 
-Input.displayName = "Input_Text";
+Input.displayName = "Input";
 
 export default Input;
