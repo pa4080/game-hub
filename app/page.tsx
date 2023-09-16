@@ -14,6 +14,7 @@ const Home: React.FC = () => {
 
 	return (
 		<main className="p-8">
+			<h1 className="text-2xl mb-8">Simple as that</h1>
 			<Form onSubmit={handleSubmit} />
 		</main>
 	);
