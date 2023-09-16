@@ -1,14 +1,18 @@
 import React from "react";
 import { FieldValues, useForm } from "react-hook-form";
+import { z } from "zod";
+// import { zodResolver } from "@hookform/resolvers/zod";
 
 import messages from "@/messages/en.json";
 
 import Input from "./Input";
 
-export interface FormData {
-	name: string;
-	age: number;
-}
+const schema = z.object({
+	name: z.string().min(4),
+	age: z.number().min(18),
+});
+
+type FormData = z.infer<typeof schema>;
 
 interface Props {
 	onSubmit: (data: FieldValues) => void;
