@@ -2,7 +2,28 @@
 	"Home": {
 		"helloWorld": "Hello world!"
 	},
-	"Form": {
-		"btnSubmit": "Submit"
+	"Buttons": {
+		"btnSubmit": "Submit",
+		"btnCancel": "Cancel",
+		"btnReset": "Reset",
+		"btnSave": "Save",
+		"btnBack": "Back",
+		"btnNext": "Next",
+		"btnFinish": "Finish",
+		"btnLogin": "Login",
+		"btnLogout": "Logout",
+		"btnSend": "Send",
+		"btnSearch": "Search",
+		"btnAdd": "Add",
+		"btnEdit": "Edit",
+		"btnDelete": "Delete"
+	},
+	"ExpenseList": {
+		"description": "Description",
+		"amount": "Amount",
+		"date": "Date",
+		"category": "Category",
+		"action": "Action",
+		"total": "Total"
 	}
 }

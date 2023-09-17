@@ -61,7 +61,7 @@ const Form: React.FC<Props> = ({ onSubmit }) => {
 				className="form_submit_btn transition-colors duration-150"
 				//  disabled={!isValid}
 			>
-				{messages.Form.btnSubmit}
+				{messages.Buttons.btnSubmit}
 			</button>
 		</form>
 	);
