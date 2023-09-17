@@ -1,9 +1,17 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 
 import { cn } from "@/lib/cn-utils";
+import messages from "@/messages/en.json";
 
 import ExpenseList, { Expense } from "./ExpenseList";
 import ExpenseFilter from "./ExpenseFilter";
+import ExpenseForm from "./ExpenseForm";
+
+export const categories = Object.keys(messages.Categories)
+	.map((key) => messages.Categories[key as keyof typeof messages.Categories])
+	.filter(
+		(category) => category !== messages.Categories.all && category !== messages.Categories.select
+	);
 
 interface Props {
 	className?: string;
@@ -55,7 +63,9 @@ const Expenses: React.FC<Props> = ({ className }) => {
 		setExpenses(expenses.filter((expense) => expense.id !== id));
 	};
 
-	const handleSelectCategory = (category: string) => {
+	const handleSelectCategory = (event: ChangeEvent<HTMLSelectElement>) => {
+		const category = event.target.value;
+
 		setSelectedCategory(category);
 	};
 
@@ -65,8 +75,9 @@ const Expenses: React.FC<Props> = ({ className }) => {
 
 	return (
 		<div className={cn("max-w-max flex flex-col items-end", className)}>
-			<ExpenseFilter onSelectCategory={handleSelectCategory} />
+			<ExpenseFilter onBlur={() => {}} onChange={handleSelectCategory} />
 			<ExpenseList expenses={visibleExpenses} onDelete={handleItemDeleteById} />
+			<ExpenseForm />
 		</div>
 	);
 };

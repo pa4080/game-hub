@@ -25,7 +25,7 @@ const tailwindConfig: import("tailwindcss").Config = {
 			colors: {
 				border: "hsl(var(--border))",
 				input: "hsl(var(--input))",
-				ring: "var(--ring)",
+				ring: "hsl(var(--ring))",
 				"ring-opacity": "var(--ring-opacity)",
 				background: "hsl(var(--background))",
 				foreground: "hsl(var(--foreground))",
@@ -46,9 +46,9 @@ const tailwindConfig: import("tailwindcss").Config = {
 					foreground: "hsl(var(--muted-foreground))",
 				},
 				accent: {
-					DEFAULT: "var(--accent)",
-					opacity: "var(--accent-opacity)",
-					foreground: "var(--accent-foreground)",
+					DEFAULT: "hsl(var(--accent))",
+					opacity: "hsl(var(--accent-opacity))",
+					foreground: "hsl(var(--accent-foreground))",
 				},
 				popover: {
 					DEFAULT: "hsl(var(--popover))",

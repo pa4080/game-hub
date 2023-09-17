@@ -31,7 +31,7 @@
 		--border: 214.3 31.8% 91.4%;
 		--input: 214.3 31.8% 91.4%;
 		--ring: 42, 100%, 50%; /* hsl(42, 100%, 50%) */
-		--ring-opacity: hsl(42deg 100% 50% / 86.7%);
+		--ring-c: hsl(42deg 100% 50%);
 		--radius: 0.5rem;
 		--scrollbar-width: 12px;
 	}
@@ -176,7 +176,7 @@ body [data-radix-select-viewport]::-webkit-scrollbar {
 
 /* form */
 .form_field_text_input {
-	@apply block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-300 sm:text-sm sm:leading-6;
+	@apply block w-full rounded-xl border-0 py-[0.565rem] text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-ring sm:leading-6;
 }
 
 .form_text_input_label {
@@ -188,7 +188,7 @@ body [data-radix-select-viewport]::-webkit-scrollbar {
 }
 
 .form_submit_btn {
-	@apply border font-semibold rounded-md px-6 py-2 text-white bg-blue-600 hover:bg-blue-900 mt-2 active:bg-white active:text-blue-700;
+	@apply border-2 font-semibold rounded-md px-6 py-2 text-white bg-blue-600 hover:bg-blue-900 active:bg-white active:text-blue-700 border-blue-600 active:border-blue-600 hover:border-blue-900;
 }
 
 .form_input_error_message {
@@ -229,7 +229,11 @@ select.category_select:active {
  *
  <select size={4}> ... </select>
 
- select.category_select option {
+ select.category_filter option {
 	 @apply p-1;
  }
 */
+
+select.category_choice {
+	@apply appearance-none rounded-xl border border-slate-300 mb-3 transition-all duration-100 w-full;
+}
