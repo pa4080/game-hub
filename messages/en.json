@@ -25,5 +25,11 @@
 		"category": "Category",
 		"action": "Action",
 		"total": "Total"
+	},
+	"Categories": {
+		"all": "All categories",
+		"groceries": "Groceries",
+		"utilities": "Utilities",
+		"entertainment": "Entertainment"
 	}
 }
