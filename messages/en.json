@@ -15,6 +15,7 @@
 		"btnSend": "Send",
 		"btnSearch": "Search",
 		"btnAdd": "Add",
+		"btnAddExpense": "Add expense",
 		"btnEdit": "Edit",
 		"btnDelete": "Delete"
 	},
@@ -26,7 +27,12 @@
 		"action": "Action",
 		"total": "Total"
 	},
+	"ExpenseForm": {
+		"title": "Add expense",
+		"description": "Add expense to the list of expenses."
+	},
 	"Categories": {
+		"select": "Select a category",
 		"all": "All categories",
 		"groceries": "Groceries",
 		"utilities": "Utilities",

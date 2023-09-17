@@ -5,7 +5,7 @@ import messages from "@/messages/en.json";
 
 import ExpenseList, { Expense } from "./ExpenseList";
 import ExpenseFilter from "./ExpenseFilter";
-import ExpenseForm from "./ExpenseForm";
+import ExpenseFormDialog from "./ExpenseFormDialog";
 
 export const categories = Object.keys(messages.Categories)
 	.map((key) => messages.Categories[key as keyof typeof messages.Categories])
@@ -18,6 +18,7 @@ interface Props {
 }
 
 const Expenses: React.FC<Props> = ({ className }) => {
+	const [isAddExpenseDialogOpen, setIsAddExpenseDialogOpen] = useState(false);
 	const [selectedCategory, setSelectedCategory] = useState<string>("");
 
 	const [expenses, setExpenses] = useState<Expense[]>([
@@ -73,11 +74,24 @@ const Expenses: React.FC<Props> = ({ className }) => {
 		? expenses.filter((expense) => expense.category === selectedCategory)
 		: expenses;
 
+	const AddExpenseBtn = (
+		<button
+			className="form_dialog_btn transition-colors duration-150"
+			type="button"
+			onClick={() => setIsAddExpenseDialogOpen(true)}
+		>
+			{messages.Buttons.btnAddExpense}
+		</button>
+	);
+
 	return (
 		<div className={cn("max-w-max flex flex-col items-end", className)}>
-			<ExpenseFilter onBlur={() => {}} onChange={handleSelectCategory} />
+			<ExpenseFormDialog isOpen={isAddExpenseDialogOpen} setIsOpen={setIsAddExpenseDialogOpen} />
+			<div className="flex flex-row justify-between items-center w-full mb-6">
+				{AddExpenseBtn}
+				<ExpenseFilter onBlur={() => {}} onChange={handleSelectCategory} />
+			</div>
 			<ExpenseList expenses={visibleExpenses} onDelete={handleItemDeleteById} />
-			<ExpenseForm />
 		</div>
 	);
 };

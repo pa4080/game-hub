@@ -188,7 +188,11 @@ body [data-radix-select-viewport]::-webkit-scrollbar {
 }
 
 .form_submit_btn {
-	@apply border-2 font-semibold rounded-md px-6 py-2 text-white bg-blue-600 hover:bg-blue-900 active:bg-white active:text-blue-700 border-blue-600 active:border-blue-600 hover:border-blue-900;
+	@apply border font-semibold rounded-lg px-6 py-2 text-white bg-blue-600 hover:bg-blue-900 active:bg-white active:text-blue-700 border-blue-600 active:border-blue-600 hover:border-blue-900;
+}
+
+.form_dialog_btn {
+	@apply border font-semibold rounded-lg px-6 py-2 text-blue-600 bg-white hover:bg-blue-900 hover:text-white active:text-white active:bg-blue-600 border-blue-600 active:border-blue-600 hover:border-blue-900;
 }
 
 .form_input_error_message {
@@ -217,7 +221,7 @@ body [data-radix-select-viewport]::-webkit-scrollbar {
 }
 
 select.category_select {
-	@apply appearance-none rounded-xl border border-slate-300 mb-3 transition-all duration-100;
+	@apply appearance-none rounded-lg border border-slate-300 transition-all duration-100;
 }
 
 select.category_select:active {
@@ -234,6 +238,10 @@ select.category_select:active {
  }
 */
 
+select.category_filter {
+	@apply rounded-lg;
+}
+
 select.category_choice {
-	@apply appearance-none rounded-xl border border-slate-300 mb-3 transition-all duration-100 w-full;
+	@apply rounded-xl w-full;
 }

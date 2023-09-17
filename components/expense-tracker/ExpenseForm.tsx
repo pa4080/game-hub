@@ -17,7 +17,7 @@ const ExpenseForm: React.FC<Props> = ({ className }) => {
 			<Input label="Amount" type="number" />
 			<ExpenseFilter className="category_choice" label="Category" />
 
-			<button className="form_submit_btn transition-colors duration-150">
+			<button className="form_submit_btn transition-colors duration-150" type="submit">
 				{messages.Buttons.btnSubmit}
 			</button>
 		</form>
