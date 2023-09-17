@@ -35,13 +35,27 @@ const Form: React.FC<Props> = ({ onSubmit }) => {
 		formState: { errors, isValid },
 	} = useForm<FormData>({ resolver: zodResolver(schema) });
 
+	// console.log(errors);
+	// console.log(errors.age);
+	// console.log(errors.name);
+
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
-			<Input {...register("name")} label="Name" type="text" />
-			{errors.name && <p className="form_input_error_message">{errors.name.message}</p>}
+			<Input
+				{...register("name")}
+				autoComplete="name"
+				errors={errors.name}
+				label="Name"
+				type="text"
+			/>
 
-			<Input {...register("age", { valueAsNumber: true })} label="Age" type="number" />
-			{errors.age && <p className="form_input_error_message">{errors.age.message}</p>}
+			<Input
+				{...register("age", { valueAsNumber: true })}
+				autoComplete="off"
+				errors={errors.age}
+				label="Age"
+				type="number"
+			/>
 
 			<button
 				className="form_submit_btn transition-colors duration-150"

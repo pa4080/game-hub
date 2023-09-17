@@ -171,5 +171,5 @@ body [data-radix-select-viewport]::-webkit-scrollbar {
 }
 
 .form_input_error_message {
-	@apply text-sm text-red-500 -mt-7 mb-2;
+	@apply absolute -bottom-6 text-sm text-red-500;
 }
