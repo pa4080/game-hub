@@ -196,7 +196,7 @@ body [data-radix-select-viewport]::-webkit-scrollbar {
 }
 
 .form_input_error_message {
-	@apply absolute -bottom-6 text-sm text-red-500;
+	@apply absolute -bottom-6 text-sm text-red-500 whitespace-nowrap text-ellipsis overflow-hidden w-full;
 }
 
 /* expense-tracker */

@@ -5,7 +5,7 @@ import messages from "@/messages/en.json";
 
 import { cn } from "@/lib/cn-utils";
 
-import { categories } from "./Expenses";
+import { categories } from "./ExpenseForm";
 
 interface Props {
 	onChange?: (event: ChangeEvent<HTMLSelectElement>) => void;

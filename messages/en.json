@@ -29,7 +29,13 @@
 	},
 	"ExpenseForm": {
 		"title": "Add expense",
-		"description": "Add expense to the list of expenses."
+		"description": "Add expense to the list of expenses.",
+		"schema": {
+			"description": "The description must be at least 4 and maximum 16 characters.",
+			"amount_type": "The amount is required.",
+			"amount": "The amount must be between 0.01 and 100.000.",
+			"category": "The category is required."
+		}
 	},
 	"Categories": {
 		"select": "Select a category",

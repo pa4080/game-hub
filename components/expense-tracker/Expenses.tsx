@@ -7,12 +7,6 @@ import ExpenseList, { Expense } from "./ExpenseList";
 import ExpenseFilter from "./ExpenseFilter";
 import ExpenseFormDialog from "./ExpenseFormDialog";
 
-export const categories = Object.keys(messages.Categories)
-	.map((key) => messages.Categories[key as keyof typeof messages.Categories])
-	.filter(
-		(category) => category !== messages.Categories.all && category !== messages.Categories.select
-	);
-
 interface Props {
 	className?: string;
 }
