@@ -100,9 +100,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ### Building Forms
 
 - [Mapping Forms with React hook Form](https://members.codewithmosh.com/courses/ultimate-react-part1/lectures/45915810)
-  - [React Hook Form](https://react-hook-form.com/).
+  - [**React Hook Form**](https://react-hook-form.com/)
 - [Applying Validation with React hook Form](https://members.codewithmosh.com/courses/ultimate-react-part1/lectures/45915813)
 - [Schema Based Validation with Zod](https://members.codewithmosh.com/courses/ultimate-react-part1/lectures/45915806)
-  - [**Zod**](https://www.npmjs.com/package/zod-form-data)
-  - [Joi](https://www.npmjs.com/package/joi)
-  - [Yup](https://www.npmjs.com/package/yup)
+  - [**Zod**](https://www.npmjs.com/package/zod-form-data) | [Joi](https://www.npmjs.com/package/joi) | [Yup](https://www.npmjs.com/package/yup)
