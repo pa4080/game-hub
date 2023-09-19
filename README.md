@@ -90,11 +90,6 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
   - [Iconify](https://iconify.design/)
   - [IconPark](https://iconpark.oceanengine.com/)
   - [Iconoir](https://iconoir.com/)
-- [Fetching data](https://members.codewithmosh.com/courses/ultimate-react-part1/lectures/45915920)
-  - <https://jsonplaceholder.typicode.com/>
-  - <https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API>
-  - <https://www.npmjs.com/package/axios#features>
-  - **Optimistic** update vs **Pessimistic** update logic: Optimistic update logic updates the UI immediately assuming the server request will succeed, while pessimistic update logic waits for the server response before updating the UI. See also [**useOptimistic()**](https://youtu.be/M3mGY0pgFk0?si=BwgjCvlbpM3bBE5_) beta React hook.
 
 ### Managing Component State
 
@@ -109,3 +104,13 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [Applying Validation with React hook Form](https://members.codewithmosh.com/courses/ultimate-react-part1/lectures/45915813)
 - [Schema Based Validation with Zod](https://members.codewithmosh.com/courses/ultimate-react-part1/lectures/45915806)
   - [**Zod**](https://www.npmjs.com/package/zod-form-data) | [Joi](https://www.npmjs.com/package/joi) | [Yup](https://www.npmjs.com/package/yup)
+- [**State management via URI**](https://www.youtube.com/watch?v=oZZEI23Ri6E): use [`useSearchParams()`](https://reactrouter.com/en/main/hooks/use-search-params) instead of [`useState()`](https://react.dev/reference/react/useState).
+  **Note about Next.js:** [`import { usePathname, useSearchParams } from 'next/navigation'`](https://nextjs.org/docs/app/api-reference/functions/use-router#router-events)...
+
+### Connect with the backend
+
+- [Fetching data](https://members.codewithmosh.com/courses/ultimate-react-part1/lectures/45915920)
+  - <https://jsonplaceholder.typicode.com/>
+  - <https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API>
+  - <https://www.npmjs.com/package/axios#features>
+- **Optimistic** update vs **Pessimistic** update logic: Optimistic update logic updates the UI immediately assuming the server request will succeed, while pessimistic update logic waits for the server response before updating the UI. See also [**useOptimistic()**](https://youtu.be/M3mGY0pgFk0?si=BwgjCvlbpM3bBE5_) beta React hook.
