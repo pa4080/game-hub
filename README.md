@@ -104,3 +104,5 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [Applying Validation with React hook Form](https://members.codewithmosh.com/courses/ultimate-react-part1/lectures/45915813)
 - [Schema Based Validation with Zod](https://members.codewithmosh.com/courses/ultimate-react-part1/lectures/45915806)
   - [**Zod**](https://www.npmjs.com/package/zod-form-data) | [Joi](https://www.npmjs.com/package/joi) | [Yup](https://www.npmjs.com/package/yup)
+- [**State management via URI**](https://www.youtube.com/watch?v=oZZEI23Ri6E): use [`useSearchParams()`](https://reactrouter.com/en/main/hooks/use-search-params) instead of [`useState()`](https://react.dev/reference/react/useState).
+  **Note about Next.js:** [`import { usePathname, useSearchParams } from 'next/navigation'`](https://nextjs.org/docs/app/api-reference/functions/use-router#router-events)...
