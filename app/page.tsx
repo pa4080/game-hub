@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import Expenses from "@/components/expense-tracker/Expenses";
+import Expenses from "@/components/expense-tracker/ExpensesURI";
 
 const Home: React.FC = () => {
 	return (
