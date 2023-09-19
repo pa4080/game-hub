@@ -2,12 +2,12 @@
 
 import React from "react";
 
-import Expenses from "@/components/expense-tracker/ExpensesURI";
+import AxiosExample from "@/components/fetch-data/FetchData";
 
 const Home: React.FC = () => {
 	return (
 		<main className="p-8 flex overflow-x-auto">
-			<Expenses className="mx-auto" />
+			<AxiosExample />
 		</main>
 	);
 };
