@@ -7,7 +7,7 @@ import { cn } from "@/lib/cn-utils";
 interface Props {
 	items: string[];
 	heading: string;
-	onSelectItem: (item: string) => void;
+	onSelectItem?: (item: string) => void;
 }
 
 const ListGroup: React.FC<Props> = ({ items, heading, onSelectItem }) => {
@@ -26,7 +26,7 @@ const ListGroup: React.FC<Props> = ({ items, heading, onSelectItem }) => {
 							selectedIndex === index ? "bg-gray-300" : "hover:bg-gray-200"
 						)}
 						onClick={() => {
-							onSelectItem(item);
+							onSelectItem && onSelectItem(item);
 							setSelectedIndex(index);
 						}}
 					>

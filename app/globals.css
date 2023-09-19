@@ -110,7 +110,7 @@ body [data-radix-select-viewport]::-webkit-scrollbar {
 /* Text selection */
 
 ::selection {
-	background: var(--ring);
+	background: hsl(var(--ring));
 	color: #fff;
 }
 
