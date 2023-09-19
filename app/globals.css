@@ -201,7 +201,7 @@ body [data-radix-select-viewport]::-webkit-scrollbar {
 
 /* expense-tracker */
 .table_wrapper {
-	@apply border border-slate-300 rounded-xl w-fit overflow-hidden;
+	@apply border border-slate-300 rounded-xl w-full overflow-hidden;
 }
 
 .table {

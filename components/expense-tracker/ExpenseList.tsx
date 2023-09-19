@@ -4,40 +4,40 @@ import { cn } from "@/lib/cn-utils";
 import messages from "@/messages/en.json";
 
 export interface Expense {
-	id: string;
+	id: number;
 	description: string;
 	amount: number;
 	category: string;
 }
-
-interface Props {
-	expenses: Expense[];
-	onDelete: (id: string) => void;
-}
-
-const thClasses = cn("table_row_common", "font-semibold");
-const tdClasses = cn("table_row_common", "font-normal");
-const tfClasses = cn("table_row_common", "font-normal");
 
 const formatToUSD = new Intl.NumberFormat("en-US", {
 	style: "currency",
 	currency: "USD",
 });
 
-const ExpenseList: React.FC<Props> = ({ expenses, onDelete }) => {
+interface Props {
+	expenses: Expense[];
+	onDelete: (id: number) => void;
+	className?: string;
+}
+const ExpenseList: React.FC<Props> = ({ expenses, onDelete, className }) => {
+	const thClasses = cn("table_row_common", "font-semibold");
+	const tdClasses = cn("table_row_common", "font-normal");
+	const tfClasses = cn("table_row_common", "font-normal");
+
 	if (expenses.length === 0) {
 		return null;
 	}
 
 	return (
-		<div className="table_wrapper">
+		<div className={cn("table_wrapper", className)}>
 			<table className="table">
 				<thead className="bg-slate-200">
 					<tr>
-						<th className={thClasses}>{messages.ExpenseList.description}</th>
+						<th className={thClasses + " min-w-[12rem]"}>{messages.ExpenseList.description}</th>
 						<th className={thClasses}>{messages.ExpenseList.amount}</th>
 						<th className={thClasses + " min-w-[9rem]"}>{messages.ExpenseList.category}</th>
-						<th className={thClasses + " min-w-[7rem]"}>{messages.ExpenseList.action}</th>
+						<th className={thClasses + " min-w-[6rem]"}>{messages.ExpenseList.action}</th>
 					</tr>
 				</thead>
 				<tbody className="[&>*:nth-child(even)]:bg-slate-100">

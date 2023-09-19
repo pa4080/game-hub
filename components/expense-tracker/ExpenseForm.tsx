@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -42,13 +42,16 @@ export type ExpenseFormData = z.infer<typeof schema>;
 
 interface Props {
 	className?: string;
+	onSubmit: (data: ExpenseFormData) => void;
+	setIsOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-const ExpenseForm: React.FC<Props> = ({ className }) => {
+const ExpenseForm: React.FC<Props> = ({ className, onSubmit, setIsOpen }) => {
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
+		reset,
 	} = useForm<ExpenseFormData>({
 		resolver: zodResolver(schema),
 	});
@@ -57,8 +60,9 @@ const ExpenseForm: React.FC<Props> = ({ className }) => {
 		<form
 			className={cn("w-full mt-3", className)}
 			onSubmit={handleSubmit((data) => {
-				// eslint-disable-next-line no-console
-				console.log(data);
+				setIsOpen(false);
+				reset();
+				onSubmit(data);
 			})}
 		>
 			<Input

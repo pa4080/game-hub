@@ -9,14 +9,15 @@ import {
 } from "@/components/ui/dialog";
 import messages from "@/messages/en.json";
 
-import ExpenseForm from "./ExpenseForm";
+import ExpenseForm, { ExpenseFormData } from "./ExpenseForm";
 
 interface Props {
 	isOpen: boolean;
 	setIsOpen: Dispatch<SetStateAction<boolean>>;
+	onSubmit: (data: ExpenseFormData) => void;
 }
 
-const ExpenseFormDialog: React.FC<Props> = ({ isOpen, setIsOpen }) => {
+const ExpenseFormDialog: React.FC<Props> = ({ isOpen, setIsOpen, onSubmit }) => {
 	return (
 		<Dialog open={isOpen} onOpenChange={setIsOpen}>
 			<DialogContent className="border-slate-300">
@@ -25,7 +26,7 @@ const ExpenseFormDialog: React.FC<Props> = ({ isOpen, setIsOpen }) => {
 					<DialogDescription>{messages.ExpenseForm.description}</DialogDescription>
 				</DialogHeader>
 
-				<ExpenseForm />
+				<ExpenseForm setIsOpen={setIsOpen} onSubmit={onSubmit} />
 			</DialogContent>
 		</Dialog>
 	);
