@@ -94,6 +94,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
   - <https://jsonplaceholder.typicode.com/>
   - <https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API>
   - <https://www.npmjs.com/package/axios#features>
+  - **Optimistic** update vs **Pessimistic** update logic: Optimistic update logic updates the UI immediately assuming the server request will succeed, while pessimistic update logic waits for the server response before updating the UI. See also [**useOptimistic()**](https://youtu.be/M3mGY0pgFk0?si=BwgjCvlbpM3bBE5_) beta React hook.
 
 ### Managing Component State
 

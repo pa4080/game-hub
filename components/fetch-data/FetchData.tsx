@@ -51,18 +51,27 @@ const AxiosExample: React.FC = () => {
 	}, []);
 
 	const handleUserDeleteById = (id: number) => {
+		const originalUsersList = [...users];
+
+		// Optimistic update Implementation
 		setUsers(users.filter((user) => user.id !== id));
+
+		axios.delete(`${dataUrl}/${id}`).catch((err) => {
+			setError(err.message);
+			setUsers(originalUsersList);
+		});
 	};
 
-	return users.length === 0 ? (
-		<Loading />
-	) : (
-		<ListGroup
-			errorMessage={error}
-			heading="Users list"
-			users={users}
-			onDelete={handleUserDeleteById}
-		/>
+	return (
+		<div>
+			{users.length === 0 ? (
+				<Loading />
+			) : (
+				<ListGroup heading="Users list" users={users} onDelete={handleUserDeleteById} />
+			)}
+
+			{error && <p className="text-lg text-red-500 font-semibold">{error}</p>}
+		</div>
 	);
 };
 
