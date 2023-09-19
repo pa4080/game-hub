@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios, { CanceledError } from "axios";
 
+import Loading from "./Loading";
+
 const dataUrl = "https://jsonplaceholder.typicode.com/users";
 
 interface User {
@@ -29,7 +31,9 @@ const AxiosExample: React.FC = () => {
 
 		axios
 			.get<User[]>(dataUrl, { signal: controller.signal })
-			.then((res) => {
+			.then(async (res) => {
+				// Simulate slow network
+				await new Promise((resolve) => setTimeout(resolve, 3000));
 				setUsers(res.data);
 			})
 			.catch((err) => {
@@ -45,7 +49,11 @@ const AxiosExample: React.FC = () => {
 		};
 	}, []);
 
-	return (
+	return users.length === 0 ? (
+		<>
+			<Loading />
+		</>
+	) : (
 		<div>
 			{error ? (
 				<p className="text-lg text-red-500 font-semibold">{error}</p>
