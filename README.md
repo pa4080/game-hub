@@ -90,6 +90,10 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
   - [Iconify](https://iconify.design/)
   - [IconPark](https://iconpark.oceanengine.com/)
   - [Iconoir](https://iconoir.com/)
+- [Fetching data](https://members.codewithmosh.com/courses/ultimate-react-part1/lectures/45915920)
+  - <https://jsonplaceholder.typicode.com/>
+  - <https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API>
+  - <https://www.npmjs.com/package/axios#features>
 
 ### Managing Component State
 

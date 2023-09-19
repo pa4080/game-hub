@@ -20,7 +20,8 @@
 		"RAWG",
 		"Reakit",
 		"Shadcn",
-		"Tabler"
+		"Tabler",
+		"zipcode"
 	],
 	"material-icon-theme.folders.associations": {
 		// https://github.com/PKief/vscode-material-icon-theme
