@@ -2,7 +2,46 @@
 	"Home": {
 		"helloWorld": "Hello world!"
 	},
-	"Form": {
-		"btnSubmit": "Submit"
+	"Buttons": {
+		"btnSubmit": "Submit",
+		"btnCancel": "Cancel",
+		"btnReset": "Reset",
+		"btnSave": "Save",
+		"btnBack": "Back",
+		"btnNext": "Next",
+		"btnFinish": "Finish",
+		"btnLogin": "Login",
+		"btnLogout": "Logout",
+		"btnSend": "Send",
+		"btnSearch": "Search",
+		"btnAdd": "Add",
+		"btnAddExpense": "Add expense",
+		"btnEdit": "Edit",
+		"btnDelete": "Delete"
+	},
+	"ExpenseList": {
+		"description": "Description",
+		"amount": "Amount",
+		"date": "Date",
+		"category": "Category",
+		"action": "Action",
+		"total": "Total"
+	},
+	"ExpenseForm": {
+		"title": "Add expense",
+		"description": "Add expense to the list of expenses.",
+		"schema": {
+			"description": "The description must be at least 4 and maximum 16 characters.",
+			"amount_type": "The amount is required.",
+			"amount": "The amount must be between 0.01 and 100.000.",
+			"category": "The category is required."
+		}
+	},
+	"Categories": {
+		"select": "Select a category",
+		"all": "All categories",
+		"groceries": "Groceries",
+		"utilities": "Utilities",
+		"entertainment": "Entertainment"
 	}
 }

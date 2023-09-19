@@ -2,20 +2,12 @@
 
 import React from "react";
 
-import Form from "@/components/form/Form";
-
-// import messages from "@/messages/en.json";
+import Expenses from "@/components/expense-tracker/Expenses";
 
 const Home: React.FC = () => {
-	const handleSubmit = (data: unknown) => {
-		// eslint-disable-next-line no-console
-		console.log(data);
-	};
-
 	return (
-		<main className="p-8">
-			<h1 className="text-2xl mb-8">Simple as that</h1>
-			<Form onSubmit={handleSubmit} />
+		<main className="p-8 flex overflow-x-auto">
+			<Expenses className="mx-auto" />
 		</main>
 	);
 };

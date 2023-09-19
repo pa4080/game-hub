@@ -31,7 +31,7 @@
 		--border: 214.3 31.8% 91.4%;
 		--input: 214.3 31.8% 91.4%;
 		--ring: 42, 100%, 50%; /* hsl(42, 100%, 50%) */
-		--ring-opacity: hsl(42deg 100% 50% / 86.7%);
+		--ring-c: hsl(42deg 100% 50%);
 		--radius: 0.5rem;
 		--scrollbar-width: 12px;
 	}
@@ -67,6 +67,27 @@
 	body {
 		@apply bg-background text-foreground;
 	}
+}
+
+[type="text"]:focus,
+input:where(:not([type])):focus,
+[type="email"]:focus,
+[type="url"]:focus,
+[type="password"]:focus,
+[type="number"]:focus,
+[type="date"]:focus,
+[type="datetime-local"]:focus,
+[type="month"]:focus,
+[type="search"]:focus,
+[type="tel"]:focus,
+[type="time"]:focus,
+[type="week"]:focus,
+[multiple]:focus,
+textarea:focus,
+select:focus {
+	--tw-ring-color: hsl(42deg 100% 50%);
+
+	border-color: hsl(42deg 100% 50%);
 }
 
 /* Trick the hidden scroll of Radix Select */
@@ -122,7 +143,7 @@ body [data-radix-select-viewport]::-webkit-scrollbar {
 }
 
 *::-webkit-scrollbar-thumb:hover {
-	background-color: theme("colors.accent.DEFAULT");
+	background-color: hsl(var(--ring));
 }
 
 *::-webkit-scrollbar-corner {
@@ -153,9 +174,9 @@ body [data-radix-select-viewport]::-webkit-scrollbar {
 	fill: #ffb300;
 }
 
-/* Form */
+/* form */
 .form_field_text_input {
-	@apply block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-300 sm:text-sm sm:leading-6;
+	@apply block w-full rounded-xl border-0 py-[0.565rem] text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-ring sm:leading-6;
 }
 
 .form_text_input_label {
@@ -167,9 +188,60 @@ body [data-radix-select-viewport]::-webkit-scrollbar {
 }
 
 .form_submit_btn {
-	@apply border font-semibold rounded-md px-6 py-2 text-white bg-blue-600 hover:bg-blue-900 mt-2 active:bg-white active:text-blue-700;
+	@apply border font-semibold rounded-lg px-6 py-2 text-white bg-blue-600 hover:bg-blue-900 active:bg-white active:text-blue-700 border-blue-600 active:border-blue-600 hover:border-blue-900;
+}
+
+.form_dialog_btn {
+	@apply border font-semibold rounded-lg px-6 py-2 text-blue-600 bg-white hover:bg-blue-900 hover:text-white active:text-white active:bg-blue-600 border-blue-600 active:border-blue-600 hover:border-blue-900;
 }
 
 .form_input_error_message {
-	@apply text-sm text-red-500 -mt-7 mb-2;
+	@apply absolute -bottom-6 text-sm text-red-500 whitespace-nowrap text-ellipsis overflow-hidden w-full;
+}
+
+/* expense-tracker */
+.table_wrapper {
+	@apply border border-slate-300 rounded-xl w-full overflow-hidden;
+}
+
+.table {
+	@apply w-full table-auto border-collapse;
+}
+
+.table_row_common {
+	@apply text-slate-900 border border-slate-300 py-2 px-4 border-t-0 first:border-l-0 last:border-r-0;
+}
+
+.table tfoot tr:last-child td {
+	@apply border-b-0;
+}
+
+.btn_sm_danger {
+	@apply text-sm bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-1 px-3 border border-red-500 hover:border-transparent rounded;
+}
+
+select.category_select {
+	@apply appearance-none rounded-lg border border-slate-300 transition-all duration-100;
+}
+
+select.category_select:active {
+	@apply rounded-b-none drop-shadow-xl shadow-xl shadow-slate-300 bg-slate-100 transition-all duration-100;
+}
+
+/**
+ * https://stackoverflow.com/a/37773550/6543935
+ *
+ <select size={4}> ... </select>
+
+ select.category_filter option {
+	 @apply p-1;
+ }
+*/
+
+select.category_filter {
+	@apply rounded-lg;
+}
+
+select.category_choice {
+	@apply rounded-xl w-full;
 }
