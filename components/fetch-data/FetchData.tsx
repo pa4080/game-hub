@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import axios, { CanceledError } from "axios";
 
 import Loading from "./Loading";
+import ListGroup from "./ListUsers";
 
 const dataUrl = "https://jsonplaceholder.typicode.com/users";
 
-interface User {
+export interface User {
 	id: number;
 	name: string;
 	username: string;
@@ -49,25 +50,19 @@ const AxiosExample: React.FC = () => {
 		};
 	}, []);
 
+	const handleUserDeleteById = (id: number) => {
+		setUsers(users.filter((user) => user.id !== id));
+	};
+
 	return users.length === 0 ? (
-		<>
-			<Loading />
-		</>
+		<Loading />
 	) : (
-		<div>
-			{error ? (
-				<p className="text-lg text-red-500 font-semibold">{error}</p>
-			) : (
-				<h1 className="text-lg font-semibold">Users list:</h1>
-			)}
-			<ul className="ml-5">
-				{users.map((user) => (
-					<li key={user.id} className="list-decimal">
-						{user.name}
-					</li>
-				))}
-			</ul>
-		</div>
+		<ListGroup
+			errorMessage={error}
+			heading="Users list"
+			users={users}
+			onDelete={handleUserDeleteById}
+		/>
 	);
 };
 

@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import AxiosExample from "@/components/fetch-data/Axios_ThenCatch_AbortController";
+import AxiosExample from "@/components/fetch-data/FetchData";
 
 const Home: React.FC = () => {
 	return (
