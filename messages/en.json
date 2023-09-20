@@ -39,13 +39,15 @@
 		}
 	},
 	"UserForm": {
-		"title": "Add expense",
+		"title": "Add user",
 		"description": "Add expense to the list of expenses.",
 		"schema": {
-			"description": "The description must be at least 4 and maximum 16 characters.",
-			"amount_type": "The amount is required.",
-			"amount": "The amount must be between 0.01 and 100.000.",
-			"category": "The category is required."
+			"name": "The name must be at least 4 characters long.",
+			"username_min": "The username must be at least 4 characters long.",
+			"username_max": "The username must be maximum 16 characters long.",
+			"username_unique": "The username is already taken.",
+			"username_case": "The username must be alphanumeric lowercase, _ is allowed.",
+			"email": "Please enter a valid email address."
 		}
 	},
 	"Categories": {

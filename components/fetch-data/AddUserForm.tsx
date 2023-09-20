@@ -9,12 +9,13 @@ import messages from "@/messages/en.json";
 import Input from "./components/FormInput";
 
 const userSchema = z.object({
-	name: z.string().min(4, { message: messages.UserForm.schema.description }),
+	name: z.string().min(4, { message: messages.UserForm.schema.name }),
 	username: z
 		.string()
-		.min(4, { message: messages.UserForm.schema.description })
-		.max(16, { message: messages.UserForm.schema.description }),
-	email: z.string().email(),
+		.min(4, { message: messages.UserForm.schema.username_min })
+		.max(16, { message: messages.UserForm.schema.username_max })
+		.regex(/^[a-z0-9_]+$/, { message: messages.UserForm.schema.username_case }),
+	email: z.string().email({ message: messages.UserForm.schema.email }),
 });
 
 export type AddUserFormData = z.infer<typeof userSchema>;
