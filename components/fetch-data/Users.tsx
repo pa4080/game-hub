@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios, { CanceledError } from "axios";
 
 import Loading from "./Loading";
-import ListGroup from "./ListUsers";
+import ListUsers from "./ListUsers";
+import { AddUserFormData } from "./AddUserForm";
 
 const dataUrl = "https://jsonplaceholder.typicode.com/users";
 
@@ -11,19 +12,11 @@ export interface User {
 	name: string;
 	username: string;
 	email: string;
-	address: {
-		street: string;
-		suite: string;
-		city: string;
-		zipcode: string;
-		geo: {
-			lat: string;
-			lng: string;
-		};
-	};
 }
+// NewUser is defined via the form schema
+// export type NewUser = Omit<User, "id">;
 
-const AxiosExample: React.FC = () => {
+const Users: React.FC = () => {
 	const [users, setUsers] = useState<User[]>([]);
 	const [error, setError] = useState("");
 
@@ -34,7 +27,7 @@ const AxiosExample: React.FC = () => {
 			.get<User[]>(dataUrl, { signal: controller.signal })
 			.then(async (res) => {
 				// Simulate slow network
-				await new Promise((resolve) => setTimeout(resolve, 3000));
+				await new Promise((resolve) => setTimeout(resolve, 1000));
 				setUsers(res.data);
 			})
 			.catch((err) => {
@@ -62,12 +55,35 @@ const AxiosExample: React.FC = () => {
 		});
 	};
 
+	const handleAddNewUser = (newUser: AddUserFormData) => {
+		const prevUsers = [...users];
+		const newIdTmp = prevUsers[prevUsers.length - 1].id + Math.random() * 10000;
+		const prevUsersTmp = { ...newUser, id: newIdTmp };
+
+		setUsers([...prevUsers, prevUsersTmp]);
+
+		axios
+			.post(dataUrl, newUser)
+			.then(({ data: savedUser }) => {
+				setUsers((prevUsers) => prevUsers.map((user) => (user.id !== newIdTmp ? user : savedUser)));
+			})
+			.catch((err) => {
+				setError(err.message);
+				setUsers(prevUsers);
+			});
+	};
+
 	return (
 		<div>
 			{users.length === 0 ? (
 				<Loading />
 			) : (
-				<ListGroup heading="Users list" users={users} onDelete={handleUserDeleteById} />
+				<ListUsers
+					heading="Users list"
+					users={users}
+					onAddNew={handleAddNewUser}
+					onDelete={handleUserDeleteById}
+				/>
 			)}
 
 			{error && <p className="text-lg text-red-500 font-semibold">{error}</p>}
@@ -75,4 +91,4 @@ const AxiosExample: React.FC = () => {
 	);
 };
 
-export default AxiosExample;
+export default Users;

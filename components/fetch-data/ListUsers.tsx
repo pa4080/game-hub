@@ -5,20 +5,38 @@ import React, { useState } from "react";
 import { cn } from "@/lib/cn-utils";
 import messages from "@/messages/en.json";
 
-import { User } from "./FetchData";
+import { User } from "./Users";
+import FormDialog from "./components/FormDialog";
+import AddUserForm, { AddUserFormData } from "./AddUserForm";
 
 interface Props {
 	users: User[];
 	heading: string;
-	onDelete?: (userId: number) => void;
+	onDelete: (userId: number) => void;
+	onAddNew: (user: AddUserFormData) => void;
 }
 
-const ListGroup: React.FC<Props> = ({ users, heading, onDelete }) => {
+const ListUsers: React.FC<Props> = ({ users, heading, onDelete, onAddNew }) => {
 	const [selectedIndex, setSelectedIndex] = useState(-1);
+	const [isAddUserDialogOpen, setIsAddUserDialogOpen] = useState(false);
+
+	const AddUserBtn = (
+		<button
+			className="btn_sm_add transition-colors duration-150"
+			type="button"
+			onClick={() => setIsAddUserDialogOpen(true)}
+		>
+			<span className="px-2">{messages.Buttons.btnAddUser}</span>
+		</button>
+	);
 
 	return (
 		<div>
-			<h1 className="text-3xl px-2">{heading}</h1>
+			<div className="flex gap-3 items-center justify-between pr-2">
+				<h1 className="text-3xl px-2">{heading}</h1>
+				{AddUserBtn}
+			</div>
+
 			<ul className="m-2 border rounded-lg overflow-hidden">
 				{users.map((user, index, arr) => (
 					<li
@@ -40,8 +58,16 @@ const ListGroup: React.FC<Props> = ({ users, heading, onDelete }) => {
 					</li>
 				))}
 			</ul>
+			<FormDialog
+				description={messages.UserForm.description}
+				isOpen={isAddUserDialogOpen}
+				setIsOpen={setIsAddUserDialogOpen}
+				title={messages.UserForm.title}
+			>
+				<AddUserForm setIsOpen={setIsAddUserDialogOpen} onSubmit={onAddNew} />
+			</FormDialog>
 		</div>
 	);
 };
 
-export default ListGroup;
+export default ListUsers;

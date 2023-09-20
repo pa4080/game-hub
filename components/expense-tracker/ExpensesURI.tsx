@@ -96,6 +96,7 @@ const Expenses: React.FC<Props> = ({ className }) => {
 
 		setExpenses([...expenses, { id, ...data }]);
 	};
+
 	const AddExpenseBtn = (
 		<button
 			className="form_dialog_btn transition-colors duration-150"

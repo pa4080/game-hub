@@ -2,12 +2,12 @@
 
 import React from "react";
 
-import AxiosExample from "@/components/fetch-data/FetchData";
+import Users from "@/components/fetch-data/Users";
 
 const Home: React.FC = () => {
 	return (
 		<main className="p-8 flex overflow-x-auto">
-			<AxiosExample />
+			<Users />
 		</main>
 	);
 };
