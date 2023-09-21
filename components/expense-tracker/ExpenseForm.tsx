@@ -84,7 +84,7 @@ const ExpenseForm: React.FC<Props> = ({ className, onSubmit, setIsOpen }) => {
 				label="Category"
 			/>
 
-			<button className="form_submit_btn transition-colors duration-150 mt-2" type="submit">
+			<button className="form_btn_submit transition-colors duration-150 mt-2" type="submit">
 				{messages.Buttons.btnSubmit}
 			</button>
 		</form>

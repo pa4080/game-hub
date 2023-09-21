@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios, { CanceledError } from "axios";
 
-import Loading from "../Loading";
+import Loading from "../fragments/Loading";
 
 const dataUrl = "https://jsonplaceholder.typicode.com/users";
 

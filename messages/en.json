@@ -15,7 +15,7 @@
 		"btnSend": "Send",
 		"btnSearch": "Search",
 		"btnAdd": "Add",
-		"btnAddUser": "Add user",
+		"btnAddUser": "Add a user",
 		"btnAddExpense": "Add expense",
 		"btnEdit": "Edit",
 		"btnDelete": "Delete"
@@ -39,14 +39,20 @@
 		}
 	},
 	"UserForm": {
-		"title": "Add user",
-		"description": "Add expense to the list of expenses.",
+		"add": {
+			"title": "Add user",
+			"description": "Add a user to the users list."
+		},
+		"edit": {
+			"title": "Edit user",
+			"description": "Edit the selected user and update the list."
+		},
 		"schema": {
 			"name": "The name must be at least 4 characters long.",
 			"username_min": "The username must be at least 4 characters long.",
 			"username_max": "The username must be maximum 16 characters long.",
 			"username_unique": "The username is already taken.",
-			"username_case": "The username must be alphanumeric lowercase, _ is allowed.",
+			"username_case": "The username must be alphanumeric, also _-. are allowed.",
 			"email": "Please enter a valid email address."
 		}
 	},

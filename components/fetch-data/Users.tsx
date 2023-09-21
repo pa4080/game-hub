@@ -1,30 +1,30 @@
 import React, { useEffect, useState } from "react";
 import axios, { CanceledError } from "axios";
 
-import Loading from "./Loading";
-import ListUsers from "./ListUsers";
-import { AddUserFormData } from "./AddUserForm";
+import Loading from "./fragments/Loading";
+import ListUsers from "./UsersList";
+import { AddUserType, UserType } from "./UserForm";
 
 const dataUrl = "https://jsonplaceholder.typicode.com/users";
 
-export interface User {
-	id: number;
-	name: string;
-	username: string;
-	email: string;
-}
-// NewUser is defined via the form schema
+// The types are defined by the form schema
+// export interface User {
+// 	id: number;
+// 	name: string;
+// 	username: string;
+// 	email: string;
+// }
 // export type NewUser = Omit<User, "id">;
 
 const Users: React.FC = () => {
-	const [users, setUsers] = useState<User[]>([]);
+	const [users, setUsers] = useState<UserType[]>([]);
 	const [error, setError] = useState("");
 
 	useEffect(() => {
 		const controller = new AbortController();
 
 		axios
-			.get<User[]>(dataUrl, { signal: controller.signal })
+			.get<UserType[]>(dataUrl, { signal: controller.signal })
 			.then(async (res) => {
 				// Simulate slow network
 				await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -55,17 +55,35 @@ const Users: React.FC = () => {
 		});
 	};
 
-	const handleAddNewUser = (newUser: AddUserFormData) => {
+	const handleAddNewUser = (newUser: AddUserType) => {
 		const prevUsers = [...users];
 		const newIdTmp = prevUsers[prevUsers.length - 1].id + Math.random() * 10000;
-		const prevUsersTmp = { ...newUser, id: newIdTmp };
+		const userTmp = { ...newUser, id: newIdTmp };
 
-		setUsers([...prevUsers, prevUsersTmp]);
+		setUsers([...prevUsers, userTmp]);
 
 		axios
 			.post(dataUrl, newUser)
 			.then(({ data: savedUser }) => {
 				setUsers((prevUsers) => prevUsers.map((user) => (user.id !== newIdTmp ? user : savedUser)));
+			})
+			.catch((err) => {
+				setError(err.message);
+				setUsers(prevUsers);
+			});
+	};
+
+	const handleEditUser = (modifiedUser: UserType) => {
+		const prevUsers = [...users];
+
+		setUsers(prevUsers.map((user) => (user.id !== modifiedUser.id ? user : modifiedUser)));
+
+		axios
+			.patch(`${dataUrl}/${modifiedUser.id}`, modifiedUser)
+			.then(({ data: updatedUser }) => {
+				setUsers((prevUsers) =>
+					prevUsers.map((user) => (user.id !== updatedUser.id ? user : updatedUser))
+				);
 			})
 			.catch((err) => {
 				setError(err.message);
@@ -79,10 +97,11 @@ const Users: React.FC = () => {
 				<Loading />
 			) : (
 				<ListUsers
+					handleAddNewUser={handleAddNewUser}
+					handleDeleteUser={handleUserDeleteById}
+					handleEditUser={handleEditUser}
 					heading="Users list"
 					users={users}
-					onAddNew={handleAddNewUser}
-					onDelete={handleUserDeleteById}
 				/>
 			)}
 
