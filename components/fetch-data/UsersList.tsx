@@ -6,33 +6,26 @@ import { cn } from "@/lib/cn-utils";
 import messages from "@/messages/en.json";
 
 import FormDialog from "./fragments/FormDialog";
-import UserForm, { AddUserType, UserType } from "./UserForm";
+import UserForm, { UserType, UserTypeDB } from "./UserForm";
 
 interface Props {
-	users: UserType[];
+	users: UserTypeDB[];
 	heading: string;
 	handleDeleteUser: (userId: number) => void;
-	handleEditUser: (user: UserType) => void;
-	handleAddNewUser: (user: AddUserType) => void;
+	handleUserMutate: (user: UserType) => void;
 }
 
-const ListUsers: React.FC<Props> = ({
-	users,
-	heading,
-	handleDeleteUser: handleOnClickDeleteUser,
-	handleAddNewUser,
-	handleEditUser,
-}) => {
+const ListUsers: React.FC<Props> = ({ users, heading, handleDeleteUser, handleUserMutate }) => {
 	const [selectedIndex, setSelectedIndex] = useState(-1);
 	const [isUserDialogOpen, setIsUserDialogOpen] = useState(false);
-	const [userToEdit, setUserToEdit] = useState<UserType | null>(null);
+	const [userToEdit, setUserToEdit] = useState<UserTypeDB>();
 
 	const AddUserBtn = (
 		<button
 			className="btn_sm_affirmative transition-colors duration-150"
 			type="button"
 			onClick={() => {
-				setUserToEdit(null);
+				setUserToEdit(undefined);
 				setIsUserDialogOpen(true);
 			}}
 		>
@@ -40,7 +33,7 @@ const ListUsers: React.FC<Props> = ({
 		</button>
 	);
 
-	const handleOnClickEditBtn = (user: UserType) => {
+	const handleOnClickEditBtn = (user: UserTypeDB) => {
 		setUserToEdit(user);
 		setIsUserDialogOpen(true);
 	};
@@ -74,7 +67,7 @@ const ListUsers: React.FC<Props> = ({
 							>
 								{messages.Buttons.btnEdit}
 							</button>
-							<button className="btn_sm_danger" onClick={() => handleOnClickDeleteUser(user.id)}>
+							<button className="btn_sm_danger" onClick={() => handleDeleteUser(user.id)}>
 								{messages.Buttons.btnDelete}
 							</button>
 						</div>
@@ -88,11 +81,11 @@ const ListUsers: React.FC<Props> = ({
 				setIsOpen={setIsUserDialogOpen}
 				title={messages.UserForm[userToEdit ? "edit" : "add"].title}
 			>
-				{userToEdit ? (
-					<UserForm setIsOpen={setIsUserDialogOpen} user={userToEdit} onEditUser={handleEditUser} />
-				) : (
-					<UserForm setIsOpen={setIsUserDialogOpen} onAddUser={handleAddNewUser} />
-				)}
+				<UserForm
+					setIsOpen={setIsUserDialogOpen}
+					user={userToEdit}
+					onUserMutate={handleUserMutate}
+				/>
 			</FormDialog>
 		</div>
 	);

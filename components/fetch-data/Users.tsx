@@ -3,7 +3,7 @@ import axios, { CanceledError } from "axios";
 
 import Loading from "./fragments/Loading";
 import ListUsers from "./UsersList";
-import { AddUserType, UserType } from "./UserForm";
+import { UserType, UserTypeDB } from "./UserForm";
 
 const dataUrl = "https://jsonplaceholder.typicode.com/users";
 
@@ -17,14 +17,14 @@ const dataUrl = "https://jsonplaceholder.typicode.com/users";
 // export type NewUser = Omit<User, "id">;
 
 const Users: React.FC = () => {
-	const [users, setUsers] = useState<UserType[]>([]);
+	const [users, setUsers] = useState<UserTypeDB[]>([]);
 	const [error, setError] = useState("");
 
 	useEffect(() => {
 		const controller = new AbortController();
 
 		axios
-			.get<UserType[]>(dataUrl, { signal: controller.signal })
+			.get<UserTypeDB[]>(dataUrl, { signal: controller.signal })
 			.then(async (res) => {
 				// Simulate slow network
 				await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -43,7 +43,7 @@ const Users: React.FC = () => {
 		};
 	}, []);
 
-	const handleUserDeleteById = (id: number) => {
+	const deleteUser = (id: number) => {
 		const originalUsersList = [...users];
 
 		// Optimistic update Implementation
@@ -55,40 +55,47 @@ const Users: React.FC = () => {
 		});
 	};
 
-	const handleAddNewUser = (newUser: AddUserType) => {
-		const prevUsers = [...users];
-		const newIdTmp = prevUsers[prevUsers.length - 1].id + Math.random() * 10000;
-		const userTmp = { ...newUser, id: newIdTmp };
-
-		setUsers([...prevUsers, userTmp]);
-
-		axios
-			.post(dataUrl, newUser)
-			.then(({ data: savedUser }) => {
-				setUsers((prevUsers) => prevUsers.map((user) => (user.id !== newIdTmp ? user : savedUser)));
-			})
-			.catch((err) => {
-				setError(err.message);
-				setUsers(prevUsers);
-			});
-	};
-
-	const handleEditUser = (modifiedUser: UserType) => {
+	const addOrEditUser = (userData: UserType) => {
 		const prevUsers = [...users];
 
-		setUsers(prevUsers.map((user) => (user.id !== modifiedUser.id ? user : modifiedUser)));
+		if (userData.id) {
+			// Modify an existing user
 
-		axios
-			.patch(`${dataUrl}/${modifiedUser.id}`, modifiedUser)
-			.then(({ data: updatedUser }) => {
-				setUsers((prevUsers) =>
-					prevUsers.map((user) => (user.id !== updatedUser.id ? user : updatedUser))
-				);
-			})
-			.catch((err) => {
-				setError(err.message);
-				setUsers(prevUsers);
-			});
+			setUsers(
+				prevUsers.map((user) => (user.id !== userData.id ? user : (userData as UserTypeDB)))
+			);
+
+			axios
+				.patch<UserTypeDB>(`${dataUrl}/${userData.id}`, userData)
+				.then(({ data: updatedUser }) => {
+					setUsers((prevUsers) =>
+						prevUsers.map((user) => (user.id !== updatedUser.id ? user : updatedUser))
+					);
+				})
+				.catch((err) => {
+					setError(err.message);
+					setUsers(prevUsers);
+				});
+		} else {
+			// Add a new user
+
+			const newIdTmp = prevUsers[prevUsers.length - 1].id + Math.random() * 10000;
+			const userTmp = { ...userData, id: newIdTmp };
+
+			setUsers([...prevUsers, userTmp]);
+
+			axios
+				.post<UserTypeDB>(dataUrl, userData)
+				.then(({ data: savedUser }) => {
+					setUsers((prevUsers) =>
+						prevUsers.map((user) => (user.id !== newIdTmp ? user : savedUser))
+					);
+				})
+				.catch((err) => {
+					setError(err.message);
+					setUsers(prevUsers);
+				});
+		}
 	};
 
 	return (
@@ -97,9 +104,8 @@ const Users: React.FC = () => {
 				<Loading />
 			) : (
 				<ListUsers
-					handleAddNewUser={handleAddNewUser}
-					handleDeleteUser={handleUserDeleteById}
-					handleEditUser={handleEditUser}
+					handleDeleteUser={deleteUser}
+					handleUserMutate={addOrEditUser}
 					heading="Users list"
 					users={users}
 				/>

@@ -19,24 +19,23 @@ const userSchema = z.object({
 	id: z.number().optional(),
 });
 
-export type AddUserType = z.infer<typeof userSchema>;
-export type UserType = Required<AddUserType>;
+export type UserType = z.infer<typeof userSchema>;
+export type UserTypeDB = Required<UserType>;
 
 interface Props {
 	className?: string;
 	setIsOpen: Dispatch<SetStateAction<boolean>>;
-	onAddUser?: (data: AddUserType) => void;
-	onEditUser?: (data: UserType) => void;
-	user?: UserType;
+	onUserMutate: (data: UserType) => void;
+	user: UserTypeDB | undefined;
 }
 
-const UserForm: React.FC<Props> = ({ className, setIsOpen, onAddUser, onEditUser, user }) => {
+const UserForm: React.FC<Props> = ({ className, setIsOpen, onUserMutate, user }) => {
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
 		reset,
-	} = useForm<AddUserType>({
+	} = useForm<UserType>({
 		resolver: zodResolver(userSchema),
 	});
 
@@ -46,11 +45,10 @@ const UserForm: React.FC<Props> = ({ className, setIsOpen, onAddUser, onEditUser
 		}
 	}, [reset, user]);
 
-	const handleOnSubmit = (data: AddUserType) => {
+	const handleOnSubmit = (data: UserType) => {
 		setIsOpen(false);
 		reset();
-		onAddUser && onAddUser(data);
-		onEditUser && user && onEditUser({ ...user, ...data });
+		user ? onUserMutate({ ...user, ...data }) : onUserMutate(data);
 	};
 
 	const handleOnCancelClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
