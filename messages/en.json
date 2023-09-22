@@ -15,6 +15,7 @@
 		"btnSend": "Send",
 		"btnSearch": "Search",
 		"btnAdd": "Add",
+		"btnAddUser": "Add a user",
 		"btnAddExpense": "Add expense",
 		"btnEdit": "Edit",
 		"btnDelete": "Delete"
@@ -35,6 +36,24 @@
 			"amount_type": "The amount is required.",
 			"amount": "The amount must be between 0.01 and 100.000.",
 			"category": "The category is required."
+		}
+	},
+	"UserForm": {
+		"add": {
+			"title": "Add user",
+			"description": "Add a user to the users list."
+		},
+		"edit": {
+			"title": "Edit user",
+			"description": "Edit the selected user and update the list."
+		},
+		"schema": {
+			"name": "The name must be at least 4 characters long.",
+			"username_min": "The username must be at least 4 characters long.",
+			"username_max": "The username must be maximum 16 characters long.",
+			"username_unique": "The username is already taken.",
+			"username_case": "The username must be alphanumeric, also _-. are allowed.",
+			"email": "Please enter a valid email address."
 		}
 	},
 	"Categories": {

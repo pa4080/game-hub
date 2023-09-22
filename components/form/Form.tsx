@@ -58,7 +58,7 @@ const Form: React.FC<Props> = ({ onSubmit }) => {
 			/>
 
 			<button
-				className="form_submit_btn transition-colors duration-150"
+				className="form_btn_submit transition-colors duration-150"
 				//  disabled={!isValid}
 			>
 				{messages.Buttons.btnSubmit}

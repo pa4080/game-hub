@@ -106,3 +106,14 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
   - [**Zod**](https://www.npmjs.com/package/zod-form-data) | [Joi](https://www.npmjs.com/package/joi) | [Yup](https://www.npmjs.com/package/yup)
 - [**State management via URI**](https://www.youtube.com/watch?v=oZZEI23Ri6E): use [`useSearchParams()`](https://reactrouter.com/en/main/hooks/use-search-params) instead of [`useState()`](https://react.dev/reference/react/useState).
   **Note about Next.js:** [`import { usePathname, useSearchParams } from 'next/navigation'`](https://nextjs.org/docs/app/api-reference/functions/use-router#router-events)...
+
+### Connect with the backend
+
+- [Fetching data](https://members.codewithmosh.com/courses/ultimate-react-part1/lectures/45915920)
+  - <https://jsonplaceholder.typicode.com/>
+  - <https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API>
+  - <https://www.npmjs.com/package/axios#features>
+- **Optimistic** update vs **Pessimistic** update logic: Optimistic update logic updates the UI immediately assuming the server request will succeed, while pessimistic update logic waits for the server response before updating the UI. See also [**useOptimistic()**](https://youtu.be/M3mGY0pgFk0?si=BwgjCvlbpM3bBE5_) beta React hook.
+- When we send HTTP requests with the effect hook, we should provide a clean-up function to cancel the request if the component is unmounted before the response is received. This is important to prevent errors, especially if the user navigates to a different page while the request is still pending.
+- When sending HTTP requests, we must handle errors properly. This can be done using try-catch blocks or by handling the error in the promise chain using .catch().
+- Custom hooks are a way to reuse code logic between multiple components. By encapsulating logic in a custom hook, we can create reusable pieces of code that can be shared across components without duplicating the code. Custom hooks can be used to handle common tasks, such as fetching data, and can help to make our code more organized and easier to maintain.
