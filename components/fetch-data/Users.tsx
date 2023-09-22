@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-import axiosClient, { CanceledError } from "@/components/fetch-data/services/api-client";
+import { CanceledError } from "@/components/fetch-data/services/api-client";
+import userService from "@/components/fetch-data/services/user-service";
 
 import Loading from "./fragments/Loading";
 import ListUsers from "./UsersList";
@@ -11,13 +12,10 @@ const Users: React.FC = () => {
 	const [error, setError] = useState("");
 
 	useEffect(() => {
-		const controller = new AbortController();
+		const { request, cancel } = userService.getAllUsers();
 
-		axiosClient
-			.get<UserTypeDB[]>("/users", { signal: controller.signal })
-			.then(async (res) => {
-				// Simulate slow network
-				await new Promise((resolve) => setTimeout(resolve, 1000));
+		request
+			.then((res) => {
 				setUsers(res.data);
 			})
 			.catch((err) => {
@@ -29,34 +27,33 @@ const Users: React.FC = () => {
 			});
 
 		return () => {
-			controller.abort();
+			cancel();
 		};
 	}, []);
 
 	const deleteUser = (id: number) => {
 		const originalUsersList = [...users];
 
-		// Optimistic update Implementation
 		setUsers(users.filter((user) => user.id !== id));
 
-		axiosClient.delete(`/users/${id}`).catch((err) => {
+		userService.deleteUser(id).catch((err) => {
 			setError(err.message);
 			setUsers(originalUsersList);
 		});
 	};
 
-	const addOrEditUser = (userData: UserType) => {
+	const userCreateOrUpdate = (userData: UserType) => {
 		const prevUsers = [...users];
 
 		if (userData.id) {
-			// Modify an existing user
+			// Update/modify an existing user
 
 			setUsers(
 				prevUsers.map((user) => (user.id !== userData.id ? user : (userData as UserTypeDB)))
 			);
 
-			axiosClient
-				.patch<UserTypeDB>(`/users/${userData.id}`, userData)
+			userService
+				.updateUser(userData)
 				.then(({ data: updatedUser }) => {
 					setUsers((prevUsers) =>
 						prevUsers.map((user) => (user.id !== updatedUser.id ? user : updatedUser))
@@ -67,15 +64,15 @@ const Users: React.FC = () => {
 					setUsers(prevUsers);
 				});
 		} else {
-			// Add a new user
+			// Create/add a new user
 
 			const newIdTmp = prevUsers[prevUsers.length - 1].id + Math.random() * 10000;
 			const userTmp = { ...userData, id: newIdTmp };
 
 			setUsers([...prevUsers, userTmp]);
 
-			axiosClient
-				.post<UserTypeDB>("/users", userData)
+			userService
+				.createUser(userData)
 				.then(({ data: savedUser }) => {
 					setUsers((prevUsers) =>
 						prevUsers.map((user) => (user.id !== newIdTmp ? user : savedUser))
@@ -95,7 +92,7 @@ const Users: React.FC = () => {
 			) : (
 				<ListUsers
 					handleDeleteUser={deleteUser}
-					handleUserMutate={addOrEditUser}
+					handleUserMutate={userCreateOrUpdate}
 					heading="Users list"
 					users={users}
 				/>
