@@ -1,35 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-import { CanceledError } from "@/services/api-client";
 import userService from "@/services/user-service";
+import useUsers from "@/hooks/useUsers";
 
 import Loading from "./fragments/Loading";
 import ListUsers from "./UsersList";
 import { UserType, UserTypeDB } from "./UserForm";
 
 const Users: React.FC = () => {
-	const [users, setUsers] = useState<UserTypeDB[]>([]);
-	const [error, setError] = useState("");
-
-	useEffect(() => {
-		const { request, cancel } = userService.getAll<UserTypeDB>();
-
-		request
-			.then((res) => {
-				setUsers(res.data);
-			})
-			.catch((err) => {
-				if (err instanceof CanceledError) {
-					return;
-				}
-
-				setError(err.message);
-			});
-
-		return () => {
-			cancel();
-		};
-	}, []);
+	const { users, error, isLoading, setUsers, setError } = useUsers();
 
 	const deleteUser = (id: number) => {
 		const originalUsersList = [...users];
@@ -87,7 +66,7 @@ const Users: React.FC = () => {
 
 	return (
 		<div>
-			{users.length === 0 ? (
+			{users.length === 0 || isLoading ? (
 				<Loading />
 			) : (
 				<ListUsers
