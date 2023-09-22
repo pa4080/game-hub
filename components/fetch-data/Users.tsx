@@ -1,20 +1,10 @@
 import React, { useEffect, useState } from "react";
-import axios, { CanceledError } from "axios";
+
+import axiosClient, { CanceledError } from "@/components/fetch-data/services/api-client";
 
 import Loading from "./fragments/Loading";
 import ListUsers from "./UsersList";
 import { UserType, UserTypeDB } from "./UserForm";
-
-const dataUrl = "https://jsonplaceholder.typicode.com/users";
-
-// The types are defined by the form schema
-// export interface User {
-// 	id: number;
-// 	name: string;
-// 	username: string;
-// 	email: string;
-// }
-// export type NewUser = Omit<User, "id">;
 
 const Users: React.FC = () => {
 	const [users, setUsers] = useState<UserTypeDB[]>([]);
@@ -23,8 +13,8 @@ const Users: React.FC = () => {
 	useEffect(() => {
 		const controller = new AbortController();
 
-		axios
-			.get<UserTypeDB[]>(dataUrl, { signal: controller.signal })
+		axiosClient
+			.get<UserTypeDB[]>("/users", { signal: controller.signal })
 			.then(async (res) => {
 				// Simulate slow network
 				await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -49,7 +39,7 @@ const Users: React.FC = () => {
 		// Optimistic update Implementation
 		setUsers(users.filter((user) => user.id !== id));
 
-		axios.delete(`${dataUrl}/${id}`).catch((err) => {
+		axiosClient.delete(`/users/${id}`).catch((err) => {
 			setError(err.message);
 			setUsers(originalUsersList);
 		});
@@ -65,8 +55,8 @@ const Users: React.FC = () => {
 				prevUsers.map((user) => (user.id !== userData.id ? user : (userData as UserTypeDB)))
 			);
 
-			axios
-				.patch<UserTypeDB>(`${dataUrl}/${userData.id}`, userData)
+			axiosClient
+				.patch<UserTypeDB>(`/users/${userData.id}`, userData)
 				.then(({ data: updatedUser }) => {
 					setUsers((prevUsers) =>
 						prevUsers.map((user) => (user.id !== updatedUser.id ? user : updatedUser))
@@ -84,8 +74,8 @@ const Users: React.FC = () => {
 
 			setUsers([...prevUsers, userTmp]);
 
-			axios
-				.post<UserTypeDB>(dataUrl, userData)
+			axiosClient
+				.post<UserTypeDB>("/users", userData)
 				.then(({ data: savedUser }) => {
 					setUsers((prevUsers) =>
 						prevUsers.map((user) => (user.id !== newIdTmp ? user : savedUser))
