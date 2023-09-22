@@ -12,7 +12,7 @@ const Users: React.FC = () => {
 	const [error, setError] = useState("");
 
 	useEffect(() => {
-		const { request, cancel } = userService.getAllUsers();
+		const { request, cancel } = userService.getAll<UserTypeDB>();
 
 		request
 			.then((res) => {
@@ -36,7 +36,7 @@ const Users: React.FC = () => {
 
 		setUsers(users.filter((user) => user.id !== id));
 
-		userService.deleteUser(id).catch((err) => {
+		userService.delete<UserTypeDB>(id).catch((err) => {
 			setError(err.message);
 			setUsers(originalUsersList);
 		});
@@ -53,7 +53,7 @@ const Users: React.FC = () => {
 			);
 
 			userService
-				.updateUser(userData)
+				.update<UserTypeDB>(userData as UserTypeDB)
 				.then(({ data: updatedUser }) => {
 					setUsers((prevUsers) =>
 						prevUsers.map((user) => (user.id !== updatedUser.id ? user : updatedUser))
@@ -72,7 +72,7 @@ const Users: React.FC = () => {
 			setUsers([...prevUsers, userTmp]);
 
 			userService
-				.createUser(userData)
+				.create<UserTypeDB>(userData as UserTypeDB)
 				.then(({ data: savedUser }) => {
 					setUsers((prevUsers) =>
 						prevUsers.map((user) => (user.id !== newIdTmp ? user : savedUser))
