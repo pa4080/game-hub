@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-import { CanceledError } from "@/components/fetch-data/services/api-client";
-import userService from "@/components/fetch-data/services/user-service";
+import { CanceledError } from "@/services/api-client";
+import userService from "@/services/user-service";
 
 import Loading from "./fragments/Loading";
 import ListUsers from "./UsersList";
