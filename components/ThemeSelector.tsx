@@ -7,7 +7,7 @@
  * @see https://michaelangelo.io/blog/darkmode-rsc !!! !!! !!!
  */
 
-import React, { useEffect } from "react";
+import React from "react";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 
@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import messages from "@/messages/en.json";
+import { cn } from "@/lib/cn-utils";
 
 export type ThemeType = "light" | "dark" | "system" | undefined;
 
@@ -31,6 +32,7 @@ interface Props {
 
 const ThemeSelector: React.FC<Props> = ({ theme }) => {
 	const router = useRouter();
+	const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
 	const setTheme = (themeToSet: ThemeType) => {
 		switch (themeToSet) {
@@ -41,32 +43,32 @@ const ThemeSelector: React.FC<Props> = ({ theme }) => {
 				Cookies.set("x-theme", "dark");
 				break;
 			default:
-				if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-					Cookies.set("x-theme", "dark");
-				} else {
-					Cookies.set("x-theme", "light");
-				}
-
+				// if (isDark) Cookies.set("x-theme", "dark");
+				// else Cookies.set("x-theme", "light");
+				Cookies.remove("x-theme");
+				// See "globals.css: @media (prefers-color-scheme: dark)" for this case !!!
 				break;
 		}
 
 		router.refresh();
 	};
 
-	useEffect(() => {
-		if (!theme) {
-			setTheme("system");
-		}
-
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [theme]);
-
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
 				<Button className="relative" size="icon" variant="outline">
-					<Sun className="h-[1.2rem] w-[1.2rem] opacity-100 dark:opacity-0" />
-					<Moon className="absolute h-[1.2rem] w-[1.2rem] opacity-0 dark:opacity-100" />
+					<Sun
+						className={
+							(cn("h-[1.2rem] w-[1.2rem]"),
+							!theme && isDark ? "opacity-0" : "opacity-100 dark:opacity-0")
+						}
+					/>
+					<Moon
+						className={cn(
+							"absolute h-[1.2rem] w-[1.2rem] opacity-0 dark:opacity-100",
+							!theme && isDark ? "opacity-100" : "opacity-0"
+						)}
+					/>
 				</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent align="end" className="p-4">

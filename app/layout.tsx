@@ -39,8 +39,11 @@ const RootLayout: React.FC<Props> = ({ children }) => {
 			case "light":
 				return "light";
 
-			default:
+			case "dark":
 				return "dark";
+
+			default:
+				return "system";
 		}
 	};
 
