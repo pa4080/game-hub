@@ -1,3 +1,5 @@
 export const Route = {
-	api: {},
+	api: {
+		rawg: "/api/rawg",
+	},
 };
