@@ -1,6 +1,6 @@
 import React from "react";
 
-import ToggleMode from "@/components/tw-dark-mode/ToggleMode";
+import ToggleMode from "@/components/exercises/toggle-colors/ManualToggle";
 
 const Home: React.FC = () => {
 	return (

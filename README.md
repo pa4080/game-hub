@@ -80,7 +80,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [Adding Icons](https://members.codewithmosh.com/courses/ultimate-react-part1/lectures/45915386)
   - [Font Awesome](https://fontawesome.com/)
   - [React Icons](https://react-icons.github.io/react-icons/)
-  - [Material Icons](https://material-ui.com/components/material-icons/)
+  - [Material Icons](https://material-ui.com/components/exercises/material-icons/)
   - [Tabler Icons](https://tablericons.com/)
   - [Lucide Icons](https://lucide.dev/)
   - [Hero Icons](https://heroicons.com/)
@@ -117,3 +117,10 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - When we send HTTP requests with the effect hook, we should provide a clean-up function to cancel the request if the component is unmounted before the response is received. This is important to prevent errors, especially if the user navigates to a different page while the request is still pending.
 - When sending HTTP requests, we must handle errors properly. This can be done using try-catch blocks or by handling the error in the promise chain using .catch().
 - Custom hooks are a way to reuse code logic between multiple components. By encapsulating logic in a custom hook, we can create reusable pieces of code that can be shared across components without duplicating the code. Custom hooks can be used to handle common tasks, such as fetching data, and can help to make our code more organized and easier to maintain.
+
+### Build the "Game Hub" Application
+
+- In the Mosh's tutorial is used [Chakra UI](https://chakra-ui.com/), but here we are using [Tailwind CSS](https://tailwindcss.com/) and [Shadcn/ui](https://ui.shadcn.com/).
+- [**Shadcn/ui > Next.js > Dark mode**](https://ui.shadcn.com/docs/dark-mode/next) this is the official way to implement dark mode in Next.js with Shadcn/ui. See the following files for a manual implementation.
+  - [`hooks/useColorMode.ts`](hooks/useColorMode.ts)
+  - [`components/exercises/toggle-colors/ToggleMode.tsx`](components/exercises/toggle-colors/ManualToggle.tsx)

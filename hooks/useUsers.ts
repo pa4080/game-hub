@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import userService from "@/services/user-service";
-import { UserTypeDB } from "@/components/fetch-data/UserForm";
+import { UserTypeDB } from "@/components/exercises/fetch-data/UserForm";
 import { CanceledError } from "@/services/api-client";
 
 const useUsers = () => {
