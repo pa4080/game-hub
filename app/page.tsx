@@ -1,11 +1,11 @@
 import React from "react";
 
-import ToggleMode from "@/components/exercises/toggle-colors/ToggleWithThemeProvider";
+import ThemeSelectorLoader from "@/components/ThemeSelectorLoader";
 
 const Home: React.FC = () => {
 	return (
 		<main className="p-8 flex overflow-x-auto">
-			<ToggleMode />
+			<ThemeSelectorLoader />
 		</main>
 	);
 };
