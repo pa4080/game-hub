@@ -9,6 +9,8 @@ import manifest from "@/public/manifest.json";
 
 import { AppContextProvider } from "@/contexts/AppContext";
 
+import { ThemeProvider } from "./theme-ptovider";
+
 import type { Metadata } from "next";
 
 const font = DefaultFont({
@@ -34,9 +36,18 @@ interface Props {
 
 const RootLayout: React.FC<Props> = ({ children }) => {
 	return (
-		<html lang="en">
+		<html suppressHydrationWarning lang="en">
 			<body className={font.className}>
-				<AppContextProvider>{children}</AppContextProvider>
+				<AppContextProvider>
+					<ThemeProvider
+						disableTransitionOnChange
+						enableSystem
+						attribute="class"
+						defaultTheme="system"
+					>
+						{children}
+					</ThemeProvider>
+				</AppContextProvider>
 				{/* <Analytics /> */}
 			</body>
 		</html>
