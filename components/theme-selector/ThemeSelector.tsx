@@ -4,7 +4,7 @@
  * @see https://ui.shadcn.com/docs/dark-mode/next
  * @see https://tailwindcss.com/docs/dark-mode
  * @see https://github.com/pacocoursey/next-themes/issues/152
- * @see https://michaelangelo.io/blog/darkmode-rsc !!! !!! !!!
+ * @see https://michaelangelo.io/blog/darkmode-rsc !!!
  */
 
 import React from "react";

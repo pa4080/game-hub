@@ -1,6 +1,6 @@
 import React from "react";
 
-import ThemeSelectorLoader from "@/components/ThemeSelectorLoader";
+import NavBar from "@/components/NavBar";
 
 /**
  * Refs. about the grid layout
@@ -10,10 +10,10 @@ import ThemeSelectorLoader from "@/components/ThemeSelectorLoader";
  */
 const Home: React.FC = () => {
 	return (
+		// Most of these should be moved in the ./layout.tsx
 		<main className="container m-0 p-0 grid grid-cols-1 sm:grid-cols-[200px_1fr]">
-			<div className="p-2 sm:col-span-2 bg-orange-300">
-				<ThemeSelectorLoader />
-			</div>
+			<NavBar className="p-2 sm:col-span-2" />
+
 			<div className="p-2 bg-blue-500 hidden sm:block">aside</div>
 			<div className="p-2 bg-green-500">content</div>
 		</main>

@@ -4,6 +4,9 @@
 		"dark": "Dark",
 		"system": "System"
 	},
+	"NavBar": {
+		"logoDesc": "The site logo"
+	},
 	"Home": {
 		"helloWorld": "Hello world!"
 	},
