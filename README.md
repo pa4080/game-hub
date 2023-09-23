@@ -5,8 +5,8 @@ This project is based on the Mosh Hamedani's course [React 18 and TypeScript](ht
 ## References
 
 - [React 18 and TypeScript](https://codewithmosh.com/p/ultimate-react-part1)
-- [Mosh at GitHub: The Ultimate React Course - Part 1](https://github.com/mosh-hamedani/react-course-part1)
-- [Mosh at GitHub: GameHub](https://github.com/mosh-hamedani/game-hub)
+- [Mosh at GitHub: **The Ultimate React Course - Part 1**](https://github.com/mosh-hamedani/react-course-part1)
+- [Mosh at GitHub: **GameHub**](https://github.com/mosh-hamedani/game-hub)
 - [RAWG API](https://rawg.io/apidocs) | [RAWG Home](https://rawg.io/)
 
 ## Snippets

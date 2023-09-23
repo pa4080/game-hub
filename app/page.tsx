@@ -1,13 +1,11 @@
-"use client";
-
 import React from "react";
 
-import Users from "@/components/fetch-data/Users";
+import ToggleMode from "@/components/tw-dark-mode/ToggleMode";
 
 const Home: React.FC = () => {
 	return (
 		<main className="p-8 flex overflow-x-auto">
-			<Users />
+			<ToggleMode />
 		</main>
 	);
 };
