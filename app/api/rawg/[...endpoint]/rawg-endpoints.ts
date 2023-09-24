@@ -10,6 +10,6 @@ const rawgEndpoints = <const>[
 	"tags",
 ];
 
-export type RawgEndpoints = typeof rawgEndpoints;
+export type RawgEndpoints = (typeof rawgEndpoints)[number];
 
 export { rawgEndpoints };

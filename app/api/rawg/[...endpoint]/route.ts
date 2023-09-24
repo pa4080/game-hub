@@ -19,7 +19,7 @@ export async function GET(request: NextRequest, { params }: Context) {
 	try {
 		switch (params?.endpoint?.length ?? 0) {
 			case 1: {
-				const endpoint = params?.endpoint[0] as RawgEndpoints[number];
+				const endpoint = params?.endpoint[0] as RawgEndpoints;
 
 				if (rawgEndpoints.includes(endpoint)) {
 					return NextResponse.json(await fetchRawg(queryParam, endpoint), { status: 200 });

@@ -4,7 +4,7 @@ import { RawgEndpoints } from "./rawg-endpoints";
 
 export async function fetchRawg(
 	params: IterableIterator<[string, string]> | undefined,
-	endpoint: RawgEndpoints[number],
+	endpoint: RawgEndpoints,
 	revalidate = 900 // revalidate every 15 minutes
 ) {
 	const apiKey = process.env.RAWG_API_KEY;

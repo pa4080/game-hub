@@ -4,9 +4,9 @@
 	"private": true,
 	"scripts": {
 		"check-branch-name": "chmod 755 githooks/check_branch_name.sh && bash githooks/check_branch_name.sh",
-		"dev": "next dev",
+		"dev": "next dev -p 3001",
 		"build": "next build",
-		"start": "next start",
+		"start": "next start -p 3001",
 		"lint": "next lint",
 		"prepare": "husky install",
 		"pre-commit": "npm run check-branch-name && lint-staged",
