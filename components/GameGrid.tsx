@@ -6,7 +6,8 @@ import useRawgApi from "@/hooks/useRawgApi";
 import { cn } from "@/lib/cn-utils";
 import { RawgEndpoints } from "@/interfaces/rawg-endpoints";
 
-import { Games } from "@/interfaces/rawg-games";
+import { RawgInterfaces } from "@/interfaces/rawg-interfaces";
+// import { Games } from "@/interfaces/rawg-games";
 
 import GameCard from "./GameCard";
 
@@ -15,8 +16,13 @@ interface Props {
 }
 
 const GameGrid: React.FC<Props> = ({ className }) => {
-	const { items, getItemsBy: getGamesBy, error, isLoading } = useRawgApi(RawgEndpoints.GAMES);
-	const games: Games = items as Games;
+	const {
+		items: games,
+		getItemsBy: getGamesBy,
+		error,
+		isLoading,
+	} = useRawgApi<RawgInterfaces[RawgEndpoints.GAMES]>(RawgEndpoints.GAMES);
+	// const games: Games = items as Games;
 
 	return (
 		<div className={cn("", className)}>

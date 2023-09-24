@@ -2,7 +2,7 @@ import { RawgEndpoints } from "./rawg-endpoints";
 import { Games } from "./rawg-games";
 import { CreatorRoles } from "./rawg-creator-roles";
 
-export interface RawgInterfacesMap {
+export interface RawgInterfaces {
 	[RawgEndpoints.CREATOR_ROLES]: CreatorRoles;
 	[RawgEndpoints.CREATORS]: Games;
 	[RawgEndpoints.DEVELOPERS]: Games;
@@ -14,9 +14,9 @@ export interface RawgInterfacesMap {
 	[RawgEndpoints.TAGS]: Games;
 }
 
-export type RawgInterfaces = {
-	[key in keyof RawgInterfacesMap]: RawgInterfacesMap[key];
-};
+// export type RawgInterfaces = {
+// 	[key in keyof RawgInterfacesMap]: RawgInterfacesMap[key];
+// };
 
 // export type RawgInterfaces = {
 // 	[RawgEndpoints.CREATOR_ROLES]: CreatorRoles;

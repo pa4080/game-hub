@@ -4,10 +4,13 @@ import { CanceledError } from "@/services/api-client";
 
 import createRawgService from "@/services/http-service";
 import { RawgEndpoints } from "@/interfaces/rawg-endpoints";
-import { RawgInterfaces } from "@/interfaces/rawg-interfaces";
+// import { RawgInterfaces } from "@/interfaces/rawg-interfaces";
 
-const useRawgApi = (endpoint: RawgEndpoints, searchParams?: [string, string][] | string) => {
-	type EndpointType = RawgInterfaces[typeof endpoint];
+type SearchParamsType = [string, string][];
+type SearchParamsExtT = SearchParamsType | string | null | undefined;
+
+const useRawgApi = <EndpointType>(endpoint: RawgEndpoints, searchParams?: SearchParamsExtT) => {
+	// type EndpointType = RawgInterfaces[typeof endpoint];
 	// type EndpointType = RawgInterfaces[RawgEndpoints.GAMES];
 
 	const [items, setItems] = useState<EndpointType>();
@@ -17,7 +20,7 @@ const useRawgApi = (endpoint: RawgEndpoints, searchParams?: [string, string][] |
 	const rawgService = useMemo(() => createRawgService(`/${endpoint}`), [endpoint]);
 
 	const getItemsBy = useMemo(
-		() => (searchParams?: [string, string][] | string | null) => {
+		() => (searchParams?: SearchParamsExtT) => {
 			// Now we can pass directly RawgResponse[next/previous] url
 			const params = searchParams
 				? searchParams instanceof Array
@@ -25,7 +28,7 @@ const useRawgApi = (endpoint: RawgEndpoints, searchParams?: [string, string][] |
 					: (searchParams
 							?.replace(/^.*\?/, "")
 							.split("&")
-							.map((param) => param.split("=")) as [string, string][])
+							.map((param) => param.split("=")) as SearchParamsType)
 				: [];
 
 			const { request, cancel } = rawgService.getAll<EndpointType>(params);

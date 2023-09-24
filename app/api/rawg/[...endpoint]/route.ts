@@ -5,8 +5,9 @@
 
 import { NextRequest, NextResponse } from "next/server";
 
+import { RawgEndpoints, RawgEndpointsType } from "@/interfaces/rawg-endpoints";
+
 import { fetchRawg } from "./fetch-rawg";
-import { RawgEndpoints, RawgEndpointsType } from "../../../../interfaces/rawg-endpoints";
 
 interface Context {
 	params: { endpoint: string[] };
