@@ -6,7 +6,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { fetchRawg } from "./fetch-rawg";
-import { rawgEndpoints, RawgEndpoints } from "./rawg-endpoints";
+import { RawgEndpoints, RawgEndpointsType } from "../../../../interfaces/rawg-endpoints";
 
 interface Context {
 	params: { endpoint: string[] };
@@ -19,13 +19,14 @@ export async function GET(request: NextRequest, { params }: Context) {
 	try {
 		switch (params?.endpoint?.length ?? 0) {
 			case 1: {
-				const endpoint = params?.endpoint[0] as RawgEndpoints;
+				const endpoint = params?.endpoint[0] as RawgEndpointsType;
+				const endpoints = [...Object.values(RawgEndpoints)] as [string];
 
-				if (rawgEndpoints.includes(endpoint)) {
+				if (endpoints.includes(endpoint as string)) {
 					return NextResponse.json(await fetchRawg(queryParam, endpoint), { status: 200 });
 				} else {
 					return NextResponse.json(
-						{ message: `The valid endpoints are: ${rawgEndpoints.join(", ")}.` },
+						{ message: `The valid endpoints are: ${endpoints.join(", ")}.` },
 						{ status: 404 }
 					);
 				}

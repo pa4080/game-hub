@@ -1,6 +1,6 @@
-import { Game } from "./game";
+import { Game } from "./rawg-game";
 
-export interface RawgResponse {
+export interface Games {
 	count: number;
 	next: string | null;
 	previous: string | null;

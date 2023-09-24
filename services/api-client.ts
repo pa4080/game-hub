@@ -4,7 +4,7 @@ import { Route } from "@/routes";
 
 export default axios.create({
 	baseURL: Route.api.rawg,
-	timeout: 5000,
+	timeout: 1000 * 10, // 10 seconds
 	params: {
 		key: "API_KEY",
 	},

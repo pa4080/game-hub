@@ -1,10 +1,10 @@
-import { RawgResponse } from "@/interfaces/rawg";
+import { Games } from "@/interfaces/rawg-games";
 
-import { RawgEndpoints } from "./rawg-endpoints";
+import { RawgEndpointsType } from "@/interfaces/rawg-endpoints";
 
 export async function fetchRawg(
 	params: IterableIterator<[string, string]> | undefined,
-	endpoint: RawgEndpoints,
+	endpoint: RawgEndpointsType,
 	revalidate = 900 // revalidate every 15 minutes
 ) {
 	const apiKey = process.env.RAWG_API_KEY;
@@ -25,7 +25,7 @@ export async function fetchRawg(
 	};
 
 	const response = await fetch(composeApiUrl(), { next: { revalidate } });
-	const gamesData: RawgResponse = await response.json();
+	const gamesData: Games = await response.json();
 
 	return {
 		...gamesData,
