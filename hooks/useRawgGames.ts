@@ -11,8 +11,18 @@ const useRawgGames = (searchParams?: [string, string][]) => {
 	const [isLoading, setIsLoading] = useState(false);
 
 	const getGamesBy = useMemo(
-		() => (searchParams?: [string, string][]) => {
-			const { request, cancel } = gameService.getAll<RawgResponse>(searchParams);
+		() => (searchParams?: [string, string][] | string | null) => {
+			// Now we can pass directly RawgResponse[next/previous] url
+			const params = searchParams
+				? searchParams instanceof Array
+					? searchParams
+					: (searchParams
+							?.replace(/^.*\?/, "")
+							.split("&")
+							.map((param) => param.split("=")) as [string, string][])
+				: [];
+
+			const { request, cancel } = gameService.getAll<RawgResponse>(params);
 
 			setIsLoading(true);
 
