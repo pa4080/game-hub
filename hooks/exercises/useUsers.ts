@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 
-import userService from "@/services/user-service";
+import { CanceledError } from "@/services/exercises/api-client";
+
+import userService from "@/services/exercises/user-service";
 import { UserTypeDB } from "@/components/exercises/fetch-data/UserForm";
-import { CanceledError } from "@/services/api-client";
 
 const useUsers = () => {
 	const [users, setUsers] = useState<UserTypeDB[]>([]);

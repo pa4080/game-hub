@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import useColorMode from "@/hooks/useColorMode";
+import useColorMode from "@/hooks/exercises/useColorMode";
 
 const ToggleMode: React.FC = () => {
 	const { theme, toggleTheme } = useColorMode();

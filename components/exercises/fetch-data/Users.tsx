@@ -1,7 +1,7 @@
 import React from "react";
 
-import userService from "@/services/user-service";
-import useUsers from "@/hooks/useUsers";
+import userService from "@/services/exercises/user-service";
+import useUsers from "@/hooks/exercises/useUsers";
 
 import Loading from "./fragments/Loading";
 import ListUsers from "./UsersList";

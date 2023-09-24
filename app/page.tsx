@@ -11,7 +11,7 @@ import NavBar from "@/components/NavBar";
 const Home: React.FC = () => {
 	return (
 		// Most of these should be moved in the ./layout.tsx
-		<main className="container m-0 p-0 grid grid-cols-1 sm:grid-cols-[200px_1fr]">
+		<main className="container p-0 grid grid-cols-1 sm:grid-cols-[200px_1fr]">
 			<NavBar className="p-2 sm:col-span-2" />
 
 			<div className="p-2 bg-blue-500 hidden sm:block">aside</div>
