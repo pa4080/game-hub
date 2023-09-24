@@ -1,13 +1,16 @@
 import { RawgResponse } from "@/interfaces/rawg";
 
+import { RawgEndpoints } from "./rawg-endpoints";
+
 export async function fetchRawg(
 	params: IterableIterator<[string, string]> | undefined,
+	endpoint: RawgEndpoints[number],
 	revalidate = 900 // revalidate every 15 minutes
 ) {
 	const apiKey = process.env.RAWG_API_KEY;
 	const apiUrl = process.env.RAWG_API_URL;
 	const composeApiUrl = () => {
-		let url = `${apiUrl}?key=${apiKey}`;
+		let url = `${apiUrl}/${endpoint}?key=${apiKey}`;
 
 		if (params) {
 			const paramsArray = Array.from(params);
