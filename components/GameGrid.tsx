@@ -5,9 +5,7 @@ import React from "react";
 import useRawgApi from "@/hooks/useRawgApi";
 import { cn } from "@/lib/cn-utils";
 import { RawgEndpoints } from "@/interfaces/rawg-endpoints";
-
 import { RawgInterfaces } from "@/interfaces/rawg-interfaces";
-// import { Games } from "@/interfaces/rawg-games";
 
 import GameCard from "./GameCard";
 

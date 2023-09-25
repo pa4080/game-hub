@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Game } from "@/interfaces/game";
+import { Game } from "@/interfaces/rawg-endpoint-games-game";
 import { cn } from "@/lib/cn-utils";
 
 interface Props {

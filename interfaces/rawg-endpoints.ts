@@ -11,22 +11,3 @@ export enum RawgEndpoints {
 }
 
 export type RawgEndpointsType = `${RawgEndpoints}`;
-
-/**
- * Previous version
- *
-const RawgEndpoints = <const>[
-	"creator-roles",
-	"creators",
-	"developers",
-	"games",
-	"genres",
-	"platforms",
-	"publishers",
-	"stores",
-	"tags",
-];
-
-export { RawgEndpoints };
-export type RawgEndpointsType = (typeof RawgEndpoints)[number];
- */

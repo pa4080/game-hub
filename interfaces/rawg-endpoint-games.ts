@@ -1,4 +1,4 @@
-import { Game } from "./rawg-game";
+import { Game } from "./rawg-endpoint-games-game";
 
 export interface Games {
 	count: number;
