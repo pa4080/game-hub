@@ -3,14 +3,14 @@
 import React from "react";
 
 import { cn } from "@/lib/cn-utils";
-import { RawgEndpoints } from "@/interfaces/rawg-endpoints";
-import { RawgInterfaces } from "@/interfaces/rawg-interfaces";
+import { Endpoints } from "@/interfaces/rawg-endpoints";
+import { Interfaces } from "@/interfaces/rawg-interfaces";
 
 import GameCard from "./GameCard";
 
 interface Props {
 	className?: string;
-	games: RawgInterfaces[RawgEndpoints.GAMES];
+	games: Interfaces[Endpoints.GAMES];
 }
 
 const GameGrid: React.FC<Props> = ({ games, className }) => {

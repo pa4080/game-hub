@@ -5,7 +5,7 @@
 
 import { NextRequest, NextResponse } from "next/server";
 
-import { RawgEndpoints, RawgEndpointsType } from "@/interfaces/rawg-endpoints";
+import { Endpoints, EndpointsType } from "@/interfaces/rawg-endpoints";
 
 import { fetchRawg } from "./fetch-rawg";
 
@@ -20,8 +20,8 @@ export async function GET(request: NextRequest, { params }: Context) {
 	try {
 		switch (params?.endpoint?.length ?? 0) {
 			case 1: {
-				const endpoint = params?.endpoint[0] as RawgEndpointsType;
-				const endpoints = [...Object.values(RawgEndpoints)] as [string];
+				const endpoint = params?.endpoint[0] as EndpointsType;
+				const endpoints = [...Object.values(Endpoints)] as [string];
 
 				if (endpoints.includes(endpoint as string)) {
 					return NextResponse.json(await fetchRawg(queryParam, endpoint), { status: 200 });

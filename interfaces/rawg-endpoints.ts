@@ -1,4 +1,4 @@
-export enum RawgEndpoints {
+export enum Endpoints {
 	CREATOR_ROLES = "creator-roles",
 	CREATORS = "creators",
 	DEVELOPERS = "developers",
@@ -10,4 +10,4 @@ export enum RawgEndpoints {
 	TAGS = "tags",
 }
 
-export type RawgEndpointsType = `${RawgEndpoints}`;
+export type EndpointsType = `${Endpoints}`;

@@ -3,13 +3,13 @@ import { useEffect, useMemo, useState } from "react";
 import { CanceledError } from "@/services/api-client";
 
 import createRawgService from "@/services/http-service";
-import { RawgEndpoints } from "@/interfaces/rawg-endpoints";
+import { Endpoints } from "@/interfaces/rawg-endpoints";
 // import { RawgInterfaces } from "@/interfaces/rawg-interfaces";
 
 type SearchParamsType = [string, string][];
 type SearchParamsExtT = SearchParamsType | string | null | undefined;
 
-const useRawgApi = <EndpointType>(endpoint: RawgEndpoints, searchParams?: SearchParamsExtT) => {
+const useRawgApi = <EndpointType>(endpoint: Endpoints, searchParams?: SearchParamsExtT) => {
 	// type EndpointType = RawgInterfaces[typeof endpoint];
 	// type EndpointType = RawgInterfaces[RawgEndpoints.GAMES];
 
