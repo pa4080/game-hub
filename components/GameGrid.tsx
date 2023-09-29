@@ -15,7 +15,7 @@ interface Props {
 
 const GameGrid: React.FC<Props> = ({ games, className }) => {
 	return (
-		<div className={cn("xs:columns-2 sm:columns-3 xl:columns-4 gap-8", className)}>
+		<div className={cn("columns-1 sm:columns-2 xl:columns-3 gap-8", className)}>
 			{games?.results.map((game, index) => <GameCard key={index} className="mb-8" game={game} />)}
 		</div>
 	);

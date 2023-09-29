@@ -1,3 +1,5 @@
+import { ParentPlatform, Platform } from "./rawg-endpoint-games-platforms";
+
 export interface Game {
 	id: number;
 	slug: string;
@@ -32,16 +34,7 @@ export interface Game {
 	saturated_color: string;
 	dominant_color: string;
 	platforms: {
-		platform: {
-			id: number;
-			name: string;
-			slug: string;
-			image: string | null;
-			year_end: number | null;
-			year_start: number | null;
-			games_count: number;
-			image_background: string | null;
-		};
+		platform: Platform;
 		released_at: string;
 		requirements_en: {
 			minimum: string;
@@ -53,11 +46,7 @@ export interface Game {
 		} | null;
 	}[];
 	parent_platforms: {
-		platform: {
-			id: number;
-			name: string;
-			slug: string;
-		};
+		platform: ParentPlatform;
 	}[];
 	genres: {
 		id: number;
