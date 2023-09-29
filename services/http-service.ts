@@ -1,9 +1,5 @@
 import apiClient from "./api-client";
 
-interface Entity {
-	id: number;
-}
-
 class HttpService {
 	endpoint: string;
 
@@ -11,26 +7,25 @@ class HttpService {
 		this.endpoint = endpoint;
 	}
 
-	getAll<T>() {
+	getAll<T>(searchParams?: [string, string][]) {
 		const controller = new AbortController();
-		const request = apiClient.get<T[]>(`${this.endpoint}`, { signal: controller.signal });
+		const signal = controller.signal;
+		const params: { [key: string]: string } = {};
+
+		if (searchParams) {
+			searchParams.forEach((param) => {
+				params[param[0]] = param[1];
+			});
+		}
+
+		const request = apiClient.get<T>(`${this.endpoint}`, {
+			signal,
+			params,
+		});
 
 		return { request, cancel: () => controller.abort() };
-	}
-
-	delete<T>(id: number) {
-		return apiClient.delete<T>(`${this.endpoint}/${id}`);
-	}
-
-	create<T>(entity: T) {
-		return apiClient.post<T>(`${this.endpoint}`, entity);
-	}
-
-	update<T extends Entity>(entity: T) {
-		return apiClient.patch<T>(`${this.endpoint}/${entity.id}`, entity);
 	}
 }
 
 const createService = (endpoint: string) => new HttpService(endpoint);
-
 export default createService;

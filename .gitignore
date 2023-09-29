@@ -2,6 +2,7 @@
 
 # tmp directopries
 tmp/
+/tmp
 
 # dependencies
 /node_modules

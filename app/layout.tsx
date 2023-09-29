@@ -2,6 +2,7 @@ import React from "react";
 // import { Analytics } from "@vercel/analytics/react";
 
 import { Inter as DefaultFont } from "next/font/google";
+import { cookies } from "next/headers";
 
 import "./globals.css";
 
@@ -33,8 +34,21 @@ interface Props {
 }
 
 const RootLayout: React.FC<Props> = ({ children }) => {
+	const switchTheme = () => {
+		switch (cookies().get("x-theme")?.value) {
+			case "light":
+				return "light";
+
+			case "dark":
+				return "dark";
+
+			default:
+				return "system";
+		}
+	};
+
 	return (
-		<html lang="en">
+		<html suppressHydrationWarning className={switchTheme()} lang="en">
 			<body className={font.className}>
 				<AppContextProvider>{children}</AppContextProvider>
 				{/* <Analytics /> */}

@@ -8,6 +8,7 @@
 		"Codacy",
 		"datetime",
 		"ecma",
+		"esrb",
 		"googleusercontent",
 		"Hamedani",
 		"Iconify",
@@ -16,11 +17,16 @@
 		"ipapi",
 		"Mantine",
 		"maxage",
+		"metacritic",
+		"nofollow",
 		"Onsen",
 		"RAWG",
 		"Reakit",
 		"Shadcn",
 		"Tabler",
+		"toplay",
+		"uidotdev",
+		"usehooks",
 		"zipcode"
 	],
 	"material-icon-theme.folders.associations": {
@@ -31,7 +37,8 @@
 		"components/ui": "core",
 		"components/fragments": "core",
 		"geo-data/languages": "",
-		"[[...query]]": "api"
+		"[[...query]]": "api",
+		"exercises": "vscode"
 	},
 	// https://youtu.be/3_-Je5XpbqY?t=688
 	// https://stackoverflow.com/a/76125894/6543935

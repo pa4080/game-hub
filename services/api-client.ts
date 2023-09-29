@@ -1,8 +1,13 @@
 import axios, { CanceledError, AxiosResponse } from "axios";
 
+import { Route } from "@/routes";
+
 export default axios.create({
-	baseURL: "https://jsonplaceholder.typicode.com",
-	timeout: 5000,
+	baseURL: Route.api.rawg,
+	timeout: 1000 * 10, // 10 seconds
+	params: {
+		key: "API_KEY",
+	},
 	headers: {
 		"Content-Type": "application/json",
 	},

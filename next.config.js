@@ -16,6 +16,12 @@ const nextConfig = {
 				port: "",
 				pathname: "/**",
 			},
+			{
+				protocol: "https",
+				hostname: "media.rawg.io",
+				port: "",
+				pathname: "/**",
+			},
 		],
 	},
 	async headers() {
