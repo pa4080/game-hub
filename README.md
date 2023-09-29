@@ -80,7 +80,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [Adding Icons](https://members.codewithmosh.com/courses/ultimate-react-part1/lectures/45915386)
   - [Font Awesome](https://fontawesome.com/)
   - [React Icons](https://react-icons.github.io/react-icons/)
-  - [Material Icons](https://material-ui.com/components/exercises/material-icons/)
+  - [Material Icons](https://material-ui.com/components/material-icons/)
   - [Tabler Icons](https://tablericons.com/)
   - [Lucide Icons](https://lucide.dev/)
   - [Hero Icons](https://heroicons.com/)
@@ -123,4 +123,3 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - In the Mosh's tutorial is used [Chakra UI](https://chakra-ui.com/), but here we are using [Tailwind CSS](https://tailwindcss.com/) and [Shadcn/ui](https://ui.shadcn.com/).
 - [**Shadcn/ui > Next.js > Dark mode**](https://ui.shadcn.com/docs/dark-mode/next) this is the official way to implement dark mode in Next.js with Shadcn/ui. See the following files for a manual implementation.
   - [`hooks/useColorMode.ts`](hooks/useColorMode.ts)
-  - [`components/exercises/toggle-colors/ToggleMode.tsx`](components/exercises/toggle-colors/ManualToggle.tsx)
