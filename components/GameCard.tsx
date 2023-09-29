@@ -6,6 +6,8 @@ import { Game } from "@/interfaces/rawg-endpoint-games-game";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { cn } from "@/lib/cn-utils";
 
+import getCroppedImageUrl from "@/lib/getCroppedImageUrl";
+
 import GameCard_Platforms from "./GameCard_Platforms";
 import GameCard_Score from "./GameCard_Score";
 
@@ -29,7 +31,7 @@ const GameCard: React.FC<Props> = ({ game, className }) => {
 						alt={game.name}
 						className="object-cover object-top h-full w-full absolute top-0 left-0"
 						height={180}
-						src={game.background_image}
+						src={getCroppedImageUrl(game.background_image)}
 						width={312}
 					/>
 				</AspectRatio>
