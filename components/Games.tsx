@@ -8,6 +8,7 @@ import { Endpoints } from "@/interfaces/rawg-endpoints";
 import { Interfaces } from "@/interfaces/rawg-interfaces";
 
 import GameGrid from "./GameGrid";
+import Games_Skeleton from "./Games_Skeleton";
 
 interface Props {
 	className?: string;
@@ -41,7 +42,7 @@ const Games: React.FC<Props> = ({ className }) => {
 				</button>
 			</div>
 
-			{isLoading || !games ? <div>Loading...</div> : <GameGrid games={games} />}
+			{isLoading || !games ? <Games_Skeleton /> : <GameGrid games={games} />}
 
 			{error && <p className="text-lg text-red-500 font-semibold m-0">{error}</p>}
 		</div>

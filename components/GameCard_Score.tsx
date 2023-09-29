@@ -4,7 +4,7 @@ import { cn } from "@/lib/cn-utils";
 
 interface Props {
 	className?: string;
-	score: number;
+	score: number | null;
 }
 
 const GameCard_Score: React.FC<Props> = ({ className, score }) => {

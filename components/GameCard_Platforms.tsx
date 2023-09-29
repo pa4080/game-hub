@@ -18,7 +18,7 @@ interface Props {
 }
 
 const GameCard_Platforms: React.FC<Props> = ({ className, platforms }) => {
-	const iconStyle = "w-5 h-5 text-gray-600 dark:text-gray-400";
+	const iconStyle = "w-5 h-5";
 
 	const iconMap: { [key: string]: React.ReactNode } = {
 		pc: <FaWindows className={iconStyle} />,
@@ -36,6 +36,7 @@ const GameCard_Platforms: React.FC<Props> = ({ className, platforms }) => {
 		<div
 			className={cn(
 				"flex gap-2 w-48 overflow-visible items-center justify-start mt-1 mb-3",
+				"text-gray-600 dark:text-gray-400",
 				className
 			)}
 		>
