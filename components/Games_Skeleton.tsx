@@ -5,6 +5,7 @@ import React from "react";
 import { AspectRatio } from "@radix-ui/react-aspect-ratio";
 
 import { cn } from "@/lib/cn-utils";
+import mockGames from "@/lib/mock-games";
 
 import { Skeleton } from "./ui/skeleton";
 import GameCard_Score from "./GameCard_Score";
@@ -15,11 +16,6 @@ interface Props {
 }
 
 const Games_Skeleton: React.FC<Props> = ({ className }) => {
-	const mockGames = Array.from({ length: 6 }).map((_, index) => ({
-		id: index,
-		name: `User name for index ${8 + ((index + 7) % 2)}`,
-	}));
-
 	return (
 		<div className={cn("columns-1 sm:columns-2 xl:columns-3 gap-8", className)}>
 			{mockGames?.map((game, index) => (
@@ -39,36 +35,7 @@ const Games_Skeleton: React.FC<Props> = ({ className }) => {
 						<div className="flex justify-between items-center w-full">
 							<GameCard_Platforms
 								className="text-gray-400 dark:text-gray-700"
-								platforms={[
-									{
-										platform: {
-											id: 1,
-											name: "PC",
-											slug: "pc",
-										},
-									},
-									{
-										platform: {
-											id: 2,
-											name: "PlayStation",
-											slug: "playstation",
-										},
-									},
-									{
-										platform: {
-											id: 3,
-											name: "Xbox",
-											slug: "xbox",
-										},
-									},
-									{
-										platform: {
-											id: 7,
-											name: "Nintendo",
-											slug: "nintendo",
-										},
-									},
-								]}
+								platforms={game.platforms}
 							/>
 							<GameCard_Score
 								className="text-transparent opacity-40"

@@ -1,0 +1,31 @@
+"use client";
+
+import React from "react";
+
+import useRawgApi from "@/hooks/useRawgApi";
+import { cn } from "@/lib/cn-utils";
+import { Endpoints } from "@/interfaces/rawg-endpoints";
+import { Interfaces } from "@/interfaces/rawg-interfaces";
+
+import GenresList from "./GenresList";
+
+interface Props {
+	className?: string;
+}
+
+const Genres: React.FC<Props> = ({ className }) => {
+	const {
+		items: genres,
+		error,
+		isLoading,
+	} = useRawgApi<Interfaces[Endpoints.GENRES]>(Endpoints.GENRES);
+
+	return (
+		<div className={cn("", className)}>
+			{isLoading || !genres ? <div>Loading...</div> : <GenresList genres={genres} />}
+			{error && <p className="text-base text-red-500 font-semibold m-0">{error}</p>}
+		</div>
+	);
+};
+
+export default Genres;
