@@ -6,7 +6,7 @@ import { Game } from "@/interfaces/rawg-endpoint-games-game";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { cn } from "@/lib/cn-utils";
 
-import getCroppedImageUrl from "@/lib/getCroppedImageUrl";
+import getCroppedImageUrl from "@/lib/get-rawg-cropped-image-url";
 
 import GameCard_Platforms from "./GameCard_Platforms";
 import GameCard_Score from "./GameCard_Score";

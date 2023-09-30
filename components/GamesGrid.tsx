@@ -13,7 +13,7 @@ interface Props {
 	games: Interfaces[Endpoints.GAMES];
 }
 
-const GameGrid: React.FC<Props> = ({ games, className }) => {
+const GamesGrid: React.FC<Props> = ({ games, className }) => {
 	return (
 		<div className={cn("columns-1 sm:columns-2 xl:columns-3 gap-8", className)}>
 			{games?.results.map((game, index) => <GameCard key={index} className="mb-8" game={game} />)}
@@ -21,4 +21,4 @@ const GameGrid: React.FC<Props> = ({ games, className }) => {
 	);
 };
 
-export default GameGrid;
+export default GamesGrid;
