@@ -5,7 +5,7 @@ import React from "react";
 import { AspectRatio } from "@radix-ui/react-aspect-ratio";
 
 import { cn } from "@/lib/cn-utils";
-import mockGames from "@/lib/mock-games";
+import mockGames from "@/lib/fake-games";
 
 import { Skeleton } from "./ui/skeleton";
 import GameCard_Score from "./GameCard_Score";

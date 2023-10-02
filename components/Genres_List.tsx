@@ -11,7 +11,7 @@ interface Props {
 	genres: Interfaces[Endpoints.GENRES];
 }
 
-const GenresList: React.FC<Props> = ({ genres, className }) => {
+const Genres_List: React.FC<Props> = ({ genres, className }) => {
 	return (
 		<div className={cn("flex flex-col gap-2", className)}>
 			{genres?.results.map((genre, index) => (
@@ -23,4 +23,4 @@ const GenresList: React.FC<Props> = ({ genres, className }) => {
 	);
 };
 
-export default GenresList;
+export default Genres_List;

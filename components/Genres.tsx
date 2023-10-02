@@ -7,7 +7,8 @@ import { cn } from "@/lib/cn-utils";
 import { Endpoints } from "@/interfaces/rawg-endpoints";
 import { Interfaces } from "@/interfaces/rawg-interfaces";
 
-import GenresList from "./GenresList";
+import Genres_List from "./Genres_List";
+import Genres_Skeleton from "./Genres_Skeleton";
 
 interface Props {
 	className?: string;
@@ -22,7 +23,7 @@ const Genres: React.FC<Props> = ({ className }) => {
 
 	return (
 		<div className={cn("", className)}>
-			{isLoading || !genres ? <div>Loading...</div> : <GenresList genres={genres} />}
+			{isLoading || !genres ? <Genres_Skeleton /> : <Genres_List genres={genres} />}
 			{error && <p className="text-base text-red-500 font-semibold m-0">{error}</p>}
 		</div>
 	);

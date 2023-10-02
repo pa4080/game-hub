@@ -7,7 +7,7 @@ import { cn } from "@/lib/cn-utils";
 import { Endpoints } from "@/interfaces/rawg-endpoints";
 import { Interfaces } from "@/interfaces/rawg-interfaces";
 
-import GamesGrid from "./GamesGrid";
+import Games_Grid from "./Games_Grid";
 import Games_Skeleton from "./Games_Skeleton";
 
 interface Props {
@@ -42,7 +42,7 @@ const Games: React.FC<Props> = ({ className }) => {
 				</button>
 			</div>
 
-			{isLoading || !games ? <Games_Skeleton /> : <GamesGrid games={games} />}
+			{isLoading || !games ? <Games_Skeleton /> : <Games_Grid games={games} />}
 
 			{error && <p className="text-lg text-red-500 font-semibold m-0">{error}</p>}
 		</div>

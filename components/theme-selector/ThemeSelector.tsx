@@ -8,10 +8,13 @@
  */
 
 import React from "react";
-import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
-
 import { Moon, Sun } from "lucide-react";
+
+// Note import { cookies } from 'next/headers'
+// can't be used in the client component at this moment
+// https://nextjs.org/docs/app/api-reference/functions/cookies
+import Cookies from "js-cookie";
 
 import { Button } from "@/components/ui/button";
 import {
