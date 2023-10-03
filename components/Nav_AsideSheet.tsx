@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/sheet";
 
 import Genres from "./Genres";
-import NavBar_Logo from "./NavBar_Logo";
+import Nav_Logo from "./Nav_Logo";
 
 const Nav_AsideSheet: React.FC = () => {
 	return (
@@ -27,9 +27,9 @@ const Nav_AsideSheet: React.FC = () => {
 				</Button>
 			</SheetTrigger>
 
-			<SheetContent className="flex flex-col pr-5">
+			<SheetContent className="flex flex-col pr-5 min-w-[280px]">
 				<SheetHeader className="h-16">
-					<NavBar_Logo />
+					<Nav_Logo />
 					{/* <SheetTitle>Game hub</SheetTitle> */}
 					{/* <SheetDescription>Description...</SheetDescription> */}
 				</SheetHeader>
