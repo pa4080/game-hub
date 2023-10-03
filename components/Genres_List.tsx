@@ -17,11 +17,11 @@ interface Props {
 
 const Genres_List: React.FC<Props> = ({ genres, className }) => {
 	return (
-		<div className={cn("flex flex-col gap-4", className)}>
+		<div className={cn("flex flex-col gap-1", className)}>
 			{genres?.results.map((genre, index) => (
-				<div key={index} className="flex gap-2 items-center justify-start">
-					<div className="h-10 w-10 rounded-xl border-input drop-shadow-xl bg-slate-400 dark:bg-slate-800 overflow-hidden">
-						<AspectRatio className="h-10 w-10" ratio={1 / 1}>
+				<div key={index} className="genre_item">
+					<div className="h-8 w-8 rounded-md bg-slate-400 dark:bg-slate-800 overflow-hidden">
+						<AspectRatio ratio={1 / 1}>
 							<Image
 								alt={genre.name}
 								className="object-cover object-top h-full w-full absolute top-0 left-0"
@@ -31,7 +31,7 @@ const Genres_List: React.FC<Props> = ({ genres, className }) => {
 							/>
 						</AspectRatio>
 					</div>
-					{genre.name}
+					<div className="line-clamp-1">{genre.name}</div>
 				</div>
 			))}
 		</div>

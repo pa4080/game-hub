@@ -1,6 +1,6 @@
-const mockGenres = Array.from({ length: 18 }).map((_, index) => ({
+const mockGenres = Array.from({ length: 15 }).map((_, index) => ({
 	id: index,
-	name: `Genre ${index} name`,
+	name: `Genre ${index}`,
 }));
 
 export default mockGenres;

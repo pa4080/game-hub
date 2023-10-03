@@ -11,8 +11,8 @@ interface Props {
 
 const Nav_Logo: React.FC<Props> = ({ className }) => {
 	return (
-		<div className={cn("flex items-center justify-start gap-1", className)}>
-			<div className="inline-flex items-center justify-center rounded-md border-input h-11 w-11 drop-shadow-xl">
+		<div className={cn("flex items-center justify-start gap-1 drop-shadow-xl", className)}>
+			<div className="inline-flex items-center justify-center rounded-md border-input h-11 w-11">
 				<Image
 					priority
 					alt={messages.NavBar.logoDesc}

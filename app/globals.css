@@ -217,3 +217,11 @@ body [data-radix-select-viewport]::-webkit-scrollbar {
 	bg-slate-300 hover:!bg-slate-500
 	dark:bg-slate-700 dark:hover:bg-slate-200;
 }
+
+/* genres */
+.genre_item {
+	@apply grid grid-flow-col gap-3 items-center justify-start p-2
+	 hover:bg-slate-300 dark:hover:bg-slate-800 rounded-lg
+	 transition-colors duration-300 hover:duration-150
+	 drop-shadow-xl cursor-pointer;
+}
