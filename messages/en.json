@@ -1,4 +1,7 @@
 {
+	"Home": {
+		"title": "Game hub"
+	},
 	"Theme": {
 		"light": "Light",
 		"dark": "Dark",
@@ -6,9 +9,6 @@
 	},
 	"NavBar": {
 		"logoDesc": "The site logo"
-	},
-	"Home": {
-		"helloWorld": "Hello world!"
 	},
 	"Buttons": {
 		"btnSubmit": "Submit",

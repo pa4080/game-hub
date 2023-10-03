@@ -10,14 +10,15 @@ import {
 	// SheetDescription,
 	// SheetFooter,
 	// SheetTitle,
-	SheetContent,
 	SheetHeader,
+	SheetContent,
 	SheetTrigger,
 } from "@/components/ui/sheet";
 
 import Genres from "./Genres";
+import NavBar_Logo from "./NavBar_Logo";
 
-const NavAsideSheet: React.FC = () => {
+const Nav_AsideSheet: React.FC = () => {
 	return (
 		<Sheet>
 			<SheetTrigger asChild>
@@ -25,18 +26,22 @@ const NavAsideSheet: React.FC = () => {
 					<Menu className="h-[1.2rem] w-[1.2rem]" />
 				</Button>
 			</SheetTrigger>
-			<SheetContent>
-				<SheetHeader>
-					{/* <SheetTitle>Title</SheetTitle> */}
+
+			<SheetContent className="flex flex-col pr-5">
+				<SheetHeader className="h-16">
+					<NavBar_Logo />
+					{/* <SheetTitle>Game hub</SheetTitle> */}
 					{/* <SheetDescription>Description...</SheetDescription> */}
 				</SheetHeader>
-				<div className="">
+				<div className="overflow-y-auto h-full flex-grow">
 					<Genres />
 				</div>
-				{/* <SheetFooter><SheetClose asChild><Button type="submit">Close</Button></SheetClose></SheetFooter> */}
+				{/* <SheetFooter>
+					<SheetClose asChild><Button type="submit">Close</Button></SheetClose>
+				</SheetFooter> */}
 			</SheetContent>
 		</Sheet>
 	);
 };
 
-export default NavAsideSheet;
+export default Nav_AsideSheet;
