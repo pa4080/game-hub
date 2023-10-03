@@ -14,9 +14,10 @@ import GameCard_Score from "./GameCard_Score";
 interface Props {
 	game: Game;
 	className?: string;
+	priority?: boolean;
 }
 
-const GameCard: React.FC<Props> = ({ game, className }) => {
+const GameCard: React.FC<Props> = ({ game, className, priority = false }) => {
 	return (
 		<div
 			className={cn(
@@ -31,6 +32,7 @@ const GameCard: React.FC<Props> = ({ game, className }) => {
 						alt={game.name}
 						className="object-cover object-top h-full w-full absolute top-0 left-0"
 						height={180}
+						priority={priority}
 						src={getCroppedImageUrl(game.background_image)}
 						width={312}
 					/>

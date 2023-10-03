@@ -44,7 +44,9 @@ const GameCard_Platforms: React.FC<Props> = ({ className, platforms }) => {
 				return (
 					<TooltipProvider key={platform.slug}>
 						<Tooltip>
-							<TooltipTrigger className="cursor-default">{iconMap[platform.slug]}</TooltipTrigger>
+							<TooltipTrigger className="cursor-default" name="Game platform">
+								{iconMap[platform.slug]}
+							</TooltipTrigger>
 							<TooltipContent>{platform.name}</TooltipContent>
 						</Tooltip>
 					</TooltipProvider>

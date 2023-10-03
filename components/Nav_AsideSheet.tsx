@@ -22,7 +22,12 @@ const Nav_AsideSheet: React.FC = () => {
 	return (
 		<Sheet>
 			<SheetTrigger asChild>
-				<Button className="relative lg:hidden" size="icon" variant="outline">
+				<Button
+					className="relative lg:hidden"
+					name="Open mobile menu"
+					size="icon"
+					variant="outline"
+				>
 					<Menu className="h-[1.2rem] w-[1.2rem]" />
 				</Button>
 			</SheetTrigger>
