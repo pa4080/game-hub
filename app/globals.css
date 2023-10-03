@@ -219,7 +219,11 @@ body [data-radix-select-viewport]::-webkit-scrollbar {
 }
 
 /* genres */
-.genre_item {
+.list_title {
+	@apply text-2xl font-semibold font-unicephalon px-1 pb-3 text-accent opacity-95 line-clamp-1 tracking-wider;
+}
+
+.list_item {
 	@apply grid grid-flow-col gap-3 items-center justify-start p-2
 	 hover:bg-slate-300 dark:hover:bg-slate-800 rounded-lg
 	 transition-colors duration-300 hover:duration-150

@@ -14,9 +14,9 @@ interface Props {
 
 const Genres_Skeleton: React.FC<Props> = ({ className }) => {
 	return (
-		<div className={cn("components/Genres_List.tsx", className)}>
+		<div className={cn("flex flex-col gap-1", className)}>
 			{mockGenres?.map((genre, index) => (
-				<div key={index} className="genre_item">
+				<div key={index} className="list_item">
 					<Skeleton className="h-8 w-8 rounded-md bg-slate-400 dark:bg-slate-800 overflow-hidden" />
 					<Skeleton
 						key={index}

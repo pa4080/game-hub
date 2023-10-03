@@ -13,12 +13,12 @@ import Genres from "@/components/Genres";
 const Home: React.FC = () => {
 	return (
 		// Most of these should be moved in the ./layout.tsx
-		<main className="container p-2 grid grid-cols-1 lg:grid-cols-[200px_1fr] gap-2">
+		<main className="container p-2 grid grid-cols-1 lg:grid-cols-[200px_1fr] gap-4">
 			<div className="lg:col-span-2">
 				<NavBar className="p-2" />
 			</div>
 
-			<div className="p-4 hidden lg:block">
+			<div className="p-2 hidden lg:block">
 				<Genres />
 			</div>
 			<div className="">

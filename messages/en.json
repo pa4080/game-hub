@@ -11,64 +11,35 @@
 		"logoDesc": "The site logo"
 	},
 	"Buttons": {
-		"btnSubmit": "Submit",
-		"btnCancel": "Cancel",
-		"btnReset": "Reset",
-		"btnSave": "Save",
-		"btnBack": "Back",
-		"btnNext": "Next",
-		"btnFinish": "Finish",
-		"btnLogin": "Login",
-		"btnLogout": "Logout",
-		"btnSend": "Send",
-		"btnSearch": "Search",
-		"btnAdd": "Add",
-		"btnAddUser": "Add a user",
-		"btnAddExpense": "Add expense",
-		"btnEdit": "Edit",
-		"btnDelete": "Delete"
+		"submit": "Submit",
+		"cancel": "Cancel",
+		"reset": "Reset",
+		"save": "Save",
+		"back": "Back",
+		"next": "Next",
+		"finish": "Finish",
+		"login": "Login",
+		"logout": "Logout",
+		"send": "Send",
+		"search": "Search",
+		"add": "Add",
+		"addUser": "Add a user",
+		"addExpense": "Add expense",
+		"edit": "Edit",
+		"delete": "Delete",
+		"showMore": "Show more",
+		"showLess": "Show less",
+		"showAll": "Show all"
 	},
-	"ExpenseList": {
-		"description": "Description",
-		"amount": "Amount",
-		"date": "Date",
-		"category": "Category",
-		"action": "Action",
-		"total": "Total"
-	},
-	"ExpenseForm": {
-		"title": "Add expense",
-		"description": "Add expense to the list of expenses.",
-		"schema": {
-			"description": "The description must be at least 4 and maximum 16 characters.",
-			"amount_type": "The amount is required.",
-			"amount": "The amount must be between 0.01 and 100.000.",
-			"category": "The category is required."
-		}
-	},
-	"UserForm": {
-		"add": {
-			"title": "Add user",
-			"description": "Add a user to the users list."
-		},
-		"edit": {
-			"title": "Edit user",
-			"description": "Edit the selected user and update the list."
-		},
-		"schema": {
-			"name": "The name must be at least 4 characters long.",
-			"username_min": "The username must be at least 4 characters long.",
-			"username_max": "The username must be maximum 16 characters long.",
-			"username_unique": "The username is already taken.",
-			"username_case": "The username must be alphanumeric, also _-. are allowed.",
-			"email": "Please enter a valid email address."
-		}
-	},
-	"Categories": {
-		"select": "Select a category",
-		"all": "All categories",
-		"groceries": "Groceries",
-		"utilities": "Utilities",
-		"entertainment": "Entertainment"
+	"RawgEndpoints": {
+		"creator_roles": "Creator roles",
+		"creators": "Creators",
+		"developers": "Developers",
+		"games": "Games",
+		"genres": "Genres",
+		"platforms": "Platforms",
+		"publishers": "Publishers",
+		"stores": "Stores",
+		"tags": "Tags"
 	}
 }
