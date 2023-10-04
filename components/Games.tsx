@@ -23,15 +23,19 @@ const Games: React.FC<Props> = ({ className }) => {
 	const { selectedGenre } = useAppContext();
 
 	const {
-		items: games,
-		getItemsBy: getGamesBy,
+		data: games,
+		getDataBy: getGamesBy,
 		error,
 		isLoading,
 	} = useRawgApi<Interfaces[Endpoints.GAMES]>(Endpoints.GAMES);
 
 	useEffect(() => {
 		if (selectedGenre) {
-			getGamesBy([["genres", String(selectedGenre.id)]]);
+			getGamesBy({
+				params: {
+					genres: String(selectedGenre.id),
+				},
+			});
 		}
 	}, [getGamesBy, selectedGenre]);
 

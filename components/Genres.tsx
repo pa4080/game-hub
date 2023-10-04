@@ -17,7 +17,7 @@ interface Props {
 
 const Genres: React.FC<Props> = ({ className }) => {
 	const {
-		items: genres,
+		data: genres,
 		error,
 		isLoading,
 	} = useRawgApi<Interfaces[Endpoints.GENRES]>(Endpoints.GENRES);
