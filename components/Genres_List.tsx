@@ -21,12 +21,17 @@ interface Props {
 }
 
 const Genres_List: React.FC<Props> = ({ genres, className }) => {
-	const { setSelectedGenre } = useAppContext();
+	const { selectedGenre, setSelectedGenre } = useAppContext();
 
 	const [showAllGenres, setShowAllGenres] = useState(false);
 	const toggleShowAllGenres = () => setShowAllGenres(!showAllGenres);
 
 	const genresToShow = showAllGenres ? genres?.results : genres?.results.slice(0, 5);
+
+	if (selectedGenre && !genresToShow.find((genre) => genre.id === selectedGenre?.id)) {
+		genresToShow.pop();
+		genresToShow.push(selectedGenre);
+	}
 
 	const handleOnGenreClick = (genre: Interfaces[Endpoints.GENRES]["results"][number]) => {
 		setSelectedGenre(genre);
@@ -37,7 +42,9 @@ const Genres_List: React.FC<Props> = ({ genres, className }) => {
 			{genresToShow.map((genre, index) => (
 				<button
 					key={index}
-					className="list_item"
+					className={`list_item ${
+						genre.id === selectedGenre?.id ? "bg-slate-400 dark:bg-slate-700" : ""
+					}`}
 					name={genre.slug}
 					onClick={() => handleOnGenreClick(genre)}
 				>
