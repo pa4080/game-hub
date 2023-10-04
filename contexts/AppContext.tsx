@@ -3,11 +3,12 @@
 import React, { createContext, useContext, useState, Dispatch, SetStateAction } from "react";
 
 import messages from "@/messages/en.json";
+import { Genre } from "@/interfaces/rawg-endpoint-genres-genre";
 
 interface AppContextProps {
 	messages: typeof messages;
-	isLoading: boolean;
-	setIsLoading: Dispatch<SetStateAction<boolean>>;
+	selectedGenre: Genre | null;
+	setSelectedGenre: Dispatch<SetStateAction<Genre | null>>;
 }
 
 const AppContext = createContext<AppContextProps>({} as AppContextProps);
@@ -17,14 +18,14 @@ interface AppContextProviderProps {
 }
 
 export const AppContextProvider: React.FC<AppContextProviderProps> = ({ children }) => {
-	const [isLoading, setIsLoading] = useState(false);
+	const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
 
 	return (
 		<AppContext.Provider
 			value={{
 				messages,
-				isLoading,
-				setIsLoading,
+				selectedGenre,
+				setSelectedGenre,
 			}}
 		>
 			{children}

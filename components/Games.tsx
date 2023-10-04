@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -8,6 +8,8 @@ import useRawgApi from "@/hooks/useRawgApi";
 import { cn } from "@/lib/cn-utils";
 import { Endpoints } from "@/interfaces/rawg-endpoints";
 import { Interfaces } from "@/interfaces/rawg-interfaces";
+
+import { useAppContext } from "@/contexts/AppContext";
 
 import Games_Grid from "./Games_Grid";
 import Games_Skeleton from "./Games_Skeleton";
@@ -18,12 +20,20 @@ interface Props {
 }
 
 const Games: React.FC<Props> = ({ className }) => {
+	const { selectedGenre } = useAppContext();
+
 	const {
 		items: games,
 		getItemsBy: getGamesBy,
 		error,
 		isLoading,
 	} = useRawgApi<Interfaces[Endpoints.GAMES]>(Endpoints.GAMES);
+
+	useEffect(() => {
+		if (selectedGenre) {
+			getGamesBy([["genres", String(selectedGenre.id)]]);
+		}
+	}, [getGamesBy, selectedGenre]);
 
 	return (
 		<div className={cn("", className)}>
@@ -47,7 +57,14 @@ const Games: React.FC<Props> = ({ className }) => {
 				</Button>
 			</div>
 
-			{isLoading || !games ? <Games_Skeleton /> : <Games_Grid games={games} />}
+			{isLoading || !games ? (
+				<Games_Skeleton />
+			) : (
+				<Games_Grid
+					// games={selectedGenre ? getGamesBy([["genres", String(selectedGenre.id)]]) : games}
+					games={games}
+				/>
+			)}
 
 			{error && <p className="text-lg text-red-500 font-semibold m-0">{error}</p>}
 		</div>

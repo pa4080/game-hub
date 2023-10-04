@@ -11,6 +11,8 @@ import { Interfaces } from "@/interfaces/rawg-interfaces";
 
 import getCroppedImageUrl from "@/lib/get-rawg-cropped-image-url";
 
+import { useAppContext } from "@/contexts/AppContext";
+
 import { AspectRatio } from "./ui/aspect-ratio";
 
 interface Props {
@@ -19,15 +21,26 @@ interface Props {
 }
 
 const Genres_List: React.FC<Props> = ({ genres, className }) => {
+	const { setSelectedGenre } = useAppContext();
+
 	const [showAllGenres, setShowAllGenres] = useState(false);
 	const toggleShowAllGenres = () => setShowAllGenres(!showAllGenres);
 
 	const genresToShow = showAllGenres ? genres?.results : genres?.results.slice(0, 5);
 
+	const handleOnGenreClick = (genre: Interfaces[Endpoints.GENRES]["results"][number]) => {
+		setSelectedGenre(genre);
+	};
+
 	return (
 		<div className={cn("flex flex-col gap-1", className)}>
 			{genresToShow.map((genre, index) => (
-				<div key={index} className="list_item">
+				<button
+					key={index}
+					className="list_item"
+					name={genre.slug}
+					onClick={() => handleOnGenreClick(genre)}
+				>
 					<div className="h-8 w-8 rounded-md bg-slate-400 dark:bg-slate-800 overflow-hidden">
 						<AspectRatio ratio={1 / 1}>
 							<Image
@@ -40,14 +53,15 @@ const Genres_List: React.FC<Props> = ({ genres, className }) => {
 							/>
 						</AspectRatio>
 					</div>
-					<div className="line-clamp-1">{genre.name}</div>
-				</div>
+					<div className="line-clamp-1 text-left">
+						<span>{genre.name}</span>
+					</div>
+				</button>
 			))}
 			<div className="list_item" onClick={toggleShowAllGenres}>
 				<div
 					className={cn(
 						"h-8 w-8 rounded-md bg-slate-200 dark:bg-slate-900 overflow-hidden",
-						"hover:bg-transparent",
 						"flex items-center justify-center"
 					)}
 				>
