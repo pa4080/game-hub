@@ -7,7 +7,7 @@
  * @see https://michaelangelo.io/blog/darkmode-rsc !!!
  */
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Moon, Sun } from "lucide-react";
 
@@ -30,14 +30,14 @@ import { cn } from "@/lib/cn-utils";
 export type ThemeType = "light" | "dark" | "system" | undefined;
 
 interface Props {
-	theme: ThemeType | undefined;
+	theme: ThemeType;
 }
 
 const ThemeSelector: React.FC<Props> = ({ theme }) => {
 	const router = useRouter();
 	const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
-	const setTheme = (themeToSet: ThemeType) => {
+	const setTheme = (themeToSet?: ThemeType) => {
 		switch (themeToSet) {
 			case "light":
 				Cookies.set("x-theme", "light");
@@ -46,15 +46,22 @@ const ThemeSelector: React.FC<Props> = ({ theme }) => {
 				Cookies.set("x-theme", "dark");
 				break;
 			default:
-				// if (isDark) Cookies.set("x-theme", "dark");
-				// else Cookies.set("x-theme", "light");
-				Cookies.remove("x-theme");
-				// See "globals.css: @media (prefers-color-scheme: dark)" for this case !!!
+				if (isDark) {
+					Cookies.set("x-theme", "dark");
+				} else {
+					Cookies.remove("x-theme");
+				}
+
 				break;
 		}
 
 		router.refresh();
 	};
+
+	useEffect(() => {
+		setTheme(theme);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [isDark]);
 
 	return (
 		<DropdownMenu>

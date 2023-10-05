@@ -14,9 +14,12 @@
 	 * This duplicates the above directives for dark mode,
 	 * but this is the easiest way to automatically
 	 * toggle the system theme!
+
+	 * Keep this query at the bottom, otherwise the system theme color selector doesn't work!
 	 */
 	@media (prefers-color-scheme: dark) {
 		/* html:not(.light):not(.dark), */
+		/*
 		.system {
 			--background: 222.2 84% 4.9%;
 			--foreground: 210 40% 98%;
@@ -30,14 +33,15 @@
 			--secondary-foreground: 210 40% 98%;
 			--muted: 217.2 32.6% 17.5%;
 			--muted-foreground: 215 20.2% 65.1%;
-			--accent: 38, 100%, 50%; /* hsl(42, 100%, 50%) #ffa200 hsl(38, 100%, 50%) */
+			--accent: 38, 100%, 50%;
 			--accent-foreground: 210 40% 98%;
 			--destructive: 0 62.8% 30.6%;
 			--destructive-foreground: 210 40% 98%;
 			--border: 217.2 32.6% 17.5%;
 			--input: 217.2 32.6% 17.5%;
-			--ring: 46, 100%, 50%; /* hsl(46, 100%, 50%) */
+			--ring: 46, 100%, 50%;
 		}
+		*/
 	}
 
 	:root {
@@ -211,7 +215,7 @@ body [data-radix-select-viewport]::-webkit-scrollbar {
 
 /* buttons */
 .btn_next_prev {
-	@apply rounded-xl w-24 font-semibold text-lg
+	@apply rounded-lg w-24 font-semibold text-lg
 	transition-colors duration-200 flex items-center justify-between
 	hover:text-background disabled:text-background text-foreground
 	bg-slate-300 hover:!bg-slate-500
