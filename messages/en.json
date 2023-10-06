@@ -41,5 +41,9 @@
 		"publishers": "Publishers",
 		"stores": "Stores",
 		"tags": "Tags"
+	},
+	"Platforms": {
+		"select": "Select a platform",
+		"available": "Available platforms"
 	}
 }

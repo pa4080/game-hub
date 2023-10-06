@@ -1,14 +1,11 @@
 import React from "react";
 
-import { FaWindows, FaPlaystation, FaXbox, FaApple, FaLinux, FaAndroid } from "react-icons/fa";
-import { MdPhoneIphone } from "react-icons/md";
-import { SiNintendo } from "react-icons/si";
-import { BsGlobe } from "react-icons/bs";
-
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 import { cn } from "@/lib/cn-utils";
 import { ParentPlatform } from "@/interfaces/rawg-endpoint-games-platforms";
+
+import { Platforms_IconsMap } from "./Platforms";
 
 interface Props {
 	className?: string;
@@ -18,20 +15,6 @@ interface Props {
 }
 
 const GameCard_Platforms: React.FC<Props> = ({ className, platforms }) => {
-	const iconStyle = "w-5 h-5";
-
-	const iconMap: { [key: string]: React.ReactNode } = {
-		pc: <FaWindows className={iconStyle} />,
-		playstation: <FaPlaystation className={iconStyle} />,
-		xbox: <FaXbox className={iconStyle} />,
-		nintendo: <SiNintendo className={iconStyle} />,
-		android: <FaAndroid className={iconStyle} />,
-		ios: <FaApple className={iconStyle} />,
-		linux: <FaLinux className={iconStyle} />,
-		phone: <MdPhoneIphone className={iconStyle} />,
-		web: <BsGlobe className={iconStyle} />,
-	};
-
 	return (
 		<div
 			className={cn(
@@ -45,7 +28,7 @@ const GameCard_Platforms: React.FC<Props> = ({ className, platforms }) => {
 					<TooltipProvider key={platform.slug}>
 						<Tooltip>
 							<TooltipTrigger className="cursor-default" name="Game platform">
-								{iconMap[platform.slug]}
+								{Platforms_IconsMap[platform.slug]}
 							</TooltipTrigger>
 							<TooltipContent>{platform.name}</TooltipContent>
 						</Tooltip>

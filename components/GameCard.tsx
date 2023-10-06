@@ -21,7 +21,7 @@ const GameCard: React.FC<Props> = ({ game, className, priority = false }) => {
 	return (
 		<div
 			className={cn(
-				"w-full rounded-2xl bg-slate-300 dark:bg-slate-800 drop-shadow-xl dark:shadow-xl",
+				"w-full rounded-2xl bg-slate-300 dark:bg-slate-800 drop-shadow-xl dark:shadow-xl break-inside-avoid-column",
 				className
 			)}
 		>

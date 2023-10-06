@@ -14,6 +14,7 @@ import { useAppContext } from "@/contexts/AppContext";
 import Games_Grid from "./Games_Grid";
 import Games_Skeleton from "./Games_Skeleton";
 import { Button } from "./ui/button";
+import Platforms from "./Platforms";
 
 interface Props {
 	className?: string;
@@ -41,24 +42,28 @@ const Games: React.FC<Props> = ({ className }) => {
 
 	return (
 		<div className={cn("", className)}>
-			<div className="flex gap-4 justify-between items-center mt-2 mb-8 h-8">
-				<Button
-					className="btn_next_prev pl-2 pr-4"
-					disabled={!games?.previous}
-					onClick={() => games?.previous && getGamesBy(games?.previous)}
-				>
-					<ChevronLeft />
-					<span>Prev</span>
-				</Button>
+			<div className="flex gap-6 justify-between items-center mt-2 mb-8 h-fit flex-col xs:flex-row">
+				<Platforms classNameTrigger="" />
 
-				<Button
-					className="btn_next_prev pl-4 pr-2"
-					disabled={!games?.next}
-					onClick={() => games?.next && getGamesBy(games?.next)}
-				>
-					<span>Next</span>
-					<ChevronRight />
-				</Button>
+				<div className="flex gap-4 justify-between w-full xs:w-fit xs:justify-end items-center">
+					<Button
+						className="btn_next_prev pl-2 pr-4"
+						disabled={!games?.previous}
+						onClick={() => games?.previous && getGamesBy(games?.previous)}
+					>
+						<ChevronLeft />
+						<span>Prev</span>
+					</Button>
+
+					<Button
+						className="btn_next_prev pl-4 pr-2"
+						disabled={!games?.next}
+						onClick={() => games?.next && getGamesBy(games?.next)}
+					>
+						<span>Next</span>
+						<ChevronRight />
+					</Button>
+				</div>
 			</div>
 
 			{isLoading || !games ? (

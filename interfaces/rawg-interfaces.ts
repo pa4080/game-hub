@@ -8,6 +8,7 @@ import { Platforms } from "./rawg-endpoint-platforms";
 import { Publishers } from "./rawg-endpoint-publishers";
 import { Stores } from "./rawg-endpoint-stores";
 import { Tags } from "./rawg-endpoint-tags";
+import { ParentPlatforms } from "./rawg-endpoint-parent-platforms";
 
 export interface Interfaces {
 	[Endpoints.CREATOR_ROLES]: CreatorRoles;
@@ -16,6 +17,7 @@ export interface Interfaces {
 	[Endpoints.GAMES]: Games;
 	[Endpoints.GENRES]: Genres;
 	[Endpoints.PLATFORMS]: Platforms;
+	[Endpoints.PLATFORMS_PARENTS]: ParentPlatforms;
 	[Endpoints.PUBLISHERS]: Publishers;
 	[Endpoints.STORES]: Stores;
 	[Endpoints.TAGS]: Tags;

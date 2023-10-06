@@ -215,8 +215,8 @@ body [data-radix-select-viewport]::-webkit-scrollbar {
 
 /* buttons */
 .btn_next_prev {
-	@apply rounded-lg w-24 font-semibold text-lg
-	transition-colors duration-200 flex items-center justify-between
+	@apply rounded-lg w-full xs:w-24 font-semibold text-lg gap-4 xs:gap-1
+	transition-colors duration-200 flex items-center justify-center xs:justify-between
 	hover:text-background disabled:text-background text-foreground
 	bg-slate-300 hover:!bg-slate-500
 	dark:bg-slate-700 dark:hover:bg-slate-200;
