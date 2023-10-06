@@ -9,12 +9,6 @@ This project is based on the Mosh Hamedani's course [React 18 and TypeScript](ht
 - [Mosh at GitHub: **GameHub**](https://github.com/mosh-hamedani/game-hub)
 - [RAWG API Docs](https://rawg.io/apidocs) | [RAWG Home](https://rawg.io/)
 
-## Snippets
-
-```js
-const res = await fetch(`${process.env.RAWG_API_URL}?key=${process.env.RAWG_API_KEY}`);
-```
-
 ## Credits
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) and hosted on [Vercel](https://vercel.com/).

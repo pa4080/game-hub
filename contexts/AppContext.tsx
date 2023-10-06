@@ -4,11 +4,14 @@ import React, { createContext, useContext, useState, Dispatch, SetStateAction } 
 
 import messages from "@/messages/en.json";
 import { Genre } from "@/interfaces/rawg-endpoint-genres-genre";
+import { ParentPlatform } from "@/interfaces/rawg-endpoint-parent-platforms";
 
 interface AppContextProps {
 	messages: typeof messages;
 	selectedGenre: Genre | null;
 	setSelectedGenre: Dispatch<SetStateAction<Genre | null>>;
+	selectedParentPlatform: ParentPlatform | null;
+	setSelectedParentPlatform: Dispatch<SetStateAction<ParentPlatform | null>>;
 }
 
 const AppContext = createContext<AppContextProps>({} as AppContextProps);
@@ -19,6 +22,7 @@ interface AppContextProviderProps {
 
 export const AppContextProvider: React.FC<AppContextProviderProps> = ({ children }) => {
 	const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
+	const [selectedParentPlatform, setSelectedParentPlatform] = useState<ParentPlatform | null>(null);
 
 	return (
 		<AppContext.Provider
@@ -26,6 +30,8 @@ export const AppContextProvider: React.FC<AppContextProviderProps> = ({ children
 				messages,
 				selectedGenre,
 				setSelectedGenre,
+				selectedParentPlatform,
+				setSelectedParentPlatform,
 			}}
 		>
 			{children}

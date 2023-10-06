@@ -21,7 +21,7 @@ interface Props {
 }
 
 const Games: React.FC<Props> = ({ className }) => {
-	const { selectedGenre } = useAppContext();
+	const { selectedGenre, selectedParentPlatform } = useAppContext();
 
 	const {
 		data: games,
@@ -31,14 +31,15 @@ const Games: React.FC<Props> = ({ className }) => {
 	} = useRawgApi<Interfaces[Endpoints.GAMES]>(Endpoints.GAMES);
 
 	useEffect(() => {
-		if (selectedGenre) {
-			getGamesBy({
-				params: {
-					genres: String(selectedGenre.id),
-				},
-			});
-		}
-	}, [getGamesBy, selectedGenre]);
+		getGamesBy({
+			params: {
+				genres: selectedGenre?.id,
+				platforms:
+					selectedParentPlatform?.platforms?.map((platform) => platform.id).join(",") ||
+					selectedParentPlatform?.id,
+			},
+		});
+	}, [getGamesBy, selectedGenre, selectedParentPlatform]);
 
 	return (
 		<div className={cn("", className)}>

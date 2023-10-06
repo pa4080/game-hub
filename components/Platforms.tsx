@@ -22,6 +22,7 @@ import { cn } from "@/lib/cn-utils";
 import useRawgApi from "@/hooks/useRawgApi";
 import { Interfaces } from "@/interfaces/rawg-interfaces";
 import { Endpoints } from "@/interfaces/rawg-endpoints";
+import { useAppContext } from "@/contexts/AppContext";
 
 export const platformsIconStyle = "w-5 h-5";
 
@@ -49,6 +50,8 @@ interface Props {
 }
 
 const Platforms: React.FC<Props> = ({ classNameTrigger, classNameContent }) => {
+	const { setSelectedParentPlatform } = useAppContext();
+
 	const { data: platforms, error } = useRawgApi<Interfaces[Endpoints.PLATFORMS_PARENTS]>(
 		Endpoints.PLATFORMS_PARENTS
 	);
@@ -57,15 +60,16 @@ const Platforms: React.FC<Props> = ({ classNameTrigger, classNameContent }) => {
 		return null;
 	}
 
+	const handleOnChange = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		setSelectedParentPlatform(
+			platforms?.results.find((platform) => platform.slug === e.currentTarget.platform.value) ??
+				null
+		);
+	};
+
 	return (
-		<form
-			action="submit"
-			className="w-full"
-			onChange={(e) => {
-				e.preventDefault();
-				// console.log(e.currentTarget.platform.value);
-			}}
-		>
+		<form action="submit" className="w-full" onChange={handleOnChange}>
 			<Select name="platform">
 				<SelectTrigger
 					className={cn(

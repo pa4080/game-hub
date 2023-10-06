@@ -33,7 +33,11 @@ const GameCard: React.FC<Props> = ({ game, className, priority = false }) => {
 						className="object-cover object-top h-full w-full absolute top-0 left-0"
 						height={180}
 						priority={priority}
-						src={getCroppedImageUrl(game.background_image)}
+						src={
+							game.background_image
+								? getCroppedImageUrl(game.background_image)
+								: "/images/no-signal.jpg"
+						}
 						width={312}
 					/>
 				</AspectRatio>

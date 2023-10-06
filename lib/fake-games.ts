@@ -66,7 +66,7 @@ const mockPlatforms = [
 
 const mockGames = Array.from({ length: 9 }).map((_, index) => ({
 	id: index,
-	name: `User name for index ${8 + ((index + 7) % 2)}`,
+	name: `Game name for index ${index}`,
 	platforms: mockPlatforms,
 }));
 
