@@ -3,8 +3,8 @@
 import React, { createContext, useContext, useState, Dispatch, SetStateAction } from "react";
 
 import messages from "@/messages/en.json";
-import { Genre } from "@/interfaces/rawg-endpoint-genres-genre";
-import { ParentPlatform } from "@/interfaces/rawg-endpoint-parent-platforms";
+import { Genre } from "@/interfaces/rawg-endpoint-genres";
+import { ParentPlatform } from "@/interfaces/rawg-endpoint-platforms";
 
 interface AppContextProps {
 	messages: typeof messages;

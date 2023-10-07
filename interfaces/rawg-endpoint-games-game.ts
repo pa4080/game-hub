@@ -1,4 +1,4 @@
-import { ParentPlatform, Platform } from "./rawg-endpoint-games-platforms";
+import { ParentPlatformsObjArr, Platform } from "./rawg-endpoint-platforms";
 
 export interface Game {
 	id: number;
@@ -45,9 +45,7 @@ export interface Game {
 			recommended: string;
 		} | null;
 	}[];
-	parent_platforms: {
-		platform: ParentPlatform;
-	}[];
+	parent_platforms: ParentPlatformsObjArr;
 	genres: {
 		id: number;
 		name: string;

@@ -34,6 +34,8 @@ export async function GET(request: NextRequest, { params }: Context) {
 			}
 
 			case 3: {
+				// Actually we fetch here the list of the ParentPlatforms
+				// @see https://api.rawg.io/docs/#operation/platforms_lists_parents_list
 				const endpoint =
 					`${params?.endpoint[0]}/${params?.endpoint[1]}/${params?.endpoint[2]}` as EndpointsType;
 

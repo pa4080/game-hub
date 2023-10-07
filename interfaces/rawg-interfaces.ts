@@ -4,11 +4,10 @@ import { CreatorRoles } from "./rawg-endpoint-creator-roles";
 import { Creators } from "./rawg-endpoint-creators";
 import { Developers } from "./rawg-endpoint-developers";
 import { Genres } from "./rawg-endpoint-genres";
-import { Platforms } from "./rawg-endpoint-platforms";
+import { Platforms, ParentPlatforms } from "./rawg-endpoint-platforms";
 import { Publishers } from "./rawg-endpoint-publishers";
 import { Stores } from "./rawg-endpoint-stores";
 import { Tags } from "./rawg-endpoint-tags";
-import { ParentPlatforms } from "./rawg-endpoint-parent-platforms";
 
 export interface Interfaces {
 	[Endpoints.CREATOR_ROLES]: CreatorRoles;

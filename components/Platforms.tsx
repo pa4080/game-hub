@@ -51,7 +51,6 @@ interface Props {
 
 const Platforms: React.FC<Props> = ({ classNameTrigger, classNameContent }) => {
 	const { setSelectedParentPlatform } = useAppContext();
-
 	const { data: platforms, error } = useRawgApi<Interfaces[Endpoints.PLATFORMS_PARENTS]>(
 		Endpoints.PLATFORMS_PARENTS
 	);

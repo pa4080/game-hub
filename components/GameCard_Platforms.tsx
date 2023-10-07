@@ -1,17 +1,14 @@
 import React from "react";
 
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-
+import { ParentPlatformsObjArr } from "@/interfaces/rawg-endpoint-platforms";
 import { cn } from "@/lib/cn-utils";
-import { ParentPlatform } from "@/interfaces/rawg-endpoint-games-platforms";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 import { Platforms_IconsMap } from "./Platforms";
 
 interface Props {
 	className?: string;
-	platforms: {
-		platform: ParentPlatform;
-	}[];
+	platforms: ParentPlatformsObjArr;
 }
 
 const GameCard_Platforms: React.FC<Props> = ({ className, platforms }) => {
