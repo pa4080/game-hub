@@ -6,6 +6,7 @@ import { SiNintendo, SiAtari, SiCommodore, SiSega } from "react-icons/si";
 import { BsGlobe, BsJoystick } from "react-icons/bs";
 import { RiAppleFill, RiAppleLine } from "react-icons/ri";
 import { CgShapeRhombus } from "react-icons/cg";
+import { FolderTree } from "lucide-react";
 
 import messages from "@/messages/en.json";
 
@@ -42,6 +43,7 @@ export const Platforms_IconsMap: { [key: string]: React.ReactNode } = {
 	sega: <SiSega className={platformsIconStyle} />,
 	"3do": <CgShapeRhombus className={platformsIconStyle} />,
 	"neo-geo": <BsJoystick className={platformsIconStyle} />,
+	"show-all": <FolderTree className={platformsIconStyle} />,
 };
 
 interface Props {
@@ -61,6 +63,7 @@ const Platforms: React.FC<Props> = ({ classNameTrigger, classNameContent }) => {
 
 	const handleOnChange = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+
 		setSelectedParentPlatform(
 			platforms?.results.find((platform) => platform.slug === e.currentTarget.platform.value) ??
 				null
@@ -80,7 +83,15 @@ const Platforms: React.FC<Props> = ({ classNameTrigger, classNameContent }) => {
 				</SelectTrigger>
 				<SelectContent className={cn("p-2", classNameContent)}>
 					<SelectGroup>
+						<SelectItem value="show-all">
+							<div className="flex flex-row gap-3 items-center justify-center">
+								<div className="flex">{Platforms_IconsMap["show-all"]}</div>
+								<span>{messages.Platforms.showAll}</span>
+							</div>
+						</SelectItem>
+
 						<SelectLabel>{messages.Platforms.available}</SelectLabel>
+
 						{platforms?.results.map((platform) => (
 							<SelectItem key={platform.slug} value={platform.slug}>
 								<div className="flex flex-row gap-3 items-center justify-center">
