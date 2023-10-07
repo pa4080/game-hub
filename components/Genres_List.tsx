@@ -2,7 +2,8 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { ChevronDown, ChevronUp, FolderTree } from "lucide-react";
+import { ChevronDown, ChevronUp } from "lucide-react";
+import { PiGameControllerFill } from "react-icons/pi";
 
 import messages from "@/messages/en.json";
 import { cn } from "@/lib/cn-utils";
@@ -70,20 +71,6 @@ const Genres_List: React.FC<Props> = ({ genres, className }) => {
 				</button>
 			))}
 
-			{selectedGenre && (
-				<div className="list_item" onClick={handleShowGAmesFromAllGenres}>
-					<div
-						className={cn(
-							"h-8 w-8 rounded-md bg-slate-400 dark:bg-slate-700 overflow-hidden",
-							"flex items-center justify-center"
-						)}
-					>
-						<FolderTree />
-					</div>
-					<div className="line-clamp-1">{messages.Buttons.showAll}</div>
-				</div>
-			)}
-
 			<div className="list_item" onClick={toggleShowAllGenres}>
 				<div
 					className={cn(
@@ -97,6 +84,20 @@ const Genres_List: React.FC<Props> = ({ genres, className }) => {
 					{showAllGenres ? messages.Buttons.showLess : messages.Buttons.showMore}
 				</div>
 			</div>
+
+			{selectedGenre && (
+				<div className="list_item" onClick={handleShowGAmesFromAllGenres}>
+					<div
+						className={cn(
+							"h-8 w-8 rounded-md bg-slate-400 dark:bg-slate-700 overflow-hidden",
+							"flex items-center justify-center"
+						)}
+					>
+						<PiGameControllerFill />
+					</div>
+					<div className="line-clamp-1">{messages.Buttons.showAll}</div>
+				</div>
+			)}
 		</div>
 	);
 };
