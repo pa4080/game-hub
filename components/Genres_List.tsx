@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronUp, FolderTree } from "lucide-react";
 
 import messages from "@/messages/en.json";
 import { cn } from "@/lib/cn-utils";
@@ -37,6 +37,10 @@ const Genres_List: React.FC<Props> = ({ genres, className }) => {
 		setSelectedGenre(genre);
 	};
 
+	const handleShowGAmesFromAllGenres = () => {
+		setSelectedGenre(null);
+	};
+
 	return (
 		<div className={cn("flex flex-col gap-1", className)}>
 			{genresToShow.map((genre, index) => (
@@ -65,6 +69,21 @@ const Genres_List: React.FC<Props> = ({ genres, className }) => {
 					</div>
 				</button>
 			))}
+
+			{selectedGenre && (
+				<div className="list_item" onClick={handleShowGAmesFromAllGenres}>
+					<div
+						className={cn(
+							"h-8 w-8 rounded-md bg-slate-400 dark:bg-slate-700 overflow-hidden",
+							"flex items-center justify-center"
+						)}
+					>
+						<FolderTree />
+					</div>
+					<div className="line-clamp-1">{messages.Buttons.showAll}</div>
+				</div>
+			)}
+
 			<div className="list_item" onClick={toggleShowAllGenres}>
 				<div
 					className={cn(
