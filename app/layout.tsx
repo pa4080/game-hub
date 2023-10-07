@@ -21,6 +21,7 @@ export const metadata: Metadata = {
 	publisher: manifest.author,
 	creator: manifest.author,
 	colorScheme: "light",
+	icons: "/favicon.svg",
 };
 
 interface Props {
