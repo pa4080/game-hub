@@ -38,7 +38,8 @@ const GameCard: React.FC<Props> = ({ game, className, priority = false }) => {
 								? getCroppedImageUrl(game.background_image)
 								: "/images/no-signal.jpg"
 						}
-						width={312}
+						unoptimized={process.env.VERCEL_ENV !== "production"} // https://vercel.com/docs/image-optimization/limits-and-pricing#hobby
+						width={320}
 					/>
 				</AspectRatio>
 			</div>
