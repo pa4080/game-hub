@@ -32,10 +32,8 @@ const breakpoints = fullConfig?.theme?.screens || {
 	xl: "1280px",
 };
 
-type BreakpointKey = keyof ScreensConfig;
-
 export function useBreakpoint<K extends string>(breakpointKey: K) {
-	const breakpointValue = breakpoints[breakpointKey as BreakpointKey];
+	const breakpointValue = breakpoints[breakpointKey as keyof ScreensConfig];
 	const bool = useMediaQuery({
 		query: `(max-width: ${breakpointValue})`,
 	});
@@ -48,5 +46,5 @@ export function useBreakpoint<K extends string>(breakpointKey: K) {
 		[breakpointKey]: Number(String(breakpointValue).replace(/[^0-9]/g, "")),
 		[`isAbove${capitalizedKey}`]: !bool,
 		[`isBelow${capitalizedKey}`]: bool,
-	} as Record<typeof breakpointKey, number> & Record<KeyAbove | KeyBelow, boolean>;
+	} as Record<K, number> & Record<KeyAbove | KeyBelow, boolean>;
 }

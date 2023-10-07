@@ -5,6 +5,7 @@ export enum Endpoints {
 	GAMES = "games",
 	GENRES = "genres",
 	PLATFORMS = "platforms",
+	PLATFORMS_PARENTS = "platforms/lists/parents",
 	PUBLISHERS = "publishers",
 	STORES = "stores",
 	TAGS = "tags",

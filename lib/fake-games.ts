@@ -1,3 +1,5 @@
+import { ParentPlatformsObjArr } from "@/interfaces/rawg-endpoint-platforms";
+
 const mockPlatforms = [
 	{
 		platform: {
@@ -62,11 +64,11 @@ const mockPlatforms = [
 			slug: "web",
 		},
 	},
-];
+] as ParentPlatformsObjArr;
 
 const mockGames = Array.from({ length: 9 }).map((_, index) => ({
 	id: index,
-	name: `User name for index ${8 + ((index + 7) % 2)}`,
+	name: `Game name for index ${index}`,
 	platforms: mockPlatforms,
 }));
 

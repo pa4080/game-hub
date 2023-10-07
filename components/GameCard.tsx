@@ -14,24 +14,30 @@ import GameCard_Score from "./GameCard_Score";
 interface Props {
 	game: Game;
 	className?: string;
+	priority?: boolean;
 }
 
-const GameCard: React.FC<Props> = ({ game, className }) => {
+const GameCard: React.FC<Props> = ({ game, className, priority = false }) => {
 	return (
 		<div
 			className={cn(
-				"w-full rounded-2xl overflow-hidden bg-slate-300 dark:bg-slate-800 drop-shadow-xl dark:shadow-xl",
+				"w-full rounded-2xl bg-slate-300 dark:bg-slate-800 drop-shadow-xl dark:shadow-xl break-inside-avoid-column",
 				className
 			)}
 		>
 			{/* <div className="relative w-full h-0 pb-[56.25%] overflow-hidden bg"> */}
-			<div className="relative w-full">
+			<div className="relative w-full rounded-t-2xl overflow-hidden">
 				<AspectRatio ratio={16 / 9}>
 					<Image
 						alt={game.name}
 						className="object-cover object-top h-full w-full absolute top-0 left-0"
 						height={180}
-						src={getCroppedImageUrl(game.background_image)}
+						priority={priority}
+						src={
+							game.background_image
+								? getCroppedImageUrl(game.background_image)
+								: "/images/no-signal.jpg"
+						}
 						width={312}
 					/>
 				</AspectRatio>

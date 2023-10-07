@@ -1,20 +1,14 @@
 import React from "react";
 // import { Analytics } from "@vercel/analytics/react";
-
-import { Inter as DefaultFont } from "next/font/google";
 import { cookies } from "next/headers";
 
 import "./globals.css";
 
+import { inter, roboto_slab, unicephalon } from "@/app/fonts";
 import manifest from "@/public/manifest.json";
-
 import { AppContextProvider } from "@/contexts/AppContext";
 
 import type { Metadata } from "next";
-
-const font = DefaultFont({
-	subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
 	title: manifest.name,
@@ -49,7 +43,12 @@ const RootLayout: React.FC<Props> = ({ children }) => {
 
 	return (
 		<html suppressHydrationWarning className={switchTheme()} lang="en">
-			<body className={font.className}>
+			<body
+				className={
+					`${inter.className} ${inter.variable} ` +
+					`${roboto_slab.variable} ${unicephalon.variable} `
+				}
+			>
 				<AppContextProvider>{children}</AppContextProvider>
 				{/* <Analytics /> */}
 			</body>

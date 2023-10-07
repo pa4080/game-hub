@@ -7,11 +7,14 @@
  * @see https://michaelangelo.io/blog/darkmode-rsc !!!
  */
 
-import React from "react";
-import Cookies from "js-cookie";
+import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
-
 import { Moon, Sun } from "lucide-react";
+
+// Note import { cookies } from 'next/headers'
+// can't be used in the client component at this moment
+// https://nextjs.org/docs/app/api-reference/functions/cookies
+import Cookies from "js-cookie";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -27,14 +30,14 @@ import { cn } from "@/lib/cn-utils";
 export type ThemeType = "light" | "dark" | "system" | undefined;
 
 interface Props {
-	theme: ThemeType | undefined;
+	theme: ThemeType;
 }
 
 const ThemeSelector: React.FC<Props> = ({ theme }) => {
 	const router = useRouter();
 	const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
-	const setTheme = (themeToSet: ThemeType) => {
+	const setTheme = (themeToSet?: ThemeType) => {
 		switch (themeToSet) {
 			case "light":
 				Cookies.set("x-theme", "light");
@@ -43,20 +46,27 @@ const ThemeSelector: React.FC<Props> = ({ theme }) => {
 				Cookies.set("x-theme", "dark");
 				break;
 			default:
-				// if (isDark) Cookies.set("x-theme", "dark");
-				// else Cookies.set("x-theme", "light");
-				Cookies.remove("x-theme");
-				// See "globals.css: @media (prefers-color-scheme: dark)" for this case !!!
+				if (isDark) {
+					Cookies.set("x-theme", "dark");
+				} else {
+					Cookies.remove("x-theme");
+				}
+
 				break;
 		}
 
 		router.refresh();
 	};
 
+	useEffect(() => {
+		setTheme(theme);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [isDark]);
+
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
-				<Button className="relative" size="icon" variant="outline">
+				<Button className="relative" name="Theme select" size="icon" variant="outline">
 					<Sun
 						className={
 							(cn("h-[1.2rem] w-[1.2rem]"),

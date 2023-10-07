@@ -16,12 +16,12 @@ interface Context {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function GET(request: NextRequest, { params }: Context) {
 	const queryParam = request.nextUrl.searchParams.entries();
+	const endpoints = [...Object.values(Endpoints)] as [string];
 
 	try {
 		switch (params?.endpoint?.length ?? 0) {
 			case 1: {
 				const endpoint = params?.endpoint[0] as EndpointsType;
-				const endpoints = [...Object.values(Endpoints)] as [string];
 
 				if (endpoints.includes(endpoint as string)) {
 					return NextResponse.json(await fetchRawg(queryParam, endpoint), { status: 200 });
@@ -30,6 +30,17 @@ export async function GET(request: NextRequest, { params }: Context) {
 						{ message: `The valid endpoints are: ${endpoints.join(", ")}.` },
 						{ status: 404 }
 					);
+				}
+			}
+
+			case 3: {
+				// Actually we fetch here the list of the ParentPlatforms
+				// @see https://api.rawg.io/docs/#operation/platforms_lists_parents_list
+				const endpoint =
+					`${params?.endpoint[0]}/${params?.endpoint[1]}/${params?.endpoint[2]}` as EndpointsType;
+
+				if (endpoints.includes(endpoint as string)) {
+					return NextResponse.json(await fetchRawg(queryParam, endpoint), { status: 200 });
 				}
 			}
 

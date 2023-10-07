@@ -14,9 +14,12 @@
 	 * This duplicates the above directives for dark mode,
 	 * but this is the easiest way to automatically
 	 * toggle the system theme!
+
+	 * Keep this query at the bottom, otherwise the system theme color selector doesn't work!
 	 */
 	@media (prefers-color-scheme: dark) {
 		/* html:not(.light):not(.dark), */
+		/*
 		.system {
 			--background: 222.2 84% 4.9%;
 			--foreground: 210 40% 98%;
@@ -30,14 +33,15 @@
 			--secondary-foreground: 210 40% 98%;
 			--muted: 217.2 32.6% 17.5%;
 			--muted-foreground: 215 20.2% 65.1%;
-			--accent: 46, 100%, 50%; /* hsl(46, 100%, 50%) */
+			--accent: 38, 100%, 50%;
 			--accent-foreground: 210 40% 98%;
 			--destructive: 0 62.8% 30.6%;
 			--destructive-foreground: 210 40% 98%;
 			--border: 217.2 32.6% 17.5%;
 			--input: 217.2 32.6% 17.5%;
-			--ring: 42, 100%, 50%; /* hsl(42, 100%, 50%) */
+			--ring: 46, 100%, 50%;
 		}
+		*/
 	}
 
 	:root {
@@ -53,13 +57,13 @@
 		--secondary-foreground: 222.2 47.4% 11.2%;
 		--muted: 210 40% 96.1%;
 		--muted-foreground: 215.4 16.3% 46.9%;
-		--accent: 46, 100%, 50%; /* hsl(46, 100%, 50%) */
+		--accent: 38, 100%, 50%; /* hsl(42, 100%, 50%) #ffa200 hsl(38, 100%, 50%) */
 		--accent-foreground: 0, 0%, 24%; /* hsl(0, 0%, 24%) */
 		--destructive: 0 84.2% 60.2%;
 		--destructive-foreground: 210 40% 98%;
 		--border: 214.3 31.8% 91.4%;
 		--input: 214.3 31.8% 91.4%;
-		--ring: 42, 100%, 50%; /* hsl(42, 100%, 50%) */
+		--ring: 46, 100%, 50%; /* hsl(46, 100%, 50%) */
 		--radius: 0.5rem;
 		--scrollbar-width: 16px;
 	}
@@ -78,13 +82,13 @@
 		--secondary-foreground: 210 40% 98%;
 		--muted: 217.2 32.6% 17.5%;
 		--muted-foreground: 215 20.2% 65.1%;
-		--accent: 46, 100%, 50%; /* hsl(46, 100%, 50%) */
+		--accent: 38, 100%, 50%; /* hsl(42, 100%, 50%) #ffa200 hsl(38, 100%, 50%) */
 		--accent-foreground: 210 40% 98%;
 		--destructive: 0 62.8% 30.6%;
 		--destructive-foreground: 210 40% 98%;
 		--border: 217.2 32.6% 17.5%;
 		--input: 217.2 32.6% 17.5%;
-		--ring: 42, 100%, 50%; /* hsl(42, 100%, 50%) */
+		--ring: 46, 100%, 50%; /* hsl(46, 100%, 50%) */
 	}
 }
 
@@ -95,7 +99,13 @@
 
 	body {
 		@apply bg-background text-foreground;
+
+		min-width: 320px;
 	}
+}
+
+body {
+	min-width: 320px;
 }
 
 [type="text"]:focus,
@@ -203,85 +213,23 @@ body [data-radix-select-viewport]::-webkit-scrollbar {
 	fill: #ffb300;
 }
 
-/* form */
-.form_field_text_input {
-	@apply block w-full rounded-xl border-0 py-[0.565rem] text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-ring sm:leading-6;
+/* buttons */
+.btn_next_prev {
+	@apply rounded-lg w-full xs:w-24 font-semibold text-lg gap-4 xs:gap-1
+	transition-colors duration-200 flex items-center justify-center xs:justify-between
+	hover:text-background disabled:text-background text-foreground
+	bg-slate-300 hover:!bg-slate-500
+	dark:bg-slate-700 dark:hover:bg-slate-200;
 }
 
-.form_text_input_label {
-	@apply block leading-6 text-gray-900;
+/* genres */
+.list_title {
+	@apply text-2xl font-semibold font-unicephalon px-1 pb-3 text-accent opacity-95 line-clamp-1 tracking-wider;
 }
 
-.form_text_input_label > p {
-	@apply mb-2;
-}
-
-.form_btn_submit {
-	@apply border font-semibold rounded-lg px-6 py-2 text-white bg-blue-600 hover:bg-blue-900 active:bg-white active:text-blue-700 border-blue-600 active:border-blue-600 hover:border-blue-900;
-}
-
-.form_btn_cancel {
-	@apply border font-semibold rounded-lg px-6 py-2 text-gray-700 bg-white hover:text-white hover:bg-gray-500 active:bg-white active:text-gray-500 border-gray-500;
-}
-
-.form_dialog_btn {
-	@apply border font-semibold rounded-lg px-6 py-2 text-blue-600 bg-white hover:bg-blue-900 hover:text-white active:text-white active:bg-blue-600 border-blue-600 active:border-blue-600 hover:border-blue-900;
-}
-
-.form_input_error_message {
-	@apply absolute -bottom-6 text-sm text-red-500 whitespace-nowrap text-ellipsis overflow-hidden w-full;
-}
-
-/* expense-tracker */
-.table_wrapper {
-	@apply border border-slate-300 rounded-xl w-full overflow-hidden;
-}
-
-.table {
-	@apply w-full table-auto border-collapse;
-}
-
-.table_row_common {
-	@apply text-slate-900 border border-slate-300 py-2 px-4 border-t-0 first:border-l-0 last:border-r-0;
-}
-
-.table tfoot tr:last-child td {
-	@apply border-b-0;
-}
-
-.btn_sm_danger {
-	@apply text-sm bg-white hover:bg-red-500 text-red-700 font-semibold hover:text-white py-1 px-3 border border-red-500 hover:border-transparent rounded;
-}
-
-.btn_sm_affirmative {
-	@apply text-sm font-semibold py-1 px-3 border border-blue-500 rounded
-	bg-white hover:bg-blue-500 disabled:hover:bg-white
-	text-blue-700 hover:text-white disabled:hover:text-blue-700
-	disabled:grayscale-[1];
-}
-
-select.category_select {
-	@apply appearance-none rounded-lg border border-slate-300 transition-all duration-100;
-}
-
-select.category_select:active {
-	@apply rounded-b-none drop-shadow-xl shadow-xl shadow-slate-300 bg-slate-100 transition-all duration-100;
-}
-
-/**
- * https://stackoverflow.com/a/37773550/6543935
- *
- <select size={4}> ... </select>
-
- select.category_filter option {
-	 @apply p-1;
- }
-*/
-
-select.category_filter {
-	@apply rounded-lg;
-}
-
-select.category_choice {
-	@apply rounded-xl w-full;
+.list_item {
+	@apply grid grid-flow-col gap-3 items-center justify-start p-2
+	 hover:bg-slate-300 dark:hover:bg-slate-800 rounded-lg
+	 transition-colors duration-300 hover:duration-150
+	 drop-shadow-xl cursor-pointer;
 }

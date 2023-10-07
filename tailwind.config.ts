@@ -22,6 +22,16 @@ const tailwindConfig: import("tailwindcss").Config = {
 				sa: "720px", // small average
 				xa: "580px", // extra small average
 				xs: "520px", // extra small
+				"2xs": "480px",
+				"3xs": "420px",
+				"4xs": "380px",
+				"5xs": "360px",
+				"6xs": "320px",
+			},
+			fontFamily: {
+				inter: ["var(--font-inter)", "sans-serif"],
+				robotoSlab: ["var(--font-roboto-slab)", "sans-serif"],
+				unicephalon: ["var(--font-unicephalon)", "sans-serif"],
 			},
 			colors: {
 				border: "hsl(var(--border))",

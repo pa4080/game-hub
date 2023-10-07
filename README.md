@@ -9,12 +9,6 @@ This project is based on the Mosh Hamedani's course [React 18 and TypeScript](ht
 - [Mosh at GitHub: **GameHub**](https://github.com/mosh-hamedani/game-hub)
 - [RAWG API Docs](https://rawg.io/apidocs) | [RAWG Home](https://rawg.io/)
 
-## Snippets
-
-```js
-const res = await fetch(`${process.env.RAWG_API_URL}?key=${process.env.RAWG_API_KEY}`);
-```
-
 ## Credits
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) and hosted on [Vercel](https://vercel.com/).
@@ -118,8 +112,74 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - When sending HTTP requests, we must handle errors properly. This can be done using try-catch blocks or by handling the error in the promise chain using .catch().
 - Custom hooks are a way to reuse code logic between multiple components. By encapsulating logic in a custom hook, we can create reusable pieces of code that can be shared across components without duplicating the code. Custom hooks can be used to handle common tasks, such as fetching data, and can help to make our code more organized and easier to maintain.
 
-### Build the "Game Hub" Application
+### Build the "Game Hub" application
 
 - In the Mosh's tutorial is used [Chakra UI](https://chakra-ui.com/), but here we are using [Tailwind CSS](https://tailwindcss.com/) and [Shadcn/ui](https://ui.shadcn.com/).
 - [**Shadcn/ui > Next.js > Dark mode**](https://ui.shadcn.com/docs/dark-mode/next) this is the official way to implement dark mode in Next.js with Shadcn/ui. See the following files for a manual implementation.
   - [`hooks/useColorMode.ts`](hooks/useColorMode.ts)
+
+#### Optional `useEffect()` dependencies
+
+- <https://members.codewithmosh.com/courses/ultimate-react-part1-1/lectures/45916351>
+
+[**`useData.ts`**](https://github.com/mosh-hamedani/game-hub/blob/main/src/hooks/useData.ts)
+
+```js
+import { AxiosRequestConfig, CanceledError } from "axios";
+import { useEffect, useState } from "react";
+import apiClient from "../services/api-client";
+
+interface FetchResponse<T> {
+  count: number;
+  results: T[];
+}
+
+const useData = <T>(endpoint: string, requestConfig?: AxiosRequestConfig, deps?: any[]) => {
+  const [data, setData] = useState<T[]>([]);
+  const [error, setError] = useState("");
+  const [isLoading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    setLoading(true);
+    apiClient
+      .get<FetchResponse<T>>(endpoint, { signal: controller.signal, ...requestConfig })
+      .then((res) => {
+        setData(res.data.results);
+        setLoading(false);
+      })
+      .catch((err) => {
+        if (err instanceof CanceledError) return;
+        setError(err.message)
+        setLoading(false);
+      });
+
+    return () => controller.abort();
+  }, deps ? [...deps] : []);
+
+  return { data, error, isLoading };
+};
+
+export default useData;
+```
+
+[**`useGames.ts`**](https://github.com/mosh-hamedani/game-hub/blob/main/src/hooks/useGames.ts)
+
+```js
+const useGames = (gameQuery: GameQuery) =>
+  useData<Game>(
+    "/games",
+    {
+      params: {
+        genres: gameQuery.genre?.id,
+        platforms: gameQuery.platform?.id,
+        ordering: gameQuery.sortOrder,
+        search: gameQuery.searchText
+      },
+    },
+    [gameQuery]
+  );
+
+export default useGames;
+```
