@@ -35,7 +35,9 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Useful sections of the course
 
-*Here are provided links to some lessons from the course (note you must subscribe to the course to access the links) and some related to them libraries.*
+<details>
+<summary> Here are provided links to some lessons from the course (note you must subscribe to the course to access the links) and some related to them libraries.
+</summary>
 
 ### Styling Components
 
@@ -183,3 +185,5 @@ const useGames = (gameQuery: GameQuery) =>
 
 export default useGames;
 ```
+
+</details>
