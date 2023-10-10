@@ -14,7 +14,8 @@ import { useAppContext } from "@/contexts/AppContext";
 import Games_Grid from "./Games_Grid";
 import Games_Skeleton from "./Games_Skeleton";
 import { Button } from "./ui/button";
-import Platforms from "./Platforms";
+import PlatformSelector from "./PlatformSelector";
+import SortSelector from "./SortSelector";
 
 interface Props {
 	className?: string;
@@ -44,7 +45,10 @@ const Games: React.FC<Props> = ({ className }) => {
 	return (
 		<div className={cn("", className)}>
 			<div className="flex gap-4 justify-between items-center mt-2 mb-8 h-fit flex-col xs:flex-row">
-				<Platforms classNameTrigger="" />
+				<div className="flex gap-4 justify-between w-full xs:w-fit xs:justify-end items-center">
+					<PlatformSelector />
+					<SortSelector className="hidden md:block" />
+				</div>
 
 				<div className="flex gap-4 justify-between w-full xs:w-fit xs:justify-end items-center">
 					<Button

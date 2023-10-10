@@ -4,7 +4,7 @@ import { ParentPlatformsObjArr } from "@/interfaces/rawg-endpoint-platforms";
 import { cn } from "@/lib/cn-utils";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
-import { Platforms_IconsMap } from "./Platforms";
+import { Platforms_IconsMap } from "./PlatformSelector";
 
 interface Props {
 	className?: string;

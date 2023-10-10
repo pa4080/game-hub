@@ -47,11 +47,12 @@ export const Platforms_IconsMap: { [key: string]: React.ReactNode } = {
 };
 
 interface Props {
+	className?: string;
 	classNameTrigger?: string;
 	classNameContent?: string;
 }
 
-const Platforms: React.FC<Props> = ({ classNameTrigger, classNameContent }) => {
+const PlatformSelector: React.FC<Props> = ({ className, classNameTrigger, classNameContent }) => {
 	const { setGameQuery } = useAppContext();
 	const { data: platforms, error } = useRawgApi<Interfaces[Endpoints.PLATFORMS_PARENTS]>(
 		Endpoints.PLATFORMS_PARENTS
@@ -73,20 +74,17 @@ const Platforms: React.FC<Props> = ({ classNameTrigger, classNameContent }) => {
 	};
 
 	return (
-		<form action="submit" className="w-full" onChange={handleOnChange}>
+		<form action="submit" className={cn("w-full", className)} onChange={handleOnChange}>
 			<Select name="platform">
 				<SelectTrigger
-					className={cn(
-						"w-full xs:w-[260px] sm:w-[280px] rounded-lg text-lg flex items-center justify-between bg-slate-300 hover:!bg-slate-500 dark:bg-slate-800 dark:hover:!bg-slate-700 py-4 px-2 sm:px-4",
-						classNameTrigger
-					)}
+					className={cn("selector_trigger", " w-full xs:w-[260px] sm:w-[280px]", classNameTrigger)}
 				>
 					<SelectValue placeholder={messages.Platforms.select} />
 				</SelectTrigger>
 				<SelectContent className={cn("p-2", classNameContent)}>
 					<SelectGroup>
 						<SelectItem value="show-all">
-							<div className="flex flex-row gap-3 items-center justify-center line-clamp-1">
+							<div className="select_item_inner">
 								<div className="flex">{Platforms_IconsMap["show-all"]}</div>
 								<span>{messages.Platforms.showAll}</span>
 							</div>
@@ -96,7 +94,7 @@ const Platforms: React.FC<Props> = ({ classNameTrigger, classNameContent }) => {
 
 						{platforms?.results.map((platform) => (
 							<SelectItem key={platform.slug} value={platform.slug}>
-								<div className="flex flex-row gap-3 items-center justify-center line-clamp-1">
+								<div className="select_item_inner">
 									<div className="flex">{Platforms_IconsMap[platform.slug]}</div>
 									<span>{platform.name}</span>
 								</div>
@@ -109,4 +107,4 @@ const Platforms: React.FC<Props> = ({ classNameTrigger, classNameContent }) => {
 	);
 };
 
-export default Platforms;
+export default PlatformSelector;

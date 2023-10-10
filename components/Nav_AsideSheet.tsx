@@ -10,7 +10,7 @@ import {
 	Sheet,
 	// SheetClose,
 	// SheetDescription,
-	// SheetFooter,
+	SheetFooter,
 	// SheetTitle,
 	SheetHeader,
 	SheetContent,
@@ -19,6 +19,7 @@ import {
 
 import Genres from "./Genres";
 import Nav_Logo from "./Nav_Logo";
+import SortSelector from "./SortSelector";
 
 const Nav_AsideSheet: React.FC = () => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -45,9 +46,10 @@ const Nav_AsideSheet: React.FC = () => {
 				<div className="overflow-y-auto h-full flex-grow">
 					<Genres externalAction={() => setIsOpen(false)} />
 				</div>
-				{/* <SheetFooter>
-					<SheetClose asChild><Button type="submit">Close</Button></SheetClose>
-				</SheetFooter> */}
+				<SheetFooter>
+					<SortSelector className="hidden md:block text-lg" classNameTrigger="xs:w-full" />
+					{/* <SheetClose asChild><Button type="submit">Close</Button></SheetClose> */}
+				</SheetFooter>
 			</SheetContent>
 		</Sheet>
 	);

@@ -233,3 +233,12 @@ body [data-radix-select-viewport]::-webkit-scrollbar {
 	 transition-colors duration-300 hover:duration-150
 	 drop-shadow-xl cursor-pointer;
 }
+
+/* SortSelector | PlatformSelector */
+.selector_trigger {
+	@apply rounded-lg text-lg flex items-center justify-between bg-slate-300 hover:!bg-slate-500 dark:bg-slate-800 dark:hover:!bg-slate-700 py-4 px-2 sm:px-4;
+}
+
+.select_item_inner {
+	@apply flex flex-row gap-3 items-center justify-center line-clamp-1;
+}

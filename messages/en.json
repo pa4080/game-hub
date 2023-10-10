@@ -46,5 +46,14 @@
 		"select": "Select a platform",
 		"available": "Available platforms",
 		"showAll": "Show all"
+	},
+	"Sort": {
+		"sortBy": "Sort by",
+		"relevance": "Relevance",
+		"dateAdded": "Date added",
+		"name": "Name",
+		"releaseDate": "Release date",
+		"popularity": "Popularity",
+		"averageRating": "Average rating"
 	}
 }
