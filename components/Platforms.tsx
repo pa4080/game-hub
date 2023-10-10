@@ -52,7 +52,7 @@ interface Props {
 }
 
 const Platforms: React.FC<Props> = ({ classNameTrigger, classNameContent }) => {
-	const { setSelectedParentPlatform } = useAppContext();
+	const { setGameQuery } = useAppContext();
 	const { data: platforms, error } = useRawgApi<Interfaces[Endpoints.PLATFORMS_PARENTS]>(
 		Endpoints.PLATFORMS_PARENTS
 	);
@@ -64,10 +64,12 @@ const Platforms: React.FC<Props> = ({ classNameTrigger, classNameContent }) => {
 	const handleOnChange = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
-		setSelectedParentPlatform(
-			platforms?.results.find((platform) => platform.slug === e.currentTarget.platform.value) ??
-				null
-		);
+		setGameQuery((prev) => ({
+			...prev,
+			parentPlatform:
+				platforms?.results.find((platform) => platform.slug === e.currentTarget?.platform.value) ??
+				null,
+		}));
 	};
 
 	return (

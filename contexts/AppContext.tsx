@@ -2,16 +2,13 @@
 
 import React, { createContext, useContext, useState, Dispatch, SetStateAction } from "react";
 
+import { GameQuery } from "@/interfaces/game-query";
 import messages from "@/messages/en.json";
-import { Genre } from "@/interfaces/rawg-endpoint-genres";
-import { ParentPlatform } from "@/interfaces/rawg-endpoint-platforms";
 
 interface AppContextProps {
 	messages: typeof messages;
-	selectedGenre: Genre | null;
-	setSelectedGenre: Dispatch<SetStateAction<Genre | null>>;
-	selectedParentPlatform: ParentPlatform | null;
-	setSelectedParentPlatform: Dispatch<SetStateAction<ParentPlatform | null>>;
+	gameQuery: GameQuery;
+	setGameQuery: Dispatch<SetStateAction<GameQuery>>;
 }
 
 const AppContext = createContext<AppContextProps>({} as AppContextProps);
@@ -21,17 +18,14 @@ interface AppContextProviderProps {
 }
 
 export const AppContextProvider: React.FC<AppContextProviderProps> = ({ children }) => {
-	const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
-	const [selectedParentPlatform, setSelectedParentPlatform] = useState<ParentPlatform | null>(null);
+	const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
 
 	return (
 		<AppContext.Provider
 			value={{
 				messages,
-				selectedGenre,
-				setSelectedGenre,
-				selectedParentPlatform,
-				setSelectedParentPlatform,
+				gameQuery,
+				setGameQuery,
 			}}
 		>
 			{children}

@@ -21,7 +21,7 @@ interface Props {
 }
 
 const Games: React.FC<Props> = ({ className }) => {
-	const { selectedGenre, selectedParentPlatform } = useAppContext();
+	const { gameQuery } = useAppContext();
 
 	const {
 		data: games,
@@ -33,13 +33,13 @@ const Games: React.FC<Props> = ({ className }) => {
 	useEffect(() => {
 		getGamesBy({
 			params: {
-				genres: selectedGenre?.id,
+				genres: gameQuery?.genre?.id,
 				platforms:
-					selectedParentPlatform?.platforms?.map((platform) => platform.id).join(",") ||
-					selectedParentPlatform?.id,
+					gameQuery?.parentPlatform?.platforms?.map((platform) => platform.id).join(",") ||
+					gameQuery?.parentPlatform?.id,
 			},
 		});
-	}, [getGamesBy, selectedGenre, selectedParentPlatform]);
+	}, [getGamesBy, gameQuery]);
 
 	return (
 		<div className={cn("", className)}>
