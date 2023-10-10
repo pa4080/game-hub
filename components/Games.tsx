@@ -43,7 +43,7 @@ const Games: React.FC<Props> = ({ className }) => {
 
 	return (
 		<div className={cn("", className)}>
-			<div className="flex gap-6 justify-between items-center mt-2 mb-8 h-fit flex-col xs:flex-row">
+			<div className="flex gap-4 justify-between items-center mt-2 mb-8 h-fit flex-col xs:flex-row">
 				<Platforms classNameTrigger="" />
 
 				<div className="flex gap-4 justify-between w-full xs:w-fit xs:justify-end items-center">

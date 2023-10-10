@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import { Menu } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -19,11 +21,13 @@ import Genres from "./Genres";
 import Nav_Logo from "./Nav_Logo";
 
 const Nav_AsideSheet: React.FC = () => {
+	const [isOpen, setIsOpen] = useState(false);
+
 	return (
-		<Sheet>
+		<Sheet open={isOpen} onOpenChange={setIsOpen}>
 			<SheetTrigger asChild>
 				<Button
-					className="relative lg:hidden"
+					className="relative lg:hidden bg-slate-300 dark:bg-slate-800 hover:text-background transition-colors duration-300 dark:hover:bg-accent"
 					name="Open mobile menu"
 					size="icon"
 					variant="outline"
@@ -39,7 +43,7 @@ const Nav_AsideSheet: React.FC = () => {
 					{/* <SheetDescription>Description...</SheetDescription> */}
 				</SheetHeader>
 				<div className="overflow-y-auto h-full flex-grow">
-					<Genres />
+					<Genres externalAction={() => setIsOpen(false)} />
 				</div>
 				{/* <SheetFooter>
 					<SheetClose asChild><Button type="submit">Close</Button></SheetClose>

@@ -75,7 +75,7 @@ const Platforms: React.FC<Props> = ({ classNameTrigger, classNameContent }) => {
 			<Select name="platform">
 				<SelectTrigger
 					className={cn(
-						"w-full xs:w-[260px] rounded-lg text-lg flex items-center justify-between bg-slate-300 hover:!bg-slate-500 dark:bg-slate-800 dark:hover:!bg-slate-700 p-4 px-2",
+						"w-full xs:w-[260px] sm:w-[280px] rounded-lg text-lg flex items-center justify-between bg-slate-300 hover:!bg-slate-500 dark:bg-slate-800 dark:hover:!bg-slate-700 py-4 px-2 sm:px-4",
 						classNameTrigger
 					)}
 				>
@@ -84,7 +84,7 @@ const Platforms: React.FC<Props> = ({ classNameTrigger, classNameContent }) => {
 				<SelectContent className={cn("p-2", classNameContent)}>
 					<SelectGroup>
 						<SelectItem value="show-all">
-							<div className="flex flex-row gap-3 items-center justify-center">
+							<div className="flex flex-row gap-3 items-center justify-center line-clamp-1">
 								<div className="flex">{Platforms_IconsMap["show-all"]}</div>
 								<span>{messages.Platforms.showAll}</span>
 							</div>
@@ -94,7 +94,7 @@ const Platforms: React.FC<Props> = ({ classNameTrigger, classNameContent }) => {
 
 						{platforms?.results.map((platform) => (
 							<SelectItem key={platform.slug} value={platform.slug}>
-								<div className="flex flex-row gap-3 items-center justify-center">
+								<div className="flex flex-row gap-3 items-center justify-center line-clamp-1">
 									<div className="flex">{Platforms_IconsMap[platform.slug]}</div>
 									<span>{platform.name}</span>
 								</div>

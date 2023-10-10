@@ -13,9 +13,10 @@ import Genres_Skeleton from "./Genres_Skeleton";
 
 interface Props {
 	className?: string;
+	externalAction?: () => void;
 }
 
-const Genres: React.FC<Props> = ({ className }) => {
+const Genres: React.FC<Props> = ({ className, externalAction }) => {
 	const {
 		data: genres,
 		error,
@@ -25,7 +26,11 @@ const Genres: React.FC<Props> = ({ className }) => {
 	return (
 		<div className={cn("", className)}>
 			<h2 className="list_title">{messages.RawgEndpoints.genres}</h2>
-			{isLoading || !genres ? <Genres_Skeleton /> : <Genres_List genres={genres} />}
+			{isLoading || !genres ? (
+				<Genres_Skeleton />
+			) : (
+				<Genres_List externalAction={externalAction} genres={genres} />
+			)}
 			{error && <p className="text-base text-red-500 font-semibold m-0">{error}</p>}
 		</div>
 	);
