@@ -19,9 +19,10 @@ import { AspectRatio } from "./ui/aspect-ratio";
 interface Props {
 	className?: string;
 	genres: Interfaces[Endpoints.GENRES];
+	externalAction?: () => void;
 }
 
-const Genres_List: React.FC<Props> = ({ genres, className }) => {
+const Genres_List: React.FC<Props> = ({ genres, className, externalAction }) => {
 	const { selectedGenre, setSelectedGenre } = useAppContext();
 
 	const [showAllGenres, setShowAllGenres] = useState(false);
@@ -35,10 +36,12 @@ const Genres_List: React.FC<Props> = ({ genres, className }) => {
 	}
 
 	const handleOnGenreClick = (genre: Interfaces[Endpoints.GENRES]["results"][number]) => {
+		externalAction && externalAction();
 		setSelectedGenre(genre);
 	};
 
 	const handleShowGAmesFromAllGenres = () => {
+		externalAction && externalAction();
 		setSelectedGenre(null);
 	};
 

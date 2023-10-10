@@ -66,7 +66,12 @@ const ThemeSelector: React.FC<Props> = ({ theme }) => {
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
-				<Button className="relative" name="Theme select" size="icon" variant="outline">
+				<Button
+					className="relative bg-slate-300 dark:bg-slate-800 hover:text-background transition-colors duration-300 dark:hover:bg-accent"
+					name="Theme select"
+					size="icon"
+					variant="outline"
+				>
 					<Sun
 						className={
 							(cn("h-[1.2rem] w-[1.2rem]"),
