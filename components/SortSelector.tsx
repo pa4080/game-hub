@@ -15,8 +15,6 @@ import { cn } from "@/lib/cn-utils";
 import { useAppContext } from "@/contexts/AppContext";
 import { SortDropDownItem, Order } from "@/interfaces/sort-selector";
 
-export const platformsIconStyle = "w-5 h-5";
-
 interface Props {
 	className?: string;
 	classNameTrigger?: string;
@@ -81,7 +79,15 @@ const SortSelector: React.FC<Props> = ({
 					<SelectTrigger
 						className={cn("selector_trigger", "w-full xs:w-[156px]", classNameTrigger)}
 					>
-						<SelectValue placeholder={messages.Sort.sortBy} />
+						<SelectValue
+							placeholder={(() => {
+								const selectedLabel = dropDownItemsArr.find((item) => item.selected)?.label;
+
+								return selectedLabel !== messages.Sort.relevance
+									? selectedLabel
+									: messages.Sort.sortBy;
+							})()}
+						></SelectValue>
 					</SelectTrigger>
 					<SelectContent className={cn("p-2 class", classNameContent)}>
 						<SelectGroup>
