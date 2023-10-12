@@ -38,6 +38,7 @@ const Games: React.FC<Props> = ({ className }) => {
 				platforms:
 					gameQuery?.parentPlatform?.platforms?.map((platform) => platform.id).join(",") ||
 					gameQuery?.parentPlatform?.id,
+				ordering: gameQuery?.sortOrder,
 			},
 		});
 	}, [getGamesBy, gameQuery]);

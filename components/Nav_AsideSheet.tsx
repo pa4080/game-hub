@@ -47,7 +47,7 @@ const Nav_AsideSheet: React.FC = () => {
 					<Genres externalAction={() => setIsOpen(false)} />
 				</div>
 				<SheetFooter>
-					<SortSelector className="hidden md:block text-lg" classNameTrigger="xs:w-full" />
+					<SortSelector className="text-lg" classNameTrigger="xs:w-full" />
 					{/* <SheetClose asChild><Button type="submit">Close</Button></SheetClose> */}
 				</SheetFooter>
 			</SheetContent>

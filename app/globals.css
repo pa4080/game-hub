@@ -236,9 +236,13 @@ body [data-radix-select-viewport]::-webkit-scrollbar {
 
 /* SortSelector | PlatformSelector */
 .selector_trigger {
-	@apply rounded-lg text-lg flex items-center justify-between bg-slate-300 hover:!bg-slate-500 dark:bg-slate-800 dark:hover:!bg-slate-700 py-4 px-2 sm:px-4;
+	@apply rounded-lg text-lg flex items-center justify-between bg-slate-300 hover:!bg-slate-500 dark:bg-slate-800 dark:hover:!bg-slate-700 py-4 px-2 sm:px-4 transition-colors duration-300;
 }
 
 .select_item_inner {
-	@apply flex flex-row gap-3 items-center justify-center line-clamp-1;
+	@apply flex flex-row gap-3 items-center justify-between line-clamp-1;
+}
+
+.select_item_order {
+	@apply hover:bg-slate-800 z-10 px-2 py-1 rounded-md transition-colors duration-200;
 }

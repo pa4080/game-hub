@@ -50,10 +50,18 @@
 	"Sort": {
 		"sortBy": "Sort by",
 		"relevance": "Relevance",
-		"dateAdded": "Date added",
-		"name": "Name",
-		"releaseDate": "Release date",
-		"popularity": "Popularity",
-		"averageRating": "Average rating"
+		"order": {
+			"asc": "Ascending",
+			"desc": "Descending"
+		},
+		"fields": {
+			"name": "Name",
+			"released": "Released",
+			"added": "Added",
+			"created": "Created",
+			"updated": "Updated",
+			"rating": "Rating",
+			"metacritic": "Metacritic"
+		}
 	}
 }
