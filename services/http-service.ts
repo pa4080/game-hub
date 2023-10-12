@@ -1,6 +1,6 @@
 import { SearchParamsType } from "@/hooks/useRawgApi";
 
-import apiClient from "./api-client";
+import apiClient, { AxiosResponse } from "./api-client";
 
 class HttpService {
 	endpoint: string;
@@ -9,7 +9,10 @@ class HttpService {
 		this.endpoint = endpoint;
 	}
 
-	getAll<T>(searchParams?: SearchParamsType) {
+	getAll<T>(searchParams?: SearchParamsType): {
+		request: Promise<AxiosResponse<T, unknown>>;
+		cancel: () => void;
+	} {
 		const controller = new AbortController();
 		const signal = controller.signal;
 		const params: { [key: string]: string } = {};
