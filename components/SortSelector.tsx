@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { ArrowUpNarrowWide, ArrowDownNarrowWide } from "lucide-react";
 
 import messages from "@/messages/en.json";
@@ -13,14 +13,9 @@ import {
 } from "@/components/ui/select";
 import { cn } from "@/lib/cn-utils";
 import { useAppContext } from "@/contexts/AppContext";
+import { SortDropDownItem, Order } from "@/interfaces/sort-selector";
 
 export const platformsIconStyle = "w-5 h-5";
-
-interface DropDownItem {
-	value: string;
-	label: string;
-	selected: boolean;
-}
 
 interface Props {
 	className?: string;
@@ -35,57 +30,49 @@ const SortSelector: React.FC<Props> = ({
 	classNameContent,
 	classNameOrder,
 }) => {
-	// https://api.rawg.io/docs/#operation/games_list
-	// "ordering" - Available fields: name, released, added, created, updated, rating, metacritic.
-	// You can reverse the sort order adding a hyphen, for example: -released.
-	const [dropDownItemsArr, setDropDownItemsArr] = useState<DropDownItem[]>([
-		{
-			value: "null",
-			label: messages.Sort.relevance,
-			selected: true,
-		},
-		...Object.keys(messages.Sort.fields).map(
-			(key: string) =>
-				({
-					value: key,
-					label: messages.Sort.fields[key as keyof typeof messages.Sort.fields],
-					selected: false,
-				}) as DropDownItem
-		),
-	]);
-	const [order, setOrder] = useState<"asc" | "desc">("desc");
+	const { dropDownItemsArr, setDropDownItemsArr, order, setOrder, gameQuery, setGameQuery } =
+		useAppContext();
 
-	const { setGameQuery } = useAppContext();
+	const updateSortOrder = (passOrder?: Order, passDropDownItemsArr?: SortDropDownItem[]) => {
+		const selectedItem = (passDropDownItemsArr ?? dropDownItemsArr).find((item) => item.selected);
+		const sortOrder =
+			selectedItem?.value === "null"
+				? ""
+				: `${(passOrder ?? order) === "asc" ? "-" : ""}${selectedItem?.value}`;
+
+		if (sortOrder !== "" || gameQuery?.sortOrder) {
+			setGameQuery((prev) => ({
+				...prev,
+				sortOrder,
+			}));
+		}
+	};
 
 	const handleOnChange = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
-		setDropDownItemsArr((prev) => {
-			return prev.map((item) => ({
+		const selected = dropDownItemsArr.find((item) => item.selected);
+
+		if (selected && selected?.value !== e.currentTarget?.platform.value) {
+			const newDropDownItemsArr = dropDownItemsArr.map((item) => ({
 				...item,
 				selected: item.value === e.currentTarget?.platform.value,
 			}));
-		});
+
+			setDropDownItemsArr(newDropDownItemsArr);
+
+			updateSortOrder(undefined, newDropDownItemsArr);
+		}
 	};
 
 	const handleChangeOrder = () => {
 		if (dropDownItemsArr.find((item) => item.selected)?.value !== "null") {
-			setOrder((prev) => (prev === "asc" ? "desc" : "asc"));
+			const newOrder = order === "asc" ? "desc" : "asc";
+
+			setOrder(newOrder);
+			updateSortOrder(newOrder, undefined);
 		}
 	};
-
-	useEffect(() => {
-		const selectedItem = dropDownItemsArr.find((item) => item.selected);
-		const queryOrder =
-			selectedItem?.value === "null" ? "" : `${order === "asc" ? "-" : ""}${selectedItem?.value}`;
-
-		if (selectedItem) {
-			setGameQuery((prev) => ({
-				...prev,
-				sortOrder: queryOrder,
-			}));
-		}
-	}, [order, dropDownItemsArr, setGameQuery]);
 
 	return (
 		<form action="submit" className={cn("w-full", className)} onChange={handleOnChange}>
