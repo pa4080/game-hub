@@ -72,14 +72,7 @@ const Games: React.FC<Props> = ({ className }) => {
 				</div>
 			</div>
 
-			{isLoading || !games ? (
-				<Games_Skeleton />
-			) : (
-				<Games_Grid
-					// games={selectedGenre ? getGamesBy([["genres", String(selectedGenre.id)]]) : games}
-					games={games}
-				/>
-			)}
+			{isLoading || !games ? <Games_Skeleton /> : <Games_Grid games={games} />}
 
 			{error && <p className="text-lg text-red-500 font-semibold m-0">{error}</p>}
 		</div>

@@ -1,10 +1,18 @@
 import dynamic from "next/dynamic";
 import { cookies } from "next/headers";
 
+import { SunMoon } from "lucide-react";
+
 import { ThemeType } from "./ThemeSelector";
+import { Skeleton } from "../ui/skeleton";
 
 const ThemeSelector = dynamic(() => import("./ThemeSelector"), {
 	ssr: false,
+	loading: () => (
+		<div className="btn_ui_div relative w-10 h-10 max-h-full">
+			<SunMoon />
+		</div>
+	),
 });
 
 const ThemeSelectorLoader = () => {

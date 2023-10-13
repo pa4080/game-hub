@@ -20,6 +20,7 @@ interface Props {
 	classNameTrigger?: string;
 	classNameContent?: string;
 	classNameOrder?: string;
+	externalAction?: () => void;
 }
 
 const SortSelector: React.FC<Props> = ({
@@ -27,6 +28,7 @@ const SortSelector: React.FC<Props> = ({
 	classNameTrigger,
 	classNameContent,
 	classNameOrder,
+	externalAction,
 }) => {
 	const { dropDownItemsArr, setDropDownItemsArr, order, setOrder, gameQuery, setGameQuery } =
 		useAppContext();
@@ -37,6 +39,8 @@ const SortSelector: React.FC<Props> = ({
 			selectedItem?.value === "null" ? "" : `${order === "asc" ? "-" : ""}${selectedItem?.value}`;
 
 		if (sortOrder !== "" || gameQuery?.sortOrder) {
+			externalAction && externalAction();
+
 			setGameQuery((prev) => ({
 				...prev,
 				sortOrder,
@@ -102,7 +106,7 @@ const SortSelector: React.FC<Props> = ({
 
 				<div
 					className={cn(
-						"rounded-lg text-lg flex items-center justify-between bg-slate-300 hover:!bg-slate-500 dark:bg-slate-800 dark:hover:!bg-slate-700 h-full px-2 py-2 transition-colors duration-300",
+						"btn_ui_div",
 						dropDownItemsArr.find((item) => item.selected)?.value === "null"
 							? "cursor-not-allowed"
 							: "",

@@ -29,7 +29,8 @@
 		"delete": "Delete",
 		"showMore": "Show more",
 		"showLess": "Show less",
-		"showAll": "Show all"
+		"showAll": "Show all",
+		"clearSelection": "Clear selection"
 	},
 	"RawgEndpoints": {
 		"creator_roles": "Creator roles",
@@ -63,5 +64,9 @@
 			"rating": "Rating",
 			"metacritic": "Metacritic"
 		}
+	},
+	"Search": {
+		"searchPlaceholder": "Search games",
+		"searchText": "The search text must be at least 3 characters."
 	}
 }

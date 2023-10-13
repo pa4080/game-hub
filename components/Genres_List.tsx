@@ -43,8 +43,9 @@ const Genres_List: React.FC<Props> = ({ genres, className, externalAction }) => 
 		}));
 	};
 
-	const handleShowGAmesFromAllGenres = () => {
+	const handleClearGenreSelection = () => {
 		externalAction && externalAction();
+
 		setGameQuery((prev) => ({
 			...prev,
 			genre: null,
@@ -95,7 +96,7 @@ const Genres_List: React.FC<Props> = ({ genres, className, externalAction }) => 
 			</div>
 
 			{gameQuery?.genre?.id && (
-				<div className="list_item" onClick={handleShowGAmesFromAllGenres}>
+				<div className="list_item" onClick={handleClearGenreSelection}>
 					<div
 						className={cn(
 							"h-8 w-8 rounded-md bg-slate-400 dark:bg-slate-700 overflow-hidden",
@@ -104,7 +105,7 @@ const Genres_List: React.FC<Props> = ({ genres, className, externalAction }) => 
 					>
 						<PiGameControllerFill />
 					</div>
-					<div className="line-clamp-1">{messages.Buttons.showAll}</div>
+					<div className="line-clamp-1">{messages.Buttons.clearSelection}</div>
 				</div>
 			)}
 		</div>
