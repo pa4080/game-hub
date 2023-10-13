@@ -80,6 +80,7 @@ const SortSelector: React.FC<Props> = ({
 				<Select name="platform">
 					<SelectTrigger
 						className={cn("selector_trigger", "w-full xs:w-[156px]", classNameTrigger)}
+						tabIndex={-1}
 					>
 						<SelectValue
 							placeholder={(() => {

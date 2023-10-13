@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 
 import messages from "@/messages/en.json";
 import { cn } from "@/lib/cn-utils";
+import { useAppContext } from "@/contexts/AppContext";
 
 const FormSchema = z.object({
 	searchText: z.string().min(3, {
@@ -26,6 +27,8 @@ interface Props {
 }
 
 const SearchInput: React.FC<Props> = ({ className }) => {
+	const { gameQuery, setGameQuery } = useAppContext();
+
 	const form = useForm<z.infer<typeof FormSchema>>({
 		resolver: zodResolver(FormSchema),
 		defaultValues: {
@@ -34,9 +37,24 @@ const SearchInput: React.FC<Props> = ({ className }) => {
 	});
 
 	function onSubmit(data: z.infer<typeof FormSchema>) {
-		// eslint-disable-next-line no-console
-		console.log(data);
+		setGameQuery({
+			...gameQuery,
+			search: data.searchText,
+		});
 	}
+
+	const handleClearSearch = (e: React.MouseEvent<HTMLButtonElement>) => {
+		e.preventDefault();
+
+		form.reset();
+
+		if (gameQuery?.search) {
+			setGameQuery({
+				...gameQuery,
+				search: undefined,
+			});
+		}
+	};
 
 	return (
 		<Form {...form}>
@@ -54,12 +72,23 @@ const SearchInput: React.FC<Props> = ({ className }) => {
 							</FormItem>
 						)}
 					/>
-					<Button
-						className="absolute top-0 right-0 bg-transparent text-slate-500 hover:text-accent hover:bg-transparent"
-						type="submit"
-					>
-						{form.getValues("searchText") ? <SearchX /> : <Search />}
-					</Button>
+					<div className="absolute top-0 right-2 gap-1 flex flex-row-reverse justify-end items-center">
+						<Button
+							className="bg-transparent text-slate-500 hover:text-accent hover:bg-transparent px-1 py-0"
+							type="submit"
+						>
+							<Search />
+						</Button>
+
+						{form.getValues("searchText") && (
+							<Button
+								className="bg-transparent text-slate-500 hover:text-accent hover:bg-transparent px-1 py-0"
+								onClick={(e) => handleClearSearch(e)}
+							>
+								<SearchX />
+							</Button>
+						)}
+					</div>
 				</div>
 			</form>
 		</Form>

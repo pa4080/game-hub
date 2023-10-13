@@ -3,6 +3,7 @@ import React from "react";
 import NavBar from "@/components/NavBar";
 import Games from "@/components/Games";
 import Genres from "@/components/Genres";
+import Credits from "@/components/Credits";
 
 /**
  * Refs. about the grid layout
@@ -18,8 +19,9 @@ const Home: React.FC = () => {
 				<NavBar className="p-2" />
 			</div>
 
-			<div className="p-2 hidden lg:block">
+			<div className="p-2 hidden lg:flex flex-col justify-between">
 				<Genres />
+				<Credits />
 			</div>
 			<div className="">
 				<Games className="p-2" />

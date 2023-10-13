@@ -4,7 +4,6 @@ import { cookies } from "next/headers";
 import { SunMoon } from "lucide-react";
 
 import { ThemeType } from "./ThemeSelector";
-import { Skeleton } from "../ui/skeleton";
 
 const ThemeSelector = dynamic(() => import("./ThemeSelector"), {
 	ssr: false,

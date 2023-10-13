@@ -35,10 +35,12 @@ const Games: React.FC<Props> = ({ className }) => {
 		getGamesBy({
 			params: {
 				genres: gameQuery?.genre?.id,
-				platforms:
-					gameQuery?.parentPlatform?.platforms?.map((platform) => platform.id).join(",") ||
-					gameQuery?.parentPlatform?.id,
+				// platforms:
+				// 	gameQuery?.parentPlatform?.platforms?.map((platform) => platform.id).join(",") ||
+				// 	gameQuery?.parentPlatform?.id,
+				parent_platforms: gameQuery?.parentPlatform?.id,
 				ordering: gameQuery?.sortOrder,
+				search: gameQuery?.search,
 			},
 		});
 	}, [getGamesBy, gameQuery]);

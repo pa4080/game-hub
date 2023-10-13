@@ -20,7 +20,7 @@ const GameCard_Platforms: React.FC<Props> = ({ className, platforms }) => {
 				className
 			)}
 		>
-			{platforms.map(({ platform }) => {
+			{platforms?.map(({ platform }) => {
 				return (
 					<TooltipProvider key={platform.slug}>
 						<Tooltip>

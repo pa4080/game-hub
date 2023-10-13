@@ -46,7 +46,7 @@
 	"Platforms": {
 		"select": "Select a platform",
 		"available": "Available platforms",
-		"showAll": "Show all"
+		"showAll": "All platforms"
 	},
 	"Sort": {
 		"sortBy": "Sort by",
@@ -68,5 +68,8 @@
 	"Search": {
 		"searchPlaceholder": "Search games",
 		"searchText": "The search text must be at least 3 characters."
+	},
+	"Credits": {
+		"reportBug": "Report a bug"
 	}
 }
