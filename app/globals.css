@@ -129,6 +129,10 @@ select:focus {
 	border-color: hsl(42deg 100% 50%);
 }
 
+input:placeholder-shown {
+	text-overflow: ellipsis;
+}
+
 /* Trick the hidden scroll of Radix Select */
 body [data-radix-select-viewport] {
 	-webkit-overflow-scrolling: scroll;

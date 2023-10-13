@@ -66,7 +66,14 @@ const SearchInput: React.FC<Props> = ({ className }) => {
 						render={({ field }) => (
 							<FormItem>
 								<FormControl>
-									<Input placeholder={messages.Search.searchPlaceholder} {...field} />
+									<Input
+										className="pr-12"
+										placeholder={
+											messages.Search.searchPlaceholder +
+											"lorem ipsum dolor sit amet consectetur adipiscing elit mauris vulputate"
+										}
+										{...field}
+									/>
 								</FormControl>
 								<FormMessage className="absolute -bottom-6 left-3 line-clamp-1 w-auto" />
 							</FormItem>
