@@ -66,8 +66,17 @@
 		}
 	},
 	"Search": {
-		"searchPlaceholder": "Search games",
-		"searchText": "The search text must be at least 3 characters."
+		"search": "Search",
+		"in": "in",
+		"all": "all",
+		"games": "games",
+		"for": "for",
+		"by": "by",
+		"sorted": "sorted",
+		"asc": "ascending",
+		"desc": "descending",
+		"order": "order",
+		"searchTextReq": "The search text must be at least 3 characters."
 	},
 	"Credits": {
 		"reportBug": "Report a bug"

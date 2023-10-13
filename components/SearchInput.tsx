@@ -12,36 +12,59 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
-import messages from "@/messages/en.json";
 import { cn } from "@/lib/cn-utils";
 import { useAppContext } from "@/contexts/AppContext";
 
-const FormSchema = z.object({
-	searchText: z.string().min(3, {
-		message: messages.Search.searchText,
-	}),
-});
+export const FormSchemaGenerator = (messages?: string[]) => {
+	return z.object({
+		searchText: z.string().min(3, {
+			message: messages?.shift(),
+		}),
+	});
+};
 
 interface Props {
 	className?: string;
 }
 
 const SearchInput: React.FC<Props> = ({ className }) => {
-	const { gameQuery, setGameQuery } = useAppContext();
+	const {
+		gameQuery,
+		setGameQuery,
+		messages: { Search: str },
+	} = useAppContext();
 
-	const form = useForm<z.infer<typeof FormSchema>>({
+	const FormSchema = FormSchemaGenerator([str.searchTextReq]);
+
+	type FormSchema = z.infer<typeof FormSchema>;
+
+	const form = useForm<FormSchema>({
 		resolver: zodResolver(FormSchema),
 		defaultValues: {
 			searchText: "",
 		},
 	});
 
-	function onSubmit(data: z.infer<typeof FormSchema>) {
+	function onSubmit(data: FormSchema) {
 		setGameQuery({
 			...gameQuery,
 			search: data.searchText,
 		});
 	}
+
+	const placeholder = `${str.search} ${str.in} ${gameQuery?.genre?.name ?? str.all} ${str.games} ${
+		gameQuery?.parentPlatform?.name ? `for ${gameQuery?.parentPlatform?.name}` : ""
+	} ${
+		gameQuery?.sortOrder
+			? `, ${str.sorted} ${str.by} ${gameQuery?.sortOrder} ${str.in} ${
+					gameQuery?.sortOrder.match(/^-/) ? str.desc : str.asc
+			  } ${str.order}`
+			: ""
+	}...`
+		.replace(/-/g, "")
+		.replace(/ {2,}/g, " ")
+		.replace(/ ,/g, ",")
+		.replace(/\s\.\.\./g, "...");
 
 	const handleClearSearch = (e: React.MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault();
@@ -66,14 +89,7 @@ const SearchInput: React.FC<Props> = ({ className }) => {
 						render={({ field }) => (
 							<FormItem>
 								<FormControl>
-									<Input
-										className="pr-12"
-										placeholder={
-											messages.Search.searchPlaceholder +
-											"lorem ipsum dolor sit amet consectetur adipiscing elit mauris vulputate"
-										}
-										{...field}
-									/>
+									<Input className="pr-12" placeholder={placeholder} {...field} />
 								</FormControl>
 								<FormMessage className="absolute -bottom-6 left-3 line-clamp-1 w-auto" />
 							</FormItem>
