@@ -23,26 +23,33 @@ interface Props {
 }
 
 const Genres_List: React.FC<Props> = ({ genres, className, externalAction }) => {
-	const { selectedGenre, setSelectedGenre } = useAppContext();
+	const { gameQuery, setGameQuery } = useAppContext();
 
 	const [showAllGenres, setShowAllGenres] = useState(false);
 	const toggleShowAllGenres = () => setShowAllGenres(!showAllGenres);
 
 	const genresToShow = showAllGenres ? genres?.results : genres?.results.slice(0, 5);
 
-	if (selectedGenre && !genresToShow.find((genre) => genre.id === selectedGenre?.id)) {
+	if (gameQuery?.genre && !genresToShow.find((genre) => genre.id === gameQuery?.genre?.id)) {
 		genresToShow.pop();
-		genresToShow.push(selectedGenre);
+		genresToShow.push(gameQuery?.genre);
 	}
 
 	const handleOnGenreClick = (genre: Interfaces[Endpoints.GENRES]["results"][number]) => {
 		externalAction && externalAction();
-		setSelectedGenre(genre);
+		setGameQuery((prev) => ({
+			...prev,
+			genre: genre,
+		}));
 	};
 
-	const handleShowGAmesFromAllGenres = () => {
+	const handleClearGenreSelection = () => {
 		externalAction && externalAction();
-		setSelectedGenre(null);
+
+		setGameQuery((prev) => ({
+			...prev,
+			genre: null,
+		}));
 	};
 
 	return (
@@ -51,7 +58,7 @@ const Genres_List: React.FC<Props> = ({ genres, className, externalAction }) => 
 				<button
 					key={index}
 					className={`list_item ${
-						genre.id === selectedGenre?.id ? "bg-slate-400 dark:bg-slate-700" : ""
+						genre.id === gameQuery?.genre?.id ? "bg-slate-400 dark:bg-slate-700" : ""
 					}`}
 					name={genre.slug}
 					onClick={() => handleOnGenreClick(genre)}
@@ -88,8 +95,8 @@ const Genres_List: React.FC<Props> = ({ genres, className, externalAction }) => 
 				</div>
 			</div>
 
-			{selectedGenre && (
-				<div className="list_item" onClick={handleShowGAmesFromAllGenres}>
+			{gameQuery?.genre?.id && (
+				<div className="list_item" onClick={handleClearGenreSelection}>
 					<div
 						className={cn(
 							"h-8 w-8 rounded-md bg-slate-400 dark:bg-slate-700 overflow-hidden",
@@ -98,7 +105,7 @@ const Genres_List: React.FC<Props> = ({ genres, className, externalAction }) => 
 					>
 						<PiGameControllerFill />
 					</div>
-					<div className="line-clamp-1">{messages.Buttons.showAll}</div>
+					<div className="line-clamp-1">{messages.Buttons.clearSelection}</div>
 				</div>
 			)}
 		</div>

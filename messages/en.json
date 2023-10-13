@@ -29,7 +29,8 @@
 		"delete": "Delete",
 		"showMore": "Show more",
 		"showLess": "Show less",
-		"showAll": "Show all"
+		"showAll": "Show all",
+		"clearSelection": "Clear selection"
 	},
 	"RawgEndpoints": {
 		"creator_roles": "Creator roles",
@@ -45,6 +46,39 @@
 	"Platforms": {
 		"select": "Select a platform",
 		"available": "Available platforms",
-		"showAll": "Show all"
+		"showAll": "All platforms"
+	},
+	"Sort": {
+		"sortBy": "Sort by",
+		"relevance": "Relevance",
+		"order": {
+			"asc": "Ascending",
+			"desc": "Descending"
+		},
+		"fields": {
+			"name": "Name",
+			"released": "Released",
+			"added": "Added",
+			"created": "Created",
+			"updated": "Updated",
+			"rating": "Rating",
+			"metacritic": "Metacritic"
+		}
+	},
+	"Search": {
+		"search": "Search",
+		"in": "in",
+		"all": "all",
+		"games": "games",
+		"for": "for",
+		"by": "by",
+		"sorted": "sorted",
+		"asc": "ascending",
+		"desc": "descending",
+		"order": "order",
+		"searchTextReq": "The search text must be at least 3 characters."
+	},
+	"Credits": {
+		"reportBug": "Report a bug"
 	}
 }

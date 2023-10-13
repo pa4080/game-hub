@@ -17,7 +17,7 @@
 		"*.css": "stylelint --fix"
 	},
 	"dependencies": {
-		"@hookform/resolvers": "^3.3.1",
+		"@hookform/resolvers": "^3.3.2",
 		"@radix-ui/react-alert-dialog": "^1.0.5",
 		"@radix-ui/react-aspect-ratio": "^1.0.3",
 		"@radix-ui/react-dialog": "^1.0.5",
@@ -54,7 +54,7 @@
 		"tailwindcss": "3.3.3",
 		"tailwindcss-animate": "^1.0.7",
 		"typescript": "^5.2.2",
-		"zod": "^3.22.2"
+		"zod": "^3.22.4"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^17.7.2",
@@ -74,6 +74,6 @@
 		"stylelint": "^15.10.3",
 		"stylelint-config-standard": "^34.0.0",
 		"stylelint-order": "^6.0.3",
-		"vercel": "^32.3.1"
+		"vercel": "^32.4.1"
 	}
 }

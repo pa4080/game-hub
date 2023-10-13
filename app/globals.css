@@ -57,13 +57,13 @@
 		--secondary-foreground: 222.2 47.4% 11.2%;
 		--muted: 210 40% 96.1%;
 		--muted-foreground: 215.4 16.3% 46.9%;
-		--accent: 38, 100%, 50%; /* hsl(42, 100%, 50%) #ffa200 hsl(38, 100%, 50%) */
+		--accent: 38 100% 50%; /* hsl(42, 100%, 50%) #ffa200 hsl(38, 100%, 50%) */
 		--accent-foreground: 0, 0%, 24%; /* hsl(0, 0%, 24%) */
 		--destructive: 0 84.2% 60.2%;
 		--destructive-foreground: 210 40% 98%;
 		--border: 214.3 31.8% 91.4%;
-		--input: 214.3 31.8% 91.4%;
-		--ring: 46, 100%, 50%; /* hsl(46, 100%, 50%) */
+		--input: 217.24deg 32.58% 17.45%; /* hsl(217.24deg 32.58% 17.45%) */
+		--ring: 42 100% 50%; /* hsl(42, 100%, 50%)  hsl(46, 100%, 50%) */
 		--radius: 0.5rem;
 		--scrollbar-width: 16px;
 	}
@@ -82,13 +82,13 @@
 		--secondary-foreground: 210 40% 98%;
 		--muted: 217.2 32.6% 17.5%;
 		--muted-foreground: 215 20.2% 65.1%;
-		--accent: 38, 100%, 50%; /* hsl(42, 100%, 50%) #ffa200 hsl(38, 100%, 50%) */
+		--accent: 38 100% 50%; /* hsl(42, 100%, 50%) #ffa200 hsl(38, 100%, 50%) */
 		--accent-foreground: 210 40% 98%;
 		--destructive: 0 62.8% 30.6%;
 		--destructive-foreground: 210 40% 98%;
 		--border: 217.2 32.6% 17.5%;
-		--input: 217.2 32.6% 17.5%;
-		--ring: 46, 100%, 50%; /* hsl(46, 100%, 50%) */
+		--input: 217.2 32.6% 17.5%; /* hsl(217.2, 32.6%, 17.5%) */
+		--ring: 42 100% 50%; /* hsl(42, 100%, 50%)  hsl(46, 100%, 50%) */
 	}
 }
 
@@ -105,7 +105,7 @@
 }
 
 body {
-	min-width: 320px;
+	min-width: 300px;
 }
 
 [type="text"]:focus,
@@ -127,6 +127,10 @@ select:focus {
 	--tw-ring-color: hsl(42deg 100% 50%);
 
 	border-color: hsl(42deg 100% 50%);
+}
+
+input:placeholder-shown {
+	text-overflow: ellipsis;
 }
 
 /* Trick the hidden scroll of Radix Select */
@@ -222,6 +226,14 @@ body [data-radix-select-viewport]::-webkit-scrollbar {
 	dark:bg-slate-700 dark:hover:bg-slate-200;
 }
 
+.btn_ui {
+	@apply rounded-lg border-0 bg-slate-300 dark:bg-slate-800 hover:text-background transition-colors duration-300 dark:hover:bg-accent;
+}
+
+.btn_ui_div {
+	@apply rounded-lg text-lg flex items-center justify-between bg-slate-300 hover:!bg-slate-500 dark:bg-slate-800 dark:hover:!bg-slate-700 h-full px-2 py-2;
+}
+
 /* genres */
 .list_title {
 	@apply text-2xl font-semibold font-unicephalon px-1 pb-3 text-accent opacity-95 line-clamp-1 tracking-wider;
@@ -232,4 +244,17 @@ body [data-radix-select-viewport]::-webkit-scrollbar {
 	 hover:bg-slate-300 dark:hover:bg-slate-800 rounded-lg
 	 transition-colors duration-300 hover:duration-150
 	 drop-shadow-xl cursor-pointer;
+}
+
+/* SortSelector | PlatformSelector */
+.selector_trigger {
+	@apply rounded-lg text-lg flex items-center justify-between bg-slate-300 hover:!bg-slate-500 dark:bg-slate-800 dark:hover:!bg-slate-700 py-4 px-4 transition-colors duration-300 border-0;
+}
+
+.select_item_inner {
+	@apply flex flex-row gap-3 items-center justify-between line-clamp-1;
+}
+
+.select_item_order {
+	@apply hover:bg-slate-800 z-10 px-2 py-1 rounded-md transition-colors duration-200;
 }
