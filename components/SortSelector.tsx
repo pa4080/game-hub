@@ -31,12 +31,10 @@ const SortSelector: React.FC<Props> = ({
 	const { dropDownItemsArr, setDropDownItemsArr, order, setOrder, gameQuery, setGameQuery } =
 		useAppContext();
 
-	const updateSortOrder = (passOrder?: Order, passDropDownItemsArr?: SortDropDownItem[]) => {
-		const selectedItem = (passDropDownItemsArr ?? dropDownItemsArr).find((item) => item.selected);
+	const updateSortOrder = (order: Order, dropDownItemsArr: SortDropDownItem[]) => {
+		const selectedItem = dropDownItemsArr.find((item) => item.selected);
 		const sortOrder =
-			selectedItem?.value === "null"
-				? ""
-				: `${(passOrder ?? order) === "asc" ? "-" : ""}${selectedItem?.value}`;
+			selectedItem?.value === "null" ? "" : `${order === "asc" ? "-" : ""}${selectedItem?.value}`;
 
 		if (sortOrder !== "" || gameQuery?.sortOrder) {
 			setGameQuery((prev) => ({
@@ -59,7 +57,7 @@ const SortSelector: React.FC<Props> = ({
 
 			setDropDownItemsArr(newDropDownItemsArr);
 
-			updateSortOrder(undefined, newDropDownItemsArr);
+			updateSortOrder(order, newDropDownItemsArr);
 		}
 	};
 
@@ -68,7 +66,7 @@ const SortSelector: React.FC<Props> = ({
 			const newOrder = order === "asc" ? "desc" : "asc";
 
 			setOrder(newOrder);
-			updateSortOrder(newOrder, undefined);
+			updateSortOrder(newOrder, dropDownItemsArr);
 		}
 	};
 
@@ -112,7 +110,7 @@ const SortSelector: React.FC<Props> = ({
 					)}
 					onClick={handleChangeOrder}
 				>
-					{order === "asc" ? <ArrowUpNarrowWide /> : <ArrowDownNarrowWide />}
+					{order === "asc" ? <ArrowDownNarrowWide /> : <ArrowUpNarrowWide />}
 				</div>
 			</div>
 		</form>
