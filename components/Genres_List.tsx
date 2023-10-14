@@ -57,6 +57,7 @@ const Genres_List: React.FC<Props> = ({ genres, className, externalAction }) => 
 			{genresToShow.map((genre, index) => (
 				<button
 					key={index}
+					aria-label={genre.name}
 					className={`list_item ${
 						genre.id === gameQuery?.genre?.id ? "bg-slate-400 dark:bg-slate-700" : ""
 					}`}

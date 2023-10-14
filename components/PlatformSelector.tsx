@@ -6,7 +6,7 @@ import { SiNintendo, SiAtari, SiCommodore, SiSega } from "react-icons/si";
 import { BsGlobe, BsJoystick } from "react-icons/bs";
 import { RiAppleFill, RiAppleLine } from "react-icons/ri";
 import { CgShapeRhombus } from "react-icons/cg";
-import { PiGameControllerFill } from "react-icons/pi";
+import { PiGameControllerFill, PiGameControllerDuotone } from "react-icons/pi";
 
 import messages from "@/messages/en.json";
 
@@ -44,6 +44,7 @@ export const Platforms_IconsMap: { [key: string]: React.ReactNode } = {
 	"3do": <CgShapeRhombus className={platformsIconStyle} />,
 	"neo-geo": <BsJoystick className={platformsIconStyle} />,
 	"show-all": <PiGameControllerFill className={platformsIconStyle} />,
+	"not-defined": <PiGameControllerDuotone className={platformsIconStyle} />,
 };
 
 interface Props {
@@ -77,7 +78,9 @@ const PlatformSelector: React.FC<Props> = ({ className, classNameTrigger, classN
 		<form action="submit" className={cn("w-full", className)} onChange={handleOnChange}>
 			<Select name="platform">
 				<SelectTrigger
+					aria-label={messages.Platforms.select}
 					className={cn("selector_trigger", " w-full xs:w-[260px] sm:w-[280px]", classNameTrigger)}
+					name={messages.Platforms.select}
 				>
 					<SelectValue placeholder={messages.Platforms.select} />
 				</SelectTrigger>
@@ -95,7 +98,15 @@ const PlatformSelector: React.FC<Props> = ({ className, classNameTrigger, classN
 						{platforms?.results.map((platform) => (
 							<SelectItem key={platform.slug} value={platform.slug}>
 								<div className="select_item_inner">
-									<div className="flex">{Platforms_IconsMap[platform.slug]}</div>
+									<div className="flex">
+										{
+											Platforms_IconsMap[
+												Object.keys(Platforms_IconsMap).includes(platform.slug)
+													? platform.slug
+													: "not-defined"
+											]
+										}
+									</div>
 									<span>{platform.name}</span>
 								</div>
 							</SelectItem>

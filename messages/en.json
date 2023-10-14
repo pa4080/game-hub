@@ -5,7 +5,8 @@
 	"Theme": {
 		"light": "Light",
 		"dark": "Dark",
-		"system": "System"
+		"system": "System",
+		"themeSelector": "Theme selector"
 	},
 	"NavBar": {
 		"logoDesc": "The site logo"
@@ -22,6 +23,7 @@
 		"logout": "Logout",
 		"send": "Send",
 		"search": "Search",
+		"discardSearch": "Discard search",
 		"add": "Add",
 		"addUser": "Add a user",
 		"addExpense": "Add expense",
@@ -30,7 +32,9 @@
 		"showMore": "Show more",
 		"showLess": "Show less",
 		"showAll": "Show all",
-		"clearSelection": "Clear selection"
+		"clearSelection": "Clear selection",
+		"prev": "Prev",
+		"mobileMenuName": "Open mobile menu"
 	},
 	"RawgEndpoints": {
 		"creator_roles": "Creator roles",
@@ -46,7 +50,8 @@
 	"Platforms": {
 		"select": "Select a platform",
 		"available": "Available platforms",
-		"showAll": "All platforms"
+		"showAll": "All platforms",
+		"platformIconButtonName": "Platform icon button for"
 	},
 	"Sort": {
 		"sortBy": "Sort by",
@@ -80,5 +85,10 @@
 	},
 	"Credits": {
 		"reportBug": "Report a bug"
+	},
+	"Rating": {
+		"meh": "Meh",
+		"thumbsUp": "Thumbs up",
+		"bullsEye": "Bulls eye"
 	}
 }

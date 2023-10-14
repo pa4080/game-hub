@@ -3,6 +3,7 @@ import React from "react";
 import { ParentPlatformsObjArr } from "@/interfaces/rawg-endpoint-platforms";
 import { cn } from "@/lib/cn-utils";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import messages from "@/messages/en.json";
 
 import { Platforms_IconsMap } from "./PlatformSelector";
 
@@ -24,7 +25,11 @@ const GameCard_Platforms: React.FC<Props> = ({ className, platforms }) => {
 				return (
 					<TooltipProvider key={platform.slug}>
 						<Tooltip>
-							<TooltipTrigger className="cursor-default" name="Game platform">
+							<TooltipTrigger
+								aria-label={`${messages.Platforms.platformIconButtonName} ${platform.name}`}
+								className="cursor-default"
+								name={`${messages.Platforms.platformIconButtonName} ${platform.name}`}
+							>
 								{Platforms_IconsMap[platform.slug]}
 							</TooltipTrigger>
 							<TooltipContent>{platform.name}</TooltipContent>

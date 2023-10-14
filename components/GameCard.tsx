@@ -10,6 +10,7 @@ import getCroppedImageUrl from "@/lib/get-rawg-cropped-image-url";
 
 import GameCard_Platforms from "./GameCard_Platforms";
 import GameCard_Score from "./GameCard_Score";
+import GameCard_Rating from "./GameCard_Rating";
 
 interface Props {
 	game: Game;
@@ -48,7 +49,10 @@ const GameCard: React.FC<Props> = ({ game, className, priority = false }) => {
 			<div className="p-3">
 				<div className="flex justify-between items-center w-full">
 					<GameCard_Platforms platforms={game.parent_platforms} />
-					<GameCard_Score score={game.metacritic} />
+					<div className="flex items-center gap-3">
+						<GameCard_Rating rating={game.rating_top} />
+						<GameCard_Score score={game.metacritic} />
+					</div>
 				</div>
 				<h3 className="font-semibold text-xl">{game.name}</h3>
 			</div>

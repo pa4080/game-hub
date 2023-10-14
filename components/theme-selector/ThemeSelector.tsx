@@ -66,7 +66,13 @@ const ThemeSelector: React.FC<Props> = ({ theme }) => {
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
-				<Button className="btn_ui relative" name="Theme select" size="icon" variant="outline">
+				<Button
+					aria-label={messages.Theme.themeSelector}
+					className="btn_ui relative"
+					name={messages.Theme.themeSelector}
+					size="icon"
+					variant="outline"
+				>
 					<Sun
 						className={
 							(cn("h-[1.2rem] w-[1.2rem]"),
