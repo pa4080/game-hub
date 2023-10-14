@@ -78,7 +78,9 @@ const PlatformSelector: React.FC<Props> = ({ className, classNameTrigger, classN
 		<form action="submit" className={cn("w-full", className)} onChange={handleOnChange}>
 			<Select name="platform">
 				<SelectTrigger
+					aria-label={messages.Platforms.select}
 					className={cn("selector_trigger", " w-full xs:w-[260px] sm:w-[280px]", classNameTrigger)}
+					name={messages.Platforms.select}
 				>
 					<SelectValue placeholder={messages.Platforms.select} />
 				</SelectTrigger>

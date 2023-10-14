@@ -22,7 +22,10 @@ interface Props {
 }
 
 const Games: React.FC<Props> = ({ className }) => {
-	const { gameQuery } = useAppContext();
+	const {
+		gameQuery,
+		messages: { Buttons: str },
+	} = useAppContext();
 
 	const {
 		data: games,
@@ -57,18 +60,20 @@ const Games: React.FC<Props> = ({ className }) => {
 					<Button
 						className="btn_next_prev pl-2 pr-4"
 						disabled={!games?.previous}
+						name={str.prev}
 						onClick={() => games?.previous && getGamesBy(games?.previous)}
 					>
 						<ChevronLeft />
-						<span>Prev</span>
+						<span>{str.prev}</span>
 					</Button>
 
 					<Button
 						className="btn_next_prev pl-4 pr-2"
 						disabled={!games?.next}
+						name={str.next}
 						onClick={() => games?.next && getGamesBy(games?.next)}
 					>
-						<span>Next</span>
+						<span>{str.next}</span>
 						<ChevronRight />
 					</Button>
 				</div>

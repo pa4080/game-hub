@@ -17,12 +17,18 @@ import {
 	SheetTrigger,
 } from "@/components/ui/sheet";
 
+import { useAppContext } from "@/contexts/AppContext";
+
 import Genres from "./Genres";
 import Nav_Logo from "./Nav_Logo";
 import SortSelector from "./SortSelector";
 import Credits from "./Credits";
 
 const Nav_AsideSheet: React.FC = () => {
+	const {
+		messages: { Buttons: str },
+	} = useAppContext();
+
 	const [isOpen, setIsOpen] = useState(false);
 
 	const closeSheet = () => {
@@ -35,8 +41,9 @@ const Nav_AsideSheet: React.FC = () => {
 		<Sheet open={isOpen} onOpenChange={setIsOpen}>
 			<SheetTrigger asChild>
 				<Button
+					aria-label={str.mobileMenuName}
 					className="btn_ui relative lg:hidden"
-					name="Open mobile menu"
+					name={str.mobileMenuName}
 					size="icon"
 					variant="outline"
 				>

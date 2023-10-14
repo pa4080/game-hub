@@ -31,7 +31,7 @@ const SearchInput: React.FC<Props> = ({ className }) => {
 	const {
 		gameQuery,
 		setGameQuery,
-		messages: { Search: str },
+		messages: { Search: str, Buttons: strButtons },
 	} = useAppContext();
 
 	const FormSchema = FormSchemaGenerator([str.searchTextReq]);
@@ -97,7 +97,9 @@ const SearchInput: React.FC<Props> = ({ className }) => {
 					/>
 					<div className="absolute top-0 right-2 gap-1 flex flex-row-reverse justify-end items-center">
 						<Button
+							aria-label={strButtons.search}
 							className="bg-transparent text-slate-500 hover:text-accent hover:bg-transparent px-1 py-0"
+							name={strButtons.search}
 							type="submit"
 						>
 							<Search />
@@ -105,7 +107,9 @@ const SearchInput: React.FC<Props> = ({ className }) => {
 
 						{form.getValues("searchText") && (
 							<Button
+								aria-label={strButtons.discardSearch}
 								className="bg-transparent text-slate-500 hover:text-accent hover:bg-transparent px-1 py-0"
+								name={strButtons.discardSearch}
 								onClick={(e) => handleClearSearch(e)}
 							>
 								<SearchX />

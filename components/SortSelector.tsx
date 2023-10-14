@@ -79,7 +79,9 @@ const SortSelector: React.FC<Props> = ({
 			<div className="flex items-center justify-between gap-2 w-full">
 				<Select name="platform">
 					<SelectTrigger
+						aria-label={messages.Sort.sortBy}
 						className={cn("selector_trigger", "w-full xs:w-[156px]", classNameTrigger)}
+						name={messages.Sort.sortBy}
 						tabIndex={-1}
 					>
 						<SelectValue
