@@ -80,5 +80,10 @@
 	},
 	"Credits": {
 		"reportBug": "Report a bug"
+	},
+	"Rating": {
+		"meh": "Meh",
+		"thumbsUp": "Thumbs up",
+		"bullsEye": "Bulls eye"
 	}
 }
