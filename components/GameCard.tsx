@@ -6,6 +6,8 @@ import { Game } from "@/interfaces/rawg-endpoint-games-game";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { cn } from "@/lib/cn-utils";
 
+import imgPlaceholder from "@/public/images/no-signal.jpg";
+
 import getCroppedImageUrl from "@/lib/get-rawg-cropped-image-url";
 
 import GameCard_Platforms from "./GameCard_Platforms";
@@ -19,10 +21,13 @@ interface Props {
 }
 
 const GameCard: React.FC<Props> = ({ game, className, priority = false }) => {
+	// console.log(game.short_screenshots);
+
 	return (
 		<div
 			className={cn(
 				"w-full rounded-2xl bg-slate-300 dark:bg-slate-800 drop-shadow-xl dark:shadow-xl break-inside-avoid-column",
+				"hover:scale-105 hover:duration-300 duration-150",
 				className
 			)}
 		>
@@ -34,11 +39,7 @@ const GameCard: React.FC<Props> = ({ game, className, priority = false }) => {
 						className="object-cover object-top h-full w-full absolute top-0 left-0"
 						height={180}
 						priority={priority}
-						src={
-							game.background_image
-								? getCroppedImageUrl(game.background_image)
-								: "/images/no-signal.jpg"
-						}
+						src={game.background_image ? getCroppedImageUrl(game.background_image) : imgPlaceholder}
 						// https://vercel.com/docs/image-optimization/limits-and-pricing#hobby
 						unoptimized={process.env.NEXT_PUBLIC_ENV === "production"}
 						width={320}
