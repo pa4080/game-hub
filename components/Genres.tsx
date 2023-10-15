@@ -19,17 +19,19 @@ interface Props {
 }
 
 const Genres: React.FC<Props> = ({ className, externalAction }) => {
-	const { setGenres } = useAppContext();
+	const { genres, setGenres } = useAppContext();
 
 	const {
-		data: genres,
+		data: genresData,
 		error,
 		isLoading,
 	} = useRawgApi<Interfaces[Endpoints.GENRES]>(Endpoints.GENRES);
 
 	useEffect(() => {
-		setGenres(genres);
-	}, [setGenres, genres]);
+		if (!genres) {
+			setGenres(genresData);
+		}
+	}, [setGenres, genresData, genres]);
 
 	return (
 		<div className={cn("", className)}>
