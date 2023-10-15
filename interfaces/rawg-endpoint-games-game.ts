@@ -33,6 +33,7 @@ export interface Game {
 	reviews_count: number;
 	saturated_color: string;
 	dominant_color: string;
+	released: string;
 	platforms: {
 		platform: Platform;
 		released_at: string;

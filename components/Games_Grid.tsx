@@ -15,10 +15,13 @@ interface Props {
 
 const Games_Grid: React.FC<Props> = ({ games, className }) => {
 	return (
-		<div className={cn("columns-1 sm:columns-2 xl:columns-3 gap-8", className)}>
+		<div className={cn("games_grid", className)}>
 			{games?.results.map((game, index) => (
 				<GameCard key={index} className="mb-8" game={game} priority={index < 2} />
 			))}
+			<div className="w-full h-6 sm:h-12 xl:h-72 mb-12 sm:mb-36 xl:mb-40 z-0">
+				{/* Solve the problem with last child in a column hover */}
+			</div>
 		</div>
 	);
 };

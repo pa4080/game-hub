@@ -259,10 +259,34 @@ body [data-radix-select-viewport]::-webkit-scrollbar {
 	@apply hover:bg-slate-800 z-10 px-2 py-1 rounded-md transition-colors duration-200;
 }
 
+/* games */
+.games_grid {
+	@apply columns-1 sm:columns-2 xl:columns-3 gap-8;
+}
+
 /* game card */
 .game_card {
-	@apply w-full rounded-2xl bg-slate-300 dark:bg-slate-800 drop-shadow-xl dark:shadow-xl break-inside-avoid-column
-	hover:scale-105 hover:duration-300 duration-150;
+	@apply w-full rounded-2xl drop-shadow-xl dark:shadow-xl break-inside-avoid-column relative;
+
+	/* last:mb-72 sm:[&:nth-child(10)]:mb-36 xl:[&:nth-child(7)]:mb-72; */
+	/**
+	 * This is needed because of the last child in a column hover bug.
+	 * Another possible way to solve this bug is to add hidden large game gard
+	 * placeholder as a last child of the "grid".
+	 */
+	z-index: 0;
+}
+
+.game_card_bg {
+	@apply bg-slate-300 dark:bg-slate-800;
+}
+
+.game_card_info {
+	@apply p-3 h-fit overflow-visible rounded-b-2xl;
+}
+
+.game_card_scale_wrapper {
+	@apply transition-all hover:scale-105 hover:duration-300 duration-150;
 }
 
 .game_card_image {
@@ -277,11 +301,26 @@ body [data-radix-select-viewport]::-webkit-scrollbar {
 	@apply absolute z-30 bottom-0 left-0 w-full p-4 gap-2 justify-evenly items-center hidden;
 }
 
-/* .game_card:hover .game_card_indicator_container { */
-.game_card .game_card_indicator_container {
+.game_card:hover .game_card_indicator_container {
 	@apply flex;
 }
 
 .game_card_indicator_item {
 	@apply h-1 transition-colors duration-150 rounded-sm;
+}
+
+.game_card_extra_info {
+	@apply hidden mt-2;
+}
+
+.game_card_scale_wrapper:hover .game_card_extra_info {
+	@apply block;
+}
+
+.game_card_extra_info_row {
+	@apply flex justify-start items-start gap-2 w-full;
+}
+
+.game_card_extra_info_row + .game_card_extra_info_row {
+	@apply mt-1;
 }

@@ -11,6 +11,9 @@
 	"NavBar": {
 		"logoDesc": "The site logo"
 	},
+	"Common": {
+		"releaseDate": "Release date"
+	},
 	"Buttons": {
 		"submit": "Submit",
 		"cancel": "Cancel",

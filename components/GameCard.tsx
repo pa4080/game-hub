@@ -13,6 +13,7 @@ import getCroppedImageUrl from "@/lib/get-rawg-cropped-image-url";
 import GameCard_Platforms from "./GameCard_Platforms";
 import GameCard_Score from "./GameCard_Score";
 import GameCard_Rating from "./GameCard_Rating";
+import GameCard_ExtraInfo from "./GameCard_ExtraInfo";
 
 interface Props {
 	game: Game;
@@ -21,13 +22,45 @@ interface Props {
 }
 
 const GameCard: React.FC<Props> = ({ game, className, priority = false }) => {
+	// console.log(game);
 	const [pullScreenshots, setPullScreenshots] = useState(false);
 	const [mouseX, setMouseX] = useState(0); // percent of the card width
 
 	const cardRef = useRef<HTMLDivElement>(null);
 	const screenShotRefs = useRef<(HTMLImageElement | null)[]>([]);
 
-	const getMousePosition_X_WithinTheCard = (e: MouseEvent) => {
+	const handleMouseEnter = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
+		e.preventDefault();
+
+		setPullScreenshots(true);
+
+		if (cardRef.current) {
+			const memoHeight = `${cardRef.current.clientHeight}px`;
+			const cardRefCurrent = cardRef.current;
+
+			setTimeout(() => {
+				cardRefCurrent.style.height = memoHeight;
+				cardRefCurrent.style.zIndex = "1000";
+
+				setTimeout(() => {
+					cardRefCurrent.className += " game_card_scale_wrapper";
+				}, 200);
+			}, 10);
+		}
+	};
+
+	const handleMouseLeave = () => {
+		if (cardRef.current) {
+			cardRef.current.style.height = "";
+			cardRef.current.style.zIndex = "0";
+
+			cardRef.current.className = cardRef.current.className
+				.replace(/game_card_scale_wrapper/g, "")
+				.replace(/ {2,}/g, " ");
+		}
+	};
+
+	const getMouse_X_Position_WithinTheCard = (e: MouseEvent) => {
 		if (cardRef.current) {
 			let mouseX_Relative = Math.floor(
 				(100 * (e.clientX - cardRef.current.offsetLeft)) / cardRef.current.clientWidth
@@ -91,12 +124,17 @@ const GameCard: React.FC<Props> = ({ game, className, priority = false }) => {
 	};
 
 	return (
-		<div ref={cardRef} className={cn("game_card", className)}>
+		<div
+			ref={cardRef}
+			className={cn("game_card  game_card_bg", className)}
+			style={{ zIndex: 0 }}
+			onMouseEnter={handleMouseEnter}
+			onMouseLeave={handleMouseLeave}
+		>
 			{/* <div className="relative w-full h-0 pb-[56.25%] overflow-hidden bg"> */}
 			<div
 				className="relative w-full rounded-t-2xl overflow-hidden"
-				onMouseEnter={() => setPullScreenshots(true)}
-				onMouseMove={getMousePosition_X_WithinTheCard}
+				onMouseMove={getMouse_X_Position_WithinTheCard}
 			>
 				<AspectRatio ratio={16 / 9}>
 					<Image
@@ -122,7 +160,7 @@ const GameCard: React.FC<Props> = ({ game, className, priority = false }) => {
 				)}
 			</div>
 			{/* </div> */}
-			<div className="p-3">
+			<div className="game_card_info game_card_bg">
 				<div className="flex justify-between items-center w-full">
 					<GameCard_Platforms platforms={game.parent_platforms} />
 					<div className="flex items-center gap-3">
@@ -131,6 +169,7 @@ const GameCard: React.FC<Props> = ({ game, className, priority = false }) => {
 					</div>
 				</div>
 				<h3 className="font-semibold text-xl">{game.name}</h3>
+				<GameCard_ExtraInfo game={game} />
 			</div>
 		</div>
 	);
