@@ -11,9 +11,10 @@ This project is based on the Mosh Hamedani's course [React 18 and TypeScript](ht
 
 ## To do
 
-- [ ] Fancy game card hover behavior.
-- [ ] Improve the system behaviour of the theme selector.
-- [ ] Clear all filters and show all games.when click on the logo.
+- [x] Fancy game card hover behavior.
+- [ ] Improve the system behaviour of the "theme selector".
+- [ ] Clear all filters and show all games.when click on the logo - use next link.
+- [ ] Scroll to top button.
 
 ## Credits
 

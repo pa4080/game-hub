@@ -51,14 +51,14 @@ const Nav_AsideSheet: React.FC = () => {
 				</Button>
 			</SheetTrigger>
 
-			<SheetContent className="flex flex-col pt-4 pr-5 min-w-[280px]">
+			<SheetContent className="flex flex-col pt-4 pr-5 min-w-[280px] z-[100]">
 				<SheetHeader className="h-16">
 					<Nav_Logo />
 					{/* <SheetTitle>Game hub</SheetTitle> */}
 					{/* <SheetDescription>Description...</SheetDescription> */}
 				</SheetHeader>
-				<div className="overflow-y-auto h-full flex-grow">
-					<Genres className="mr-4" externalAction={closeSheet} />
+				<div className="overflow-y-auto h-full flex-grow overflow-x-visible">
+					<Genres className="mr-4 pb-6 pl-2" externalAction={closeSheet} />
 				</div>
 				<SheetFooter className="-mb-5">
 					<SortSelector
@@ -67,7 +67,7 @@ const Nav_AsideSheet: React.FC = () => {
 						externalAction={closeSheet}
 					/>
 
-					<Credits className="py-2" />
+					<Credits className="py-2 px-0 flex-row gap-1 -mr-2 ml-[0.125rem]" />
 				</SheetFooter>
 			</SheetContent>
 		</Sheet>
