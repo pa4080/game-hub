@@ -87,7 +87,9 @@
 		"searchTextReq": "The search text must be at least 3 characters."
 	},
 	"Credits": {
-		"reportBug": "Report a bug"
+		"reportBug": "Report a bug",
+		"projectAt": "Project at",
+		"poweredBy": "Powered by"
 	},
 	"Rating": {
 		"meh": "Meh",

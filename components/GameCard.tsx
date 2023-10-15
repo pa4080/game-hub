@@ -40,7 +40,7 @@ const GameCard: React.FC<Props> = ({ game, className, priority = false }) => {
 
 			setTimeout(() => {
 				cardRefCurrent.style.height = memoHeight;
-				cardRefCurrent.style.zIndex = "1000";
+				cardRefCurrent.style.zIndex = "50";
 
 				setTimeout(() => {
 					cardRefCurrent.className += " game_card_scale_wrapper";

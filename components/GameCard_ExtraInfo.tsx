@@ -15,14 +15,14 @@ const GameCard_ExtraInfo: React.FC<Props> = ({ game, className }) => {
 	const handleOnGenreClick = (genreSlug: string) => {
 		const genre = genres?.results.find((genre) => genre.slug === genreSlug);
 
+		setTimeout(() => {
+			window && window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+		}, 0);
+
 		setGameQuery((prev) => ({
 			...prev,
 			genre: genre,
 		}));
-
-		setTimeout(() => {
-			window && window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-		}, 100);
 	};
 
 	const formatDate = (date: string) => {

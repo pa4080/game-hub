@@ -35,25 +35,16 @@ const Genres_List: React.FC<Props> = ({ genres, className, externalAction }) => 
 		genresToShow.push(gameQuery?.genre);
 	}
 
-	const handleOnGenreClick = (genre: Interfaces[Endpoints.GENRES]["results"][number]) => {
+	const handleOnGenreClick = (genre: Interfaces[Endpoints.GENRES]["results"][number] | null) => {
 		externalAction && externalAction();
 
 		setTimeout(() => {
-			window && window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-		}, 100);
+			window && window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+		}, 0);
 
 		setGameQuery((prev) => ({
 			...prev,
 			genre: genre,
-		}));
-	};
-
-	const handleClearGenreSelection = () => {
-		externalAction && externalAction();
-
-		setGameQuery((prev) => ({
-			...prev,
-			genre: null,
 		}));
 	};
 
@@ -102,7 +93,7 @@ const Genres_List: React.FC<Props> = ({ genres, className, externalAction }) => 
 			</div>
 
 			{gameQuery?.genre?.id && (
-				<div className="list_item" onClick={handleClearGenreSelection}>
+				<div className="list_item" onClick={() => handleOnGenreClick(null)}>
 					<div
 						className={cn(
 							"h-8 w-8 rounded-md bg-slate-400 dark:bg-slate-700 overflow-hidden",
