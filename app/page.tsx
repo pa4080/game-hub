@@ -23,7 +23,7 @@ const Home: React.FC = () => {
 				<Genres />
 				<Credits />
 			</div>
-			<div className="">
+			<div>
 				<Games className="p-2" />
 			</div>
 		</main>

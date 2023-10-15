@@ -5,6 +5,7 @@ import React, { createContext, useContext, useState, Dispatch, SetStateAction } 
 import { GameQuery } from "@/interfaces/game-query";
 import messages from "@/messages/en.json";
 import { SortDropDownItem, Order } from "@/interfaces/sort-selector";
+import { Genres } from "@/interfaces/rawg-endpoint-genres";
 
 interface AppContextProps {
 	messages: typeof messages;
@@ -14,6 +15,8 @@ interface AppContextProps {
 	setDropDownItemsArr: Dispatch<SetStateAction<SortDropDownItem[]>>;
 	order: Order;
 	setOrder: Dispatch<SetStateAction<Order>>;
+	genres: Genres | undefined;
+	setGenres: Dispatch<SetStateAction<Genres | undefined>>;
 }
 
 const AppContext = createContext<AppContextProps>({} as AppContextProps);
@@ -24,6 +27,7 @@ interface AppContextProviderProps {
 
 export const AppContextProvider: React.FC<AppContextProviderProps> = ({ children }) => {
 	const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
+	const [genres, setGenres] = useState<Genres>();
 
 	// https://api.rawg.io/docs/#operation/games_list
 	// "ordering" - Available fields: name, released, added, created, updated, rating, metacritic.
@@ -55,6 +59,8 @@ export const AppContextProvider: React.FC<AppContextProviderProps> = ({ children
 				setDropDownItemsArr,
 				order,
 				setOrder,
+				genres,
+				setGenres,
 			}}
 		>
 			{children}

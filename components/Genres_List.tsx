@@ -37,6 +37,11 @@ const Genres_List: React.FC<Props> = ({ genres, className, externalAction }) => 
 
 	const handleOnGenreClick = (genre: Interfaces[Endpoints.GENRES]["results"][number]) => {
 		externalAction && externalAction();
+
+		setTimeout(() => {
+			window && window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+		}, 100);
+
 		setGameQuery((prev) => ({
 			...prev,
 			genre: genre,
@@ -61,7 +66,7 @@ const Genres_List: React.FC<Props> = ({ genres, className, externalAction }) => 
 					className={`list_item ${
 						genre.id === gameQuery?.genre?.id ? "bg-slate-400 dark:bg-slate-700" : ""
 					}`}
-					name={genre.slug}
+					name={genre.name}
 					onClick={() => handleOnGenreClick(genre)}
 				>
 					<div className="h-8 w-8 rounded-md bg-slate-400 dark:bg-slate-800 overflow-hidden">
