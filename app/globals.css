@@ -258,3 +258,30 @@ body [data-radix-select-viewport]::-webkit-scrollbar {
 .select_item_order {
 	@apply hover:bg-slate-800 z-10 px-2 py-1 rounded-md transition-colors duration-200;
 }
+
+/* game card */
+.game_card {
+	@apply w-full rounded-2xl bg-slate-300 dark:bg-slate-800 drop-shadow-xl dark:shadow-xl break-inside-avoid-column
+	hover:scale-105 hover:duration-300 duration-150;
+}
+
+.game_card_image {
+	@apply object-cover object-top h-full w-full absolute top-0 left-0;
+}
+
+.game_card_image.active {
+	z-index: 20;
+}
+
+.game_card_indicator_container {
+	@apply absolute z-30 bottom-0 left-0 w-full p-4 gap-2 justify-evenly items-center hidden;
+}
+
+/* .game_card:hover .game_card_indicator_container { */
+.game_card .game_card_indicator_container {
+	@apply flex;
+}
+
+.game_card_indicator_item {
+	@apply h-1 transition-colors duration-150 rounded-sm;
+}
