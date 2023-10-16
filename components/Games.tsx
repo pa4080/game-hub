@@ -56,7 +56,7 @@ const Games: React.FC<Props> = ({ className }) => {
 					<SortSelector className="hidden md:block" />
 				</div>
 
-				<div className="flex gap-4 justify-between w-full xs:w-fit xs:justify-end items-center">
+				<div className="flex gap-4 xs:gap-2 sm:gap-4 justify-between w-full xs:w-fit xs:justify-end items-center">
 					<Button
 						className="btn_next_prev pl-2 pr-4"
 						disabled={!games?.previous}

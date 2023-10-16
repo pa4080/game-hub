@@ -7,7 +7,13 @@ const getCroppedImageUrl = (url: string) => {
 		return url;
 	}
 
-	return urlArr[0] + divider + cropQuery + urlArr[1];
+	// If we are on production, where the images optimization is disabled
+	// we proxy the images via the Next.js server and cache them...
+	// @see: @/app/api/media/[...endpoint]/route.ts
+	const prefix = process.env.NEXT_PUBLIC_ENV === "production" ? "/api/media/" : "";
+
+	return prefix + urlArr[0] + divider + cropQuery + urlArr[1];
+	// return urlArr[0] + divider + cropQuery + urlArr[1];
 };
 
 export default getCroppedImageUrl;
