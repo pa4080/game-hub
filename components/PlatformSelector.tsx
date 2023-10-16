@@ -79,7 +79,7 @@ const PlatformSelector: React.FC<Props> = ({ className, classNameTrigger, classN
 			<Select name="platform">
 				<SelectTrigger
 					aria-label={messages.Platforms.select}
-					className={cn("selector_trigger", " w-full xs:w-[260px] sm:w-[280px]", classNameTrigger)}
+					className={cn("selector_trigger", "w-full xs:w-[262px] sm:w-[280px]", classNameTrigger)}
 					name={messages.Platforms.select}
 				>
 					<SelectValue placeholder={messages.Platforms.select} />
@@ -107,7 +107,7 @@ const PlatformSelector: React.FC<Props> = ({ className, classNameTrigger, classN
 											]
 										}
 									</div>
-									<span>{platform.name}</span>
+									<span className="line-clamp-1 flex-shrink-0">{platform.name}</span>
 								</div>
 							</SelectItem>
 						))}

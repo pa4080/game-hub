@@ -116,7 +116,7 @@ const GameCard: React.FC<Props> = ({ game, className, priority = false }) => {
 				alt={`${game.name}: ${item.id}`}
 				className="game_card_image"
 				height={180}
-				src={item?.image ? item.image : imgPlaceholder}
+				src={item?.image ? getCroppedImageUrl(item.image) : imgPlaceholder}
 				unoptimized={process.env.NEXT_PUBLIC_ENV === "production"}
 				width={320}
 			/>
