@@ -7,7 +7,7 @@
  * @see https://michaelangelo.io/blog/darkmode-rsc !!!
  */
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Moon, Sun } from "lucide-react";
 
@@ -28,38 +28,61 @@ import messages from "@/messages/en.json";
 import { cn } from "@/lib/cn-utils";
 
 export type ThemeType = "light" | "dark" | "system" | undefined;
+export type ThemeMode = "manual" | "system" | undefined;
 
 interface Props {
 	theme: ThemeType;
+	mode: ThemeMode;
 }
 
-const ThemeSelector: React.FC<Props> = ({ theme }) => {
+const ThemeSelector: React.FC<Props> = ({ theme, mode }) => {
 	const router = useRouter();
-	const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-	const setTheme = (themeToSet?: ThemeType) => {
-		switch (themeToSet) {
-			case "light":
-				Cookies.set("x-theme", "light");
-				break;
-			case "dark":
-				Cookies.set("x-theme", "dark");
-				break;
-			default:
-				if (isDark) {
-					Cookies.set("x-theme", "dark");
-				} else {
-					Cookies.remove("x-theme");
-				}
-
-				break;
-		}
-
-		router.refresh();
-	};
+	const [isDark, setIsDark] = useState(window.matchMedia("(prefers-color-scheme: dark)").matches);
 
 	useEffect(() => {
-		setTheme(theme);
+		const detectDarkMode = window.matchMedia("(prefers-color-scheme: dark)");
+
+		const updateMode = (e: MediaQueryListEvent) => {
+			setIsDark(e.matches);
+		};
+
+		detectDarkMode.addEventListener("change", updateMode);
+
+		return () => {
+			detectDarkMode.removeEventListener("change", updateMode);
+		};
+	});
+
+	// const setTheme = (themeToSet?: ThemeType) => {
+	// 	if (mode === "manual" || themeToSet) {
+	// 		switch (themeToSet) {
+	// 			case "light":
+	// 				Cookies.set("x-theme", "light");
+	// 				Cookies.set("x-theme-mode", "manual");
+	// 				break;
+	// 			case "dark":
+	// 				Cookies.set("x-theme", "dark");
+	// 				Cookies.set("x-theme-mode", "manual");
+	// 				break;
+	// 			default:
+	// 				Cookies.remove("x-theme-mode");
+	// 				Cookies.set("x-theme", isDark ? "dark" : "light");
+	// 				break;
+	// 		}
+	// 	} else {
+	// 		Cookies.remove("x-theme");
+	// 		Cookies.remove("x-theme-mode");
+	// 		Cookies.set("x-theme", isDark ? "dark" : "light");
+	// 	}
+
+	// 	router.refresh();
+	// };
+
+	useEffect(() => {
+		if (mode !== "manual") {
+			Cookies.set("x-theme", isDark ? "dark" : "light");
+			router.refresh();
+		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isDark]);
 
@@ -88,11 +111,31 @@ const ThemeSelector: React.FC<Props> = ({ theme }) => {
 				</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent align="end" className="p-4">
-				<DropdownMenuItem onClick={() => setTheme("light")}>
+				<DropdownMenuItem
+					onClick={() => {
+						Cookies.set("x-theme", "light");
+						Cookies.set("x-theme-mode", "manual");
+						router.refresh();
+					}}
+				>
 					{messages.Theme.light}
 				</DropdownMenuItem>
-				<DropdownMenuItem onClick={() => setTheme("dark")}>{messages.Theme.dark}</DropdownMenuItem>
-				<DropdownMenuItem onClick={() => setTheme("system")}>
+				<DropdownMenuItem
+					onClick={() => {
+						Cookies.set("x-theme", "dark");
+						Cookies.set("x-theme-mode", "manual");
+						router.refresh();
+					}}
+				>
+					{messages.Theme.dark}
+				</DropdownMenuItem>
+				<DropdownMenuItem
+					onClick={() => {
+						Cookies.set("x-theme", isDark ? "dark" : "light");
+						Cookies.remove("x-theme-mode");
+						router.refresh();
+					}}
+				>
 					{messages.Theme.system}
 				</DropdownMenuItem>
 			</DropdownMenuContent>
