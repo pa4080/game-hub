@@ -9,7 +9,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sun, SunMoon } from "lucide-react";
 
 // Note import { cookies } from 'next/headers'
 // can't be used in the client component at this moment
@@ -97,17 +97,18 @@ const ThemeSelector: React.FC<Props> = ({ theme, mode }) => {
 					variant="outline"
 				>
 					<Sun
-						className={
-							(cn("h-[1.2rem] w-[1.2rem]"),
-							!theme && isDark ? "opacity-0" : "opacity-100 dark:opacity-0")
-						}
+						className={cn(
+							"h-[1.5rem] w-[1.5rem]",
+							mode && theme && theme === "light" ? "block" : "hidden"
+						)}
 					/>
 					<Moon
 						className={cn(
-							"absolute h-[1.2rem] w-[1.2rem] opacity-0 dark:opacity-100",
-							!theme && isDark ? "opacity-100" : "opacity-0"
+							"h-[1.5rem] w-[1.5rem]",
+							mode && theme && theme === "dark" ? "block" : "hidden"
 						)}
 					/>
+					<SunMoon className={cn("h-[1.5rem] w-[1.5rem]", !mode ? "block" : "hidden")} />
 				</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent align="end" className="p-4">
