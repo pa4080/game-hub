@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 
 import { SunMoon } from "lucide-react";
 
-import { ThemeType } from "./ThemeSelector";
+import { ThemeMode, ThemeType } from "./ThemeSelector";
 
 const ThemeSelector = dynamic(() => import("./ThemeSelector"), {
 	ssr: false,
@@ -16,8 +16,9 @@ const ThemeSelector = dynamic(() => import("./ThemeSelector"), {
 
 const ThemeSelectorLoader = () => {
 	const theme = cookies().get("x-theme")?.value as ThemeType;
+	const mode = cookies().get("x-theme-mode")?.value as ThemeMode;
 
-	return <ThemeSelector theme={theme} />;
+	return <ThemeSelector mode={mode} theme={theme} />;
 };
 
 export default ThemeSelectorLoader;
