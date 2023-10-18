@@ -8,7 +8,7 @@ import { ThemeMode, ThemeType } from "./ThemeSelector";
 const ThemeSelector = dynamic(() => import("./ThemeSelector"), {
 	ssr: false,
 	loading: () => (
-		<div className="btn_ui_div relative w-10 h-10 max-h-full">
+		<div className="btn_ui_div btn_ui_div_colors relative w-10 h-10 max-h-full">
 			<SunMoon />
 		</div>
 	),

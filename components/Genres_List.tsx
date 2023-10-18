@@ -14,6 +14,8 @@ import getCroppedImageUrl from "@/lib/get-rawg-cropped-image-url";
 
 import { useAppContext } from "@/contexts/AppContext";
 
+import scrollToTop from "@/lib/scroll-to-top";
+
 import { AspectRatio } from "./ui/aspect-ratio";
 
 interface Props {
@@ -38,9 +40,7 @@ const Genres_List: React.FC<Props> = ({ genres, className, externalAction }) => 
 	const handleOnGenreClick = (genre: Interfaces[Endpoints.GENRES]["results"][number] | null) => {
 		externalAction && externalAction();
 
-		setTimeout(() => {
-			window && window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-		}, 0);
+		scrollToTop();
 
 		setGameQuery((prev) => ({
 			...prev,

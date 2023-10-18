@@ -109,7 +109,7 @@ const SortSelector: React.FC<Props> = ({
 
 				<div
 					className={cn(
-						"btn_ui_div",
+						"btn_ui_div btn_ui_div_colors",
 						dropDownItemsArr.find((item) => item.selected)?.value === "null"
 							? "cursor-not-allowed"
 							: "",
