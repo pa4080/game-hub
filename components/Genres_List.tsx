@@ -63,10 +63,11 @@ const Genres_List: React.FC<Props> = ({ genres, className, externalAction }) => 
 					<div className="h-8 w-8 rounded-md bg-slate-400 dark:bg-slate-800 overflow-hidden">
 						<AspectRatio ratio={1 / 1}>
 							<Image
+								priority
 								alt={genre.name}
 								className="object-cover object-top h-full w-full absolute top-0 left-0"
 								height={40}
-								priority={index < 5}
+								loading="eager"
 								src={getCroppedImageUrl(genre.image_background)}
 								width={40}
 							/>

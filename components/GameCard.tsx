@@ -126,7 +126,7 @@ const GameCard: React.FC<Props> = ({ game, className, priority = false }) => {
 	return (
 		<div
 			ref={cardRef}
-			className={cn("game_card  game_card_bg", className)}
+			className={cn("game_card game_card_bg", className)}
 			style={{ zIndex: 0 }}
 			onMouseEnter={handleMouseEnter}
 			onMouseLeave={handleMouseLeave}

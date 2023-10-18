@@ -14,7 +14,7 @@ This project is based on the Mosh Hamedani's course [React 18 and TypeScript](ht
 - [x] Fancy game card hover behavior.
 - [x] Proxy the RAWG MEdia files to avoid CORS issues and private networks wit restrictions issues.
 - [x] Improve the behaviour of the "theme selector".
-- [ ] Clear all filters and show all games.when click on the logo - use next link.
+- [x] Clear all filters and show all games.when click on the logo - use next link. A little bit ugly solution, which uses `<a href="/">`, is applied.
 - [ ] Scroll to top button.
 
 ## Credits
