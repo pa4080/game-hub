@@ -2,8 +2,6 @@
 
 import React, { useEffect } from "react";
 
-import { ChevronLeft, ChevronRight } from "lucide-react";
-
 import useRawgApi from "@/hooks/useRawgApi";
 import { cn } from "@/lib/cn-utils";
 import { Endpoints } from "@/interfaces/rawg-endpoints";
@@ -11,11 +9,14 @@ import { Interfaces } from "@/interfaces/rawg-interfaces";
 
 import { useAppContext } from "@/contexts/AppContext";
 
+import scrollToTop from "@/lib/scroll-to-top";
+
 import Games_Grid from "./Games_Grid";
 import Games_Skeleton from "./Games_Skeleton";
-import { Button } from "./ui/button";
 import PlatformSelector from "./PlatformSelector";
 import SortSelector from "./SortSelector";
+import Games_Navigation from "./Games_Navigation";
+import Games_Navigation_Float from "./Games_Navigation_Float";
 
 interface Props {
 	className?: string;
@@ -56,32 +57,29 @@ const Games: React.FC<Props> = ({ className }) => {
 					<SortSelector className="hidden md:block" />
 				</div>
 
-				<div className="flex gap-4 xs:gap-2 sm:gap-4 justify-between w-full xs:w-fit xs:justify-end items-center">
-					<Button
-						className="btn_next_prev pl-2 pr-4"
-						disabled={!games?.previous}
-						name={str.prev}
-						onClick={() => games?.previous && getGamesBy(games?.previous)}
-					>
-						<ChevronLeft />
-						<span>{str.prev}</span>
-					</Button>
-
-					<Button
-						className="btn_next_prev pl-4 pr-2"
-						disabled={!games?.next}
-						name={str.next}
-						onClick={() => games?.next && getGamesBy(games?.next)}
-					>
-						<span>{str.next}</span>
-						<ChevronRight />
-					</Button>
-				</div>
+				<Games_Navigation
+					nextCb={() => games?.next && getGamesBy(games?.next)}
+					nextLink={games?.next}
+					nextName={str.next}
+					prevCb={() => games?.previous && getGamesBy(games?.previous)}
+					prevLink={games?.previous}
+					prevName={str.prev}
+					upCb={() => scrollToTop()}
+				/>
 			</div>
 
 			{isLoading || !games ? <Games_Skeleton /> : <Games_Grid games={games} />}
 
 			{error && <p className="text-lg text-red-500 font-semibold m-0">{error}</p>}
+			<Games_Navigation_Float
+				nextCb={() => games?.next && getGamesBy(games?.next) && scrollToTop()}
+				nextLink={games?.next}
+				nextName={str.next}
+				prevCb={() => games?.previous && getGamesBy(games?.previous) && scrollToTop()}
+				prevLink={games?.previous}
+				prevName={str.prev}
+				upCb={() => scrollToTop()}
+			/>
 		</div>
 	);
 };

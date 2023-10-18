@@ -3,6 +3,7 @@ import React from "react";
 import { cn } from "@/lib/cn-utils";
 import { Game } from "@/interfaces/rawg-endpoint-games-game";
 import { useAppContext } from "@/contexts/AppContext";
+import scrollToTop from "@/lib/scroll-to-top";
 
 interface Props {
 	game: Game;
@@ -15,9 +16,7 @@ const GameCard_ExtraInfo: React.FC<Props> = ({ game, className }) => {
 	const handleOnGenreClick = (genreSlug: string) => {
 		const genre = genres?.results.find((genre) => genre.slug === genreSlug);
 
-		setTimeout(() => {
-			window && window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-		}, 0);
+		scrollToTop();
 
 		setGameQuery((prev) => ({
 			...prev,

@@ -227,11 +227,15 @@ body [data-radix-select-viewport]::-webkit-scrollbar {
 }
 
 .btn_ui {
-	@apply rounded-lg border-0 bg-slate-300 dark:bg-slate-800 hover:text-background transition-colors duration-300 dark:hover:bg-accent;
+	@apply rounded-lg border-0 bg-slate-300 dark:bg-slate-800 hover:text-background transition-colors duration-300 dark:hover:bg-accent cursor-pointer;
 }
 
 .btn_ui_div {
-	@apply rounded-lg text-lg flex items-center justify-between bg-slate-300 hover:!bg-slate-500 dark:bg-slate-800 dark:hover:!bg-slate-700 h-full px-2 py-2;
+	@apply rounded-lg text-lg flex items-center justify-between h-full px-2 py-2 cursor-pointer;
+}
+
+.btn_ui_div_colors {
+	@apply bg-slate-300 hover:!bg-slate-500 dark:bg-slate-800 dark:hover:!bg-slate-700;
 }
 
 /* genres */
