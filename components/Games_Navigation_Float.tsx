@@ -53,9 +53,11 @@ const Games_Navigation_Float: React.FC<Games_Navigation_Float_Props> = ({
 				<div
 					className={cn(
 						"p-4 rounded-2xl flex gap-4 transition-all duration-150",
-						"bg-slate-900 lg:bg-transparent lg:group-hover:bg-slate-900",
+						"bg-slate-200 lg:bg-transparent lg:group-hover:bg-slate-200",
+						"dark:bg-slate-900 lg:dark:bg-transparent lg:dark:group-hover:bg-slate-900",
 						"shadow-md lg:shadow-none group-hover:shadow-md",
-						"shadow-slate-950 group-hover:shadow-slate-950"
+						"shadow-slate-300 group-hover:shadow-slate-300",
+						"dark:shadow-slate-950 dark:group-hover:shadow-slate-950"
 					)}
 				>
 					<Games_Navigation
