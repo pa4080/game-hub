@@ -253,3 +253,7 @@ select.category_filter {
 select.category_choice {
 	@apply rounded-xl w-full;
 }
+
+code {
+	@apply border rounded-sm bg-slate-300 px-1 py-[0.125rem];
+}

@@ -14,9 +14,9 @@ const ListGroup: React.FC<Props> = ({ items, heading, onSelectItem }) => {
 	const [selectedIndex, setSelectedIndex] = useState(-1);
 
 	return (
-		<>
-			<h1 className="text-3xl px-2">{heading}</h1>
-			<ul className="m-2 border rounded-lg overflow-hidden">
+		<div className="flex gap-3 items-start justify-between pr-2 flex-col">
+			<h2 className="text-xl px-2">{heading}</h2>
+			<ul className="mx-2 my-1 border rounded-lg overflow-hidden">
 				{items.map((item, index, arr) => (
 					<li
 						key={index}
@@ -34,7 +34,7 @@ const ListGroup: React.FC<Props> = ({ items, heading, onSelectItem }) => {
 					</li>
 				))}
 			</ul>
-		</>
+		</div>
 	);
 };
 

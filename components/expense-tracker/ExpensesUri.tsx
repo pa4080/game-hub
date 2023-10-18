@@ -13,7 +13,7 @@ interface Props {
 	className?: string;
 }
 
-const Expenses: React.FC<Props> = ({ className }) => {
+const ExpensesUri: React.FC<Props> = ({ className }) => {
 	const [isAddExpenseDialogOpen, setIsAddExpenseDialogOpen] = useState(false);
 	// const [selectedCategory, setSelectedCategory] = useState<string>("");
 	const router = useRouter();
@@ -123,4 +123,4 @@ const Expenses: React.FC<Props> = ({ className }) => {
 	);
 };
 
-export default Expenses;
+export default ExpensesUri;

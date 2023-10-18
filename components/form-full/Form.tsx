@@ -21,7 +21,7 @@ const schema = z.object({
 		.min(18, { message: `Your age must be at least ${requiredValues.minAge}!` }),
 });
 
-type FormData = z.infer<typeof schema>;
+export type FormData = z.infer<typeof schema>;
 
 interface Props {
 	onSubmit: (data: FieldValues) => void;
