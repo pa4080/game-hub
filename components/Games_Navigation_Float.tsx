@@ -71,7 +71,7 @@ const Games_Navigation_Float: React.FC<Games_Navigation_Float_Props> = ({
 						upCb={upCb}
 					/>
 					<div
-						className="btn_ui_div bg-slate-300 hover:!bg-slate-500 dark:bg-slate-800 lg:dark:bg-slate-900 group-hover:dark:bg-slate-800 dark:hover:!bg-slate-700 lg:shadow-md shadow-slate-950 group-hover:shadow-none"
+						className="btn_ui_div bg-slate-300 lg:bg-slate-400 group-hover:bg-slate-300 hover:!bg-slate-500 dark:bg-slate-800 lg:dark:bg-slate-900 group-hover:dark:bg-slate-800 dark:hover:!bg-slate-700 lg:shadow-md shadow-slate-950 group-hover:shadow-none"
 						onClick={upCb}
 					>
 						<ChevronUp />
