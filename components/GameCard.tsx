@@ -1,19 +1,18 @@
 import React, { MouseEvent, useRef, useState } from "react";
 
-import Image from "next/image";
-
 import { Game } from "@/interfaces/rawg-endpoint-games-game";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { cn } from "@/lib/cn-utils";
 
-import imgPlaceholder from "@/public/images/no-signal.jpg";
-
-import getCroppedImageUrl from "@/lib/get-rawg-cropped-image-url";
+import { useAppContext } from "@/contexts/AppContext";
+import { useBreakpoint } from "@/hooks/useBreakpoint";
 
 import GameCard_Platforms from "./GameCard_Platforms";
 import GameCard_Score from "./GameCard_Score";
 import GameCard_Rating from "./GameCard_Rating";
 import GameCard_ExtraInfo from "./GameCard_ExtraInfo";
+import GameCard_Image from "./GameCard_Image";
+import GameCard_Image_Indicator from "./GameCard_Image_Indicator";
 
 interface Props {
 	game: Game;
@@ -22,9 +21,11 @@ interface Props {
 }
 
 const GameCard: React.FC<Props> = ({ game, className, priority = false }) => {
-	// console.log(game);
+	const { setGallery, setIsGalleryOpen } = useAppContext();
+
 	const [pullScreenshots, setPullScreenshots] = useState(false);
 	const [mouseX, setMouseX] = useState(0); // percent of the card width
+	const { isAboveSm } = useBreakpoint("sm");
 
 	const cardRef = useRef<HTMLDivElement>(null);
 	const screenShotRefs = useRef<(HTMLImageElement | null)[]>([]);
@@ -40,7 +41,7 @@ const GameCard: React.FC<Props> = ({ game, className, priority = false }) => {
 
 			setTimeout(() => {
 				cardRefCurrent.style.height = memoHeight;
-				cardRefCurrent.style.zIndex = "50";
+				cardRefCurrent.style.zIndex = "45";
 
 				setTimeout(() => {
 					cardRefCurrent.className += " game_card_scale_wrapper";
@@ -76,51 +77,17 @@ const GameCard: React.FC<Props> = ({ game, className, priority = false }) => {
 		}
 	};
 
-	const indicatorFactory = (
-		item: Game["short_screenshots"][number],
-		index: number,
-		arr: Game["short_screenshots"]
-	) => {
-		const widthPercent = 98;
-		const sectorsLength = widthPercent / arr.length;
-		const activeSector = Math.round(index * sectorsLength);
-		const isActive =
-			mouseX > 100 - widthPercent - 1 &&
-			mouseX < widthPercent + 1 &&
-			activeSector <= mouseX &&
-			mouseX < activeSector + sectorsLength;
+	const handleSetGallery = (game: Game) => {
+		if (game.background_image && isAboveSm) {
+			let gameImages = [{ id: game.id, image: game.background_image }];
 
-		if (isActive) {
-			screenShotRefs.current[index]?.classList.add("active");
-		} else {
-			screenShotRefs.current[index]?.classList.remove("active");
+			if (game.short_screenshots) {
+				gameImages = [...gameImages, ...game.short_screenshots];
+			}
+
+			setGallery(gameImages);
+			setIsGalleryOpen(true);
 		}
-
-		return (
-			<div
-				key={index}
-				className={cn("game_card_indicator_item", isActive ? "bg-gray-400" : "bg-gray-400/50")}
-				data-id={item.id}
-				style={{
-					width: `${98 / arr.length}%`,
-				}}
-			></div>
-		);
-	};
-
-	const screenshotHoverFactory = (item: Game["short_screenshots"][number], index: number) => {
-		return (
-			<Image
-				key={index}
-				ref={(el) => (screenShotRefs.current[index] = el)}
-				alt={`${game.name}: ${item.id}`}
-				className="game_card_image"
-				height={180}
-				src={item?.image ? getCroppedImageUrl(item.image) : imgPlaceholder}
-				unoptimized={process.env.NEXT_PUBLIC_ENV === "production"}
-				width={320}
-			/>
-		);
 	};
 
 	return (
@@ -133,29 +100,42 @@ const GameCard: React.FC<Props> = ({ game, className, priority = false }) => {
 		>
 			{/* <div className="relative w-full h-0 pb-[56.25%] overflow-hidden bg"> */}
 			<div
-				className="relative w-full rounded-t-2xl overflow-hidden"
+				className="relative w-full rounded-t-2xl overflow-hidden cursor-pointer"
+				onClick={() => handleSetGallery(game)}
 				onMouseMove={getMouse_X_Position_WithinTheCard}
 			>
 				<AspectRatio ratio={16 / 9}>
-					<Image
-						alt={game.name}
-						className="game_card_image z-10"
-						height={180}
-						priority={priority}
-						src={game.background_image ? getCroppedImageUrl(game.background_image) : imgPlaceholder}
-						// https://vercel.com/docs/image-optimization/limits-and-pricing#hobby
-						unoptimized={process.env.NEXT_PUBLIC_ENV === "production"}
-						width={320}
+					<GameCard_Image
+						className="z-10"
+						item={{
+							id: game.id,
+							image: game.background_image,
+						}}
 					/>
 
 					{pullScreenshots &&
 						game.short_screenshots &&
-						game.short_screenshots.map((item, index) => screenshotHoverFactory(item, index))}
+						game.short_screenshots.map((item, index) => (
+							<GameCard_Image
+								key={index}
+								ref={(el) => (screenShotRefs.current[index] = el)}
+								item={item}
+							/>
+						))}
 				</AspectRatio>
 
 				{game.short_screenshots && (
 					<div className="game_card_indicator_container">
-						{game.short_screenshots.map((item, index, arr) => indicatorFactory(item, index, arr))}
+						{game.short_screenshots.map((item, index, arr) => (
+							<GameCard_Image_Indicator
+								key={index}
+								arr={arr}
+								index={index}
+								item={item}
+								mouseX={mouseX}
+								screenShotRefs={screenShotRefs}
+							/>
+						))}
 					</div>
 				)}
 			</div>

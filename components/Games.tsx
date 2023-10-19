@@ -17,6 +17,7 @@ import PlatformSelector from "./PlatformSelector";
 import SortSelector from "./SortSelector";
 import Games_Navigation from "./Games_Navigation";
 import Games_Navigation_Float from "./Games_Navigation_Float";
+import GameGallery from "./GameGallery";
 
 interface Props {
 	className?: string;
@@ -80,6 +81,7 @@ const Games: React.FC<Props> = ({ className }) => {
 				prevName={str.prev}
 				upCb={() => scrollToTop()}
 			/>
+			<GameGallery />
 		</div>
 	);
 };
