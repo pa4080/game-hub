@@ -18,6 +18,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 - [x] Improve the behaviour of the "color theme selector".
 - [x] Clear all filters and show all games, when click on the logo. A little bit ugly solution which uses `<a href="/">` is applied.
 - [x] Scroll to top button.
+- [ ] Create game-images gallery.
 
 ## Getting Started Dev
 

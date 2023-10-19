@@ -30,11 +30,10 @@ const SortSelector: React.FC<Props> = ({
 	classNameOrder,
 	externalAction,
 }) => {
-	const { dropDownItemsArr, setDropDownItemsArr, order, setOrder, gameQuery, setGameQuery } =
-		useAppContext();
+	const { sortOptions, setSortOptions, order, setOrder, gameQuery, setGameQuery } = useAppContext();
 
-	const updateSortOrder = (order: Order, dropDownItemsArr: SortDropDownItem[]) => {
-		const selectedItem = dropDownItemsArr.find((item) => item.selected);
+	const updateSortOrder = (order: Order, sortOptions: SortDropDownItem[]) => {
+		const selectedItem = sortOptions.find((item) => item.selected);
 		const sortOrder =
 			selectedItem?.value === "null" ? "" : `${order === "asc" ? "-" : ""}${selectedItem?.value}`;
 
@@ -51,26 +50,26 @@ const SortSelector: React.FC<Props> = ({
 	const handleOnChange = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
-		const selected = dropDownItemsArr.find((item) => item.selected);
+		const selected = sortOptions.find((item) => item.selected);
 
 		if (selected && selected?.value !== e.currentTarget?.platform.value) {
-			const newDropDownItemsArr = dropDownItemsArr.map((item) => ({
+			const newsortOptions = sortOptions.map((item) => ({
 				...item,
 				selected: item.value === e.currentTarget?.platform.value,
 			}));
 
-			setDropDownItemsArr(newDropDownItemsArr);
+			setSortOptions(newsortOptions);
 
-			updateSortOrder(order, newDropDownItemsArr);
+			updateSortOrder(order, newsortOptions);
 		}
 	};
 
 	const handleChangeOrder = () => {
-		if (dropDownItemsArr.find((item) => item.selected)?.value !== "null") {
+		if (sortOptions.find((item) => item.selected)?.value !== "null") {
 			const newOrder = order === "asc" ? "desc" : "asc";
 
 			setOrder(newOrder);
-			updateSortOrder(newOrder, dropDownItemsArr);
+			updateSortOrder(newOrder, sortOptions);
 		}
 	};
 
@@ -86,7 +85,7 @@ const SortSelector: React.FC<Props> = ({
 					>
 						<SelectValue
 							placeholder={(() => {
-								const selectedLabel = dropDownItemsArr.find((item) => item.selected)?.label;
+								const selectedLabel = sortOptions.find((item) => item.selected)?.label;
 
 								return selectedLabel !== messages.Sort.relevance
 									? selectedLabel
@@ -96,7 +95,7 @@ const SortSelector: React.FC<Props> = ({
 					</SelectTrigger>
 					<SelectContent className={cn("p-2 class", classNameContent)}>
 						<SelectGroup>
-							{dropDownItemsArr.map((item) => (
+							{sortOptions.map((item) => (
 								<SelectItem key={item.value} className="block w-full" value={item.value}>
 									<div className="select_item_inner w-full">
 										<div className="select_item_label">{item.label}</div>
@@ -110,9 +109,7 @@ const SortSelector: React.FC<Props> = ({
 				<div
 					className={cn(
 						"btn_ui_div btn_ui_div_colors",
-						dropDownItemsArr.find((item) => item.selected)?.value === "null"
-							? "cursor-not-allowed"
-							: "",
+						sortOptions.find((item) => item.selected)?.value === "null" ? "cursor-not-allowed" : "",
 						classNameOrder
 					)}
 					onClick={handleChangeOrder}

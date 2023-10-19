@@ -6,17 +6,22 @@ import { GameQuery } from "@/interfaces/game-query";
 import messages from "@/messages/en.json";
 import { SortDropDownItem, Order } from "@/interfaces/sort-selector";
 import { Genres } from "@/interfaces/rawg-endpoint-genres";
+import { GalleryItem } from "@/interfaces/gallery-item";
 
 interface AppContextProps {
 	messages: typeof messages;
 	gameQuery: GameQuery;
 	setGameQuery: Dispatch<SetStateAction<GameQuery>>;
-	dropDownItemsArr: SortDropDownItem[];
-	setDropDownItemsArr: Dispatch<SetStateAction<SortDropDownItem[]>>;
+	sortOptions: SortDropDownItem[];
+	setSortOptions: Dispatch<SetStateAction<SortDropDownItem[]>>;
 	order: Order;
 	setOrder: Dispatch<SetStateAction<Order>>;
 	genres: Genres | undefined;
 	setGenres: Dispatch<SetStateAction<Genres | undefined>>;
+	gallery: GalleryItem[] | undefined;
+	setGallery: Dispatch<SetStateAction<GalleryItem[] | undefined>>;
+	isGalleryOpen: boolean;
+	setIsGalleryOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 const AppContext = createContext<AppContextProps>({} as AppContextProps);
@@ -28,11 +33,13 @@ interface AppContextProviderProps {
 export const AppContextProvider: React.FC<AppContextProviderProps> = ({ children }) => {
 	const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
 	const [genres, setGenres] = useState<Genres>();
+	const [gallery, setGallery] = useState<GalleryItem[]>();
+	const [isGalleryOpen, setIsGalleryOpen] = useState(false);
 
 	// https://api.rawg.io/docs/#operation/games_list
 	// "ordering" - Available fields: name, released, added, created, updated, rating, metacritic.
 	// You can reverse the sort order adding a hyphen, for example: -released.
-	const [dropDownItemsArr, setDropDownItemsArr] = useState<SortDropDownItem[]>([
+	const [sortOptions, setSortOptions] = useState<SortDropDownItem[]>([
 		{
 			value: "null",
 			label: messages.Sort.relevance,
@@ -55,12 +62,16 @@ export const AppContextProvider: React.FC<AppContextProviderProps> = ({ children
 				messages,
 				gameQuery,
 				setGameQuery,
-				dropDownItemsArr,
-				setDropDownItemsArr,
+				sortOptions,
+				setSortOptions,
 				order,
 				setOrder,
 				genres,
 				setGenres,
+				gallery,
+				setGallery,
+				isGalleryOpen,
+				setIsGalleryOpen,
 			}}
 		>
 			{children}

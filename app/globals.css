@@ -305,6 +305,7 @@ body [data-radix-select-viewport]::-webkit-scrollbar {
 	@apply absolute z-30 bottom-0 left-0 w-full p-4 gap-2 justify-evenly items-center hidden;
 }
 
+/* .gallery_container:hover .game_card_indicator_container, */
 .game_card:hover .game_card_indicator_container {
 	@apply flex;
 }

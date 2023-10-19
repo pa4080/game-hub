@@ -10,7 +10,7 @@ import { cn } from "@/lib/cn-utils";
 import { Endpoints } from "@/interfaces/rawg-endpoints";
 import { Interfaces } from "@/interfaces/rawg-interfaces";
 
-import getCroppedImageUrl from "@/lib/get-rawg-cropped-image-url";
+import getImageUrl from "@/lib/get-rawg-cropped-image-url";
 
 import { useAppContext } from "@/contexts/AppContext";
 
@@ -68,7 +68,7 @@ const Genres_List: React.FC<Props> = ({ genres, className, externalAction }) => 
 								className="object-cover object-top h-full w-full absolute top-0 left-0"
 								height={40}
 								loading="eager"
-								src={getCroppedImageUrl(genre.image_background)}
+								src={getImageUrl(genre.image_background)}
 								width={40}
 							/>
 						</AspectRatio>
