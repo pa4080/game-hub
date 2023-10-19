@@ -1,4 +1,4 @@
-import React, { MouseEvent, useRef, useState } from "react";
+import React, { MouseEvent, useEffect, useRef, useState } from "react";
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -7,6 +7,8 @@ import { AspectRatio } from "@radix-ui/react-aspect-ratio";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { cn } from "@/lib/cn-utils";
 import { useAppContext } from "@/contexts/AppContext";
+
+import { GalleryItem } from "@/interfaces/gallery-item";
 
 import GameCard_Image from "./GameCard_Image";
 import { Button } from "./ui/button";
@@ -24,9 +26,22 @@ const GameGallery: React.FC<Props> = ({ className }) => {
 		setIsGalleryOpen,
 	} = useAppContext();
 
+	const setActiveSector = (index: number, arr: GalleryItem[], offset = 10) => {
+		const widthPercent = 98;
+		const sectorsLength = widthPercent / arr.length;
+
+		return Math.round(index * sectorsLength) + offset;
+	};
+
 	const [mouseX, setMouseX] = useState(0); // percent of the card width
 	const containerRef = useRef<HTMLDivElement>(null);
 	const imagesRefs = useRef<(HTMLImageElement | null)[]>([]);
+
+	useEffect(() => {
+		if (gallery) {
+			setMouseX(setActiveSector(0, gallery));
+		}
+	}, [gallery]);
 
 	const getMouse_X_Position_WithinTheCard = (e: MouseEvent) => {
 		if (containerRef.current) {
@@ -58,9 +73,11 @@ const GameGallery: React.FC<Props> = ({ className }) => {
 			const currentActive = imagesRefs.current.findIndex((el) => el?.classList.contains("active"));
 
 			if (currentActive < imagesRefs.current.length - 1) {
+				setMouseX(setActiveSector(currentActive + 1, gallery!));
 				imagesRefs.current[currentActive + 1]?.classList.add("active");
 				imagesRefs.current[currentActive]?.classList.remove("active");
 			} else {
+				setMouseX(setActiveSector(0, gallery!));
 				imagesRefs.current[0]?.classList.add("active");
 				imagesRefs.current[currentActive]?.classList.remove("active");
 			}
@@ -72,9 +89,11 @@ const GameGallery: React.FC<Props> = ({ className }) => {
 			const currentActive = imagesRefs.current.findIndex((el) => el?.classList.contains("active"));
 
 			if (currentActive > 0) {
+				setMouseX(setActiveSector(currentActive - 1, gallery!));
 				imagesRefs.current[currentActive - 1]?.classList.add("active");
 				imagesRefs.current[currentActive]?.classList.remove("active");
 			} else {
+				setMouseX(setActiveSector(imagesRefs.current.length - 1, gallery!));
 				imagesRefs.current[imagesRefs.current.length - 1]?.classList.add("active");
 				imagesRefs.current[currentActive]?.classList.remove("active");
 			}
@@ -137,18 +156,12 @@ const GameGallery: React.FC<Props> = ({ className }) => {
 					</div>
 				</div>
 
-				<div className="w-full pb-1 gap-2 justify-evenly items-center flex">
-					{gallery?.map((item, index, arr) => (
-						<GameCard_Image_Indicator
-							key={index}
-							arr={arr}
-							imagesRefs={imagesRefs}
-							index={index}
-							item={item}
-							mouseX={mouseX}
-						/>
-					))}
-				</div>
+				<GameCard_Image_Indicator
+					className="w-full pb-1 gap-2 justify-evenly items-center flex"
+					gallery={gallery}
+					imagesRefs={imagesRefs}
+					mouseX={mouseX}
+				/>
 			</DialogContent>
 		</Dialog>
 	);

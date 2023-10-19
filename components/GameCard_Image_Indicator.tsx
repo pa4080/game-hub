@@ -3,7 +3,7 @@ import React, { MutableRefObject } from "react";
 import { cn } from "@/lib/cn-utils";
 import { GalleryItem } from "@/interfaces/gallery-item";
 
-interface Props {
+interface Item_Props {
 	item: GalleryItem;
 	index: number;
 	arr: GalleryItem[];
@@ -11,7 +11,13 @@ interface Props {
 	imagesRefs: MutableRefObject<(HTMLImageElement | null)[]>;
 }
 
-const GameCard_Image_Indicator: React.FC<Props> = ({ item, index, arr, mouseX, imagesRefs }) => {
+const GameCard_Image_Indicator_Item: React.FC<Item_Props> = ({
+	item,
+	index,
+	arr,
+	mouseX,
+	imagesRefs,
+}) => {
 	const widthPercent = 98;
 	const sectorsLength = widthPercent / arr.length;
 
@@ -42,4 +48,34 @@ const GameCard_Image_Indicator: React.FC<Props> = ({ item, index, arr, mouseX, i
 	);
 };
 
+interface Indicator_Props {
+	gallery: GalleryItem[] | undefined;
+	mouseX: number;
+	imagesRefs: MutableRefObject<(HTMLImageElement | null)[]>;
+	className?: string;
+}
+
+const GameCard_Image_Indicator: React.FC<Indicator_Props> = ({
+	gallery,
+	mouseX,
+	imagesRefs,
+	className,
+}) => {
+	return (
+		<div className={cn(className)}>
+			{gallery?.map((item, index, arr) => (
+				<GameCard_Image_Indicator_Item
+					key={index}
+					arr={arr}
+					imagesRefs={imagesRefs}
+					index={index}
+					item={item}
+					mouseX={mouseX}
+				/>
+			))}
+		</div>
+	);
+};
+
+export { GameCard_Image_Indicator_Item };
 export default GameCard_Image_Indicator;

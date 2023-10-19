@@ -127,18 +127,12 @@ const GameCard: React.FC<Props> = ({ game, className }) => {
 				</AspectRatio>
 
 				{game.short_screenshots && (
-					<div className="game_card_indicator_container">
-						{game.short_screenshots.map((item, index, arr) => (
-							<GameCard_Image_Indicator
-								key={index}
-								arr={arr}
-								imagesRefs={screenShotRefs}
-								index={index}
-								item={item}
-								mouseX={mouseX}
-							/>
-						))}
-					</div>
+					<GameCard_Image_Indicator
+						className="game_card_indicator_container"
+						gallery={game.short_screenshots}
+						imagesRefs={screenShotRefs}
+						mouseX={mouseX}
+					/>
 				)}
 			</div>
 			{/* </div> */}
