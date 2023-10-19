@@ -12,7 +12,8 @@
 		"logoDesc": "The site logo"
 	},
 	"Common": {
-		"releaseDate": "Release date"
+		"releaseDate": "Release date",
+		"imageFor": "Image for id:"
 	},
 	"Buttons": {
 		"submit": "Submit",

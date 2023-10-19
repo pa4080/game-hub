@@ -8,18 +8,13 @@ interface Props {
 	index: number;
 	arr: GalleryItem[];
 	mouseX: number;
-	screenShotRefs: MutableRefObject<(HTMLImageElement | null)[]>;
+	imagesRefs: MutableRefObject<(HTMLImageElement | null)[]>;
 }
 
-const GameCard_Image_Indicator: React.FC<Props> = ({
-	item,
-	index,
-	arr,
-	mouseX,
-	screenShotRefs,
-}) => {
+const GameCard_Image_Indicator: React.FC<Props> = ({ item, index, arr, mouseX, imagesRefs }) => {
 	const widthPercent = 98;
 	const sectorsLength = widthPercent / arr.length;
+
 	const activeSector = Math.round(index * sectorsLength);
 	const isActive =
 		mouseX > 100 - widthPercent - 1 &&
@@ -28,14 +23,17 @@ const GameCard_Image_Indicator: React.FC<Props> = ({
 		mouseX < activeSector + sectorsLength;
 
 	if (isActive) {
-		screenShotRefs.current[index]?.classList.add("active");
+		imagesRefs.current[index]?.classList.add("active");
 	} else {
-		screenShotRefs.current[index]?.classList.remove("active");
+		imagesRefs.current[index]?.classList.remove("active");
 	}
 
 	return (
 		<div
-			className={cn("game_card_indicator_item", isActive ? "bg-gray-400" : "bg-gray-400/50")}
+			className={cn(
+				"game_card_indicator_item",
+				isActive ? "bg-accent" : "bg-gray-500/80 dark:bg-gray-400/60"
+			)}
 			data-id={item.id}
 			style={{
 				width: `${98 / arr.length}%`,

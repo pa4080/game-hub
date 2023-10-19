@@ -7,6 +7,8 @@ import { cn } from "@/lib/cn-utils";
 import { useAppContext } from "@/contexts/AppContext";
 import { useBreakpoint } from "@/hooks/useBreakpoint";
 
+import { GalleryItem } from "@/interfaces/gallery-item";
+
 import GameCard_Platforms from "./GameCard_Platforms";
 import GameCard_Score from "./GameCard_Score";
 import GameCard_Rating from "./GameCard_Rating";
@@ -17,10 +19,9 @@ import GameCard_Image_Indicator from "./GameCard_Image_Indicator";
 interface Props {
 	game: Game;
 	className?: string;
-	priority?: boolean;
 }
 
-const GameCard: React.FC<Props> = ({ game, className, priority = false }) => {
+const GameCard: React.FC<Props> = ({ game, className }) => {
 	const { setGallery, setIsGalleryOpen } = useAppContext();
 
 	const [pullScreenshots, setPullScreenshots] = useState(false);
@@ -30,9 +31,7 @@ const GameCard: React.FC<Props> = ({ game, className, priority = false }) => {
 	const cardRef = useRef<HTMLDivElement>(null);
 	const screenShotRefs = useRef<(HTMLImageElement | null)[]>([]);
 
-	const handleMouseEnter = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
-		e.preventDefault();
-
+	const handleMouseEnter = () => {
 		setPullScreenshots(true);
 
 		if (cardRef.current) {
@@ -79,10 +78,12 @@ const GameCard: React.FC<Props> = ({ game, className, priority = false }) => {
 
 	const handleSetGallery = (game: Game) => {
 		if (game.background_image && isAboveSm) {
-			let gameImages = [{ id: game.id, image: game.background_image }];
+			let gameImages: GalleryItem[];
 
 			if (game.short_screenshots) {
-				gameImages = [...gameImages, ...game.short_screenshots];
+				gameImages = game.short_screenshots;
+			} else {
+				gameImages = [{ id: game.id, image: game.background_image }];
 			}
 
 			setGallery(gameImages);
@@ -106,7 +107,7 @@ const GameCard: React.FC<Props> = ({ game, className, priority = false }) => {
 			>
 				<AspectRatio ratio={16 / 9}>
 					<GameCard_Image
-						className="z-10"
+						className="game_card_image z-10"
 						item={{
 							id: game.id,
 							image: game.background_image,
@@ -119,6 +120,7 @@ const GameCard: React.FC<Props> = ({ game, className, priority = false }) => {
 							<GameCard_Image
 								key={index}
 								ref={(el) => (screenShotRefs.current[index] = el)}
+								className="game_card_image"
 								item={item}
 							/>
 						))}
@@ -130,10 +132,10 @@ const GameCard: React.FC<Props> = ({ game, className, priority = false }) => {
 							<GameCard_Image_Indicator
 								key={index}
 								arr={arr}
+								imagesRefs={screenShotRefs}
 								index={index}
 								item={item}
 								mouseX={mouseX}
-								screenShotRefs={screenShotRefs}
 							/>
 						))}
 					</div>
