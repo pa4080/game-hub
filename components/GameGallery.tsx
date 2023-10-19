@@ -106,8 +106,8 @@ const GameGallery: React.FC<Props> = ({ className }) => {
 				<div
 					className={cn(
 						"flex flex-row-reverse items-center",
-						"gap-4 xs:gap-2 sm:gap-4",
-						"justify-between xs:justify-end",
+						"gap-4 mt-14 xs:mt-0",
+						"justify-between",
 						"w-full xs:w-fit",
 						className
 					)}
