@@ -41,7 +41,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Useful sections of the course
 
-*Here are provided links to some lessons from the course (note you must subscribe to the course to access the links) and some related to them libraries.*
+Here are provided links to some lessons from the course (note you must subscribe to the course to access the links) and some related to them libraries.
 
 ### Styling Components
 
@@ -117,3 +117,75 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - When we send HTTP requests with the effect hook, we should provide a clean-up function to cancel the request if the component is unmounted before the response is received. This is important to prevent errors, especially if the user navigates to a different page while the request is still pending.
 - When sending HTTP requests, we must handle errors properly. This can be done using try-catch blocks or by handling the error in the promise chain using .catch().
 - Custom hooks are a way to reuse code logic between multiple components. By encapsulating logic in a custom hook, we can create reusable pieces of code that can be shared across components without duplicating the code. Custom hooks can be used to handle common tasks, such as fetching data, and can help to make our code more organized and easier to maintain.
+
+### Build the "Game Hub" application
+
+- In the Mosh's tutorial is used [Chakra UI](https://chakra-ui.com/), but here we are using [Tailwind CSS](https://tailwindcss.com/) and [Shadcn/ui](https://ui.shadcn.com/).
+- [**Shadcn/ui > Next.js > Dark mode**](https://ui.shadcn.com/docs/dark-mode/next) this is the official way to implement dark mode in Next.js with Shadcn/ui. See the following files for a manual implementation.
+  - [`hooks/useColorMode.ts`](hooks/useColorMode.ts)
+
+#### Optional `useEffect()` dependencies
+
+- <https://members.codewithmosh.com/courses/ultimate-react-part1-1/lectures/45916351>
+
+[**`useData.ts`**](https://github.com/mosh-hamedani/game-hub/blob/main/src/hooks/useData.ts)
+
+```js
+import { AxiosRequestConfig, CanceledError } from "axios";
+import { useEffect, useState } from "react";
+import apiClient from "../services/api-client";
+
+interface FetchResponse<T> {
+  count: number;
+  results: T[];
+}
+
+const useData = <T>(endpoint: string, requestConfig?: AxiosRequestConfig, deps?: any[]) => {
+  const [data, setData] = useState<T[]>([]);
+  const [error, setError] = useState("");
+  const [isLoading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    setLoading(true);
+    apiClient
+      .get<FetchResponse<T>>(endpoint, { signal: controller.signal, ...requestConfig })
+      .then((res) => {
+        setData(res.data.results);
+        setLoading(false);
+      })
+      .catch((err) => {
+        if (err instanceof CanceledError) return;
+        setError(err.message)
+        setLoading(false);
+      });
+
+    return () => controller.abort();
+  }, deps ? [...deps] : []);
+
+  return { data, error, isLoading };
+};
+
+export default useData;
+```
+
+[**`useGames.ts`**](https://github.com/mosh-hamedani/game-hub/blob/main/src/hooks/useGames.ts)
+
+```js
+const useGames = (gameQuery: GameQuery) =>
+  useData<Game>(
+    "/games",
+    {
+      params: {
+        genres: gameQuery.genre?.id,
+        platforms: gameQuery.platform?.id,
+        ordering: gameQuery.sortOrder,
+        search: gameQuery.searchText
+      },
+    },
+    [gameQuery]
+  );
+
+export default useGames;
+```
