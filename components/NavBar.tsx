@@ -1,7 +1,8 @@
 import React from "react";
 
+import ThemeSelector from "@/components/theme-selector/ThemeSelector";
+
 import { cn } from "@/lib/cn-utils";
-import ThemeSelectorLoader from "@/components/theme-selector/ThemeSelectorLoader";
 
 import Nav_AsideSheet from "./Nav_AsideSheet";
 import Nav_Logo from "./Nav_Logo";
@@ -20,7 +21,7 @@ const NavBar: React.FC<Props> = ({ className }) => {
 				<SearchInput className="hidden xa:block" />
 
 				<div className="flex items-center justify-end gap-5 min-w-[100px] lg:min-w-[40px]">
-					<ThemeSelectorLoader />
+					<ThemeSelector />
 					<Nav_AsideSheet />
 				</div>
 			</div>

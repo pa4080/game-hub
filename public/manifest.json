@@ -7,7 +7,7 @@
 	"keywords": "game, games, hub, catalog, search, nextjs, next, react, typescript, javascript, spa",
 	"icons": [
 		{
-			"sizes": "706x706",
+			"sizes": "76x76",
 			"src": "/favicon.svg",
 			"type": "image/svg+xml",
 			"purpose": "any maskable"
