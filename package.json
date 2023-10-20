@@ -1,6 +1,6 @@
 {
 	"name": "game-hub.metalevel.tech",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"private": true,
 	"scripts": {
 		"check-branch-name": "chmod 755 githooks/check_branch_name.sh && bash githooks/check_branch_name.sh",
@@ -38,10 +38,10 @@
 		"class-variance-authority": "^0.7.0",
 		"clsx": "^2.0.0",
 		"eslint": "8.50.0",
-		"eslint-config-next": "^13.5.5",
+		"eslint-config-next": "^13.5.6",
 		"js-cookie": "^3.0.5",
 		"lucide-react": "^0.279.0",
-		"next": "^13.5.5",
+		"next": "^13.5.6",
 		"next-themes": "^0.2.1",
 		"postcss": "8.4.31",
 		"react": "^18.2.0",
