@@ -55,8 +55,12 @@ const ThemeSelectorCore: React.FC<Props> = ({ theme, mode }) => {
 
 	useEffect(() => {
 		if (mode !== "manual") {
-			Cookies.set("x-theme", isDark ? "dark" : "light");
-			router.refresh();
+			const newTheme = isDark ? "dark" : "light";
+
+			if (theme !== newTheme) {
+				Cookies.set("x-theme", newTheme);
+				router.refresh();
+			}
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isDark]);
