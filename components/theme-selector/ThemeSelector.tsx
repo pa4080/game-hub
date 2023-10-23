@@ -1,6 +1,6 @@
+import React from "react";
 import dynamic from "next/dynamic";
 import { cookies } from "next/headers";
-
 import { SunMoon } from "lucide-react";
 
 import { ThemeMode, ThemeType } from "./ThemeSelectorCore";
@@ -14,11 +14,19 @@ const ThemeSelectorCore = dynamic(() => import("./ThemeSelectorCore"), {
 	),
 });
 
-const ThemeSelector = () => {
+interface Props {
+	className?: string;
+}
+
+const ThemeSelector: React.FC<Props> = ({ className }) => {
 	const theme = cookies().get("x-theme")?.value as ThemeType;
 	const mode = cookies().get("x-theme-mode")?.value as ThemeMode;
 
-	return <ThemeSelectorCore mode={mode} theme={theme} />;
+	return (
+		<div className={className}>
+			<ThemeSelectorCore mode={mode} theme={theme} />
+		</div>
+	);
 };
 
 export default ThemeSelector;
