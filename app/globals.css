@@ -9,6 +9,11 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body {
+	height: calc(var(--vh, 1vh) * 100);
+}
+
 @layer base {
 	:root {
 		--background: 210, 40%, 98%; /* #f8fafc */
@@ -72,11 +77,6 @@
 
 body {
 	min-width: 300px;
-}
-
-html,
-body {
-	height: calc(var(--vh, 1vh) * 100);
 }
 
 [type="text"]:focus,
