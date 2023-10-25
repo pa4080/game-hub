@@ -1,6 +1,10 @@
 # Game hub
 
-This project is based on the Mosh Hamedani's course [React 18 and TypeScript](https://codewithmosh.com/p/ultimate-react-part1). Here is a Next.js 13 version of the project from the course, also instead of Bootstrap is used [Tailwind CSS](https://tailwindcss.com/) and [Shadcn/UI](https://ui.shadcn.com/).
+This is a simplified replica of the [RAWG's site](https://rawg.io/), which uses the non-commercial access of their [API](https://rawg.io/apidocs).
+
+[![image](public/images/game-hub-screenshot-brave-v.1.png)](https://game-hub.metalevel.tech/)
+
+The project is based on the Mosh Hamedani's course [React 18 and TypeScript](https://codewithmosh.com/p/ultimate-react-part1) but with a couple of improvements. For example: This is a Next.js 13.6 implementation, also instead of [Bootstrap](https://getbootstrap.com/) and [Chakra UI](https://chakra-ui.com/) are used [Tailwind CSS](https://tailwindcss.com/) and [Shadcn/UI](https://ui.shadcn.com/), and more.
 
 ## References and credits
 
@@ -11,10 +15,12 @@ This project is based on the Mosh Hamedani's course [React 18 and TypeScript](ht
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) and hosted on [Vercel](https://vercel.com/).
 
+Because the application exhaust too quickly the  the image optimization quota of Vercel the optimization on production is disabled.
+
 ## Final touches (to do)
 
-- [x] Fancy game card hover behavior.
-- [x] Proxy the RAWG Media files to avoid CORS and private networks with restrictions issues.
+- [x] Fancy game card hover behavior, like RAWG.
+- [x] When the Next.js' image optimization is disabled: Proxy the RAWG Media files to avoid issues related to CORS and private networks with restrictions. In addition cache them for better application performance.
 - [x] Improve the behaviour of the "color theme selector".
 - [x] Clear all filters and show all games, when click on the logo. A little bit ugly solution which uses `<a href="/">` is applied.
 - [x] Scroll to top button.
@@ -38,4 +44,4 @@ Run the development server:
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3001](http://localhost:3001) with your browser to see the result.
