@@ -23,8 +23,24 @@ const Games_Navigation_Float: React.FC<Games_Navigation_Float_Props> = ({
 	const [show, setShow] = useState(false);
 
 	useEffect(() => {
+		const setWindowActualVhUnits = () => {
+			// Workaround the known issue of the mobile browsers 100vh bug...
+			// https://chanind.github.io/javascript/2019/09/28/avoid-100vh-on-mobile-web.html#comment-4634921967
+			const existingVh = document.documentElement.style.getPropertyValue("--vh");
+			const newVh = `${window.innerHeight / 100}px`;
+
+			if (existingVh !== newVh) {
+				document.documentElement.style.setProperty("--vh", newVh);
+			}
+		};
+
+		setWindowActualVhUnits();
+		window.addEventListener("resize", setWindowActualVhUnits);
+		window.addEventListener("orientationchange", setWindowActualVhUnits);
+
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		const showFloatNav = (e: Event) => {
+			// Trigger show/hide of the float nav
 			const scrollFromTop = document.body.scrollTop || document.documentElement.scrollTop;
 
 			scrollFromTop > 240 ? setShow(true) : setShow(false);
@@ -34,20 +50,22 @@ const Games_Navigation_Float: React.FC<Games_Navigation_Float_Props> = ({
 
 		return () => {
 			window.removeEventListener("scroll", showFloatNav);
+			window.removeEventListener("resize", setWindowActualVhUnits);
+			window.removeEventListener("orientationchange", setWindowActualVhUnits);
 		};
 	});
 
 	return (
 		<div
 			className={cn(
-				"sticky bottom-4 z-50 w-full flex items-center justify-center md:justify-end max-4xs:scale-90",
+				"sticky 4xs:bottom-4 z-50 w-full flex items-center justify-center md:justify-end max-4xs:scale-90",
 				className
 			)}
 		>
 			<div
 				className={cn(
 					"xs:px-4 py-4 md:-mr-4 -mb-7 4xs:-mb-4 group transition-transform duration-500 w-fit 4xs:w-full xs:w-fit",
-					show ? "translate-y-0" : "translate-y-24"
+					show ? "" : "translate-y-24"
 				)}
 			>
 				<div

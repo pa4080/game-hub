@@ -108,6 +108,11 @@ body {
 	min-width: 300px;
 }
 
+html,
+body {
+	height: calc(var(--vh, 1vh) * 100);
+}
+
 [type="text"]:focus,
 input:where(:not([type])):focus,
 [type="email"]:focus,
