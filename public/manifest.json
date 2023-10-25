@@ -10,7 +10,7 @@
 			"sizes": "36x36",
 			"src": "/favicon.svg",
 			"type": "image/svg+xml",
-			"purpose": "any"
+			"purpose": "any maskable"
 		},
 		{ "sizes": "114x114", "src": "/icons/apple-touch-icon-114x114.png", "type": "image/png" },
 		{ "sizes": "120x120", "src": "/icons/apple-touch-icon-120x120.png", "type": "image/png" },
