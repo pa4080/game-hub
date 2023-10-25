@@ -7,10 +7,10 @@
 	"keywords": "game, games, hub, catalog, search, nextjs, next, react, typescript, javascript, spa",
 	"icons": [
 		{
-			"sizes": "76x76",
+			"sizes": "36x36",
 			"src": "/favicon.svg",
 			"type": "image/svg+xml",
-			"purpose": "any maskable"
+			"purpose": "any"
 		},
 		{ "sizes": "114x114", "src": "/icons/apple-touch-icon-114x114.png", "type": "image/png" },
 		{ "sizes": "120x120", "src": "/icons/apple-touch-icon-120x120.png", "type": "image/png" },
@@ -36,6 +36,22 @@
 			"src": "/icons/app-icon-512.png",
 			"type": "image/png",
 			"sizes": "512x512"
+		}
+	],
+	"screenshots": [
+		{
+			"src": "https://game-hub.metalevel.tech/public/images/game-hub-screenshot.png",
+			"sizes": "1644x944",
+			"type": "image/png",
+			"form_factor": "wide",
+			"label": "Screenshot of the app"
+		},
+		{
+			"src": "https://game-hub.metalevel.tech/public/images/game-hub-screenshot.webp",
+			"sizes": "1644x944",
+			"type": "image/webp",
+			"form_factor": "wide",
+			"label": "Screenshot of the app"
 		}
 	],
 	"start_url": "/",

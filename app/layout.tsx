@@ -22,7 +22,31 @@ export const metadata: Metadata = {
 	creator: manifest.author,
 	colorScheme: "light",
 	icons: "/favicon.svg",
+	metadataBase: new URL(manifest.homepage_url),
+	openGraph: {
+		title: manifest.name,
+		description: manifest.description,
+		url: manifest.homepage_url,
+		siteName: manifest.short_name,
+		type: "website",
+		locale: "en_US",
+		images: [
+			{
+				url: manifest.screenshots[0].src,
+				width: 1644,
+				height: 944,
+				alt: manifest.name,
+			},
+		],
+	},
 };
+
+/*
+<meta property='og:title' content='Title of the article'/>
+<meta property='og:image' content='//media.example.com/ 1234567.jpg'/>
+<meta property='og:description' content='Description that will show in the preview'/>
+<meta property='og:url' content='//www.example.com/URL of the article'/>
+ */
 
 interface Props {
 	children: React.ReactNode;

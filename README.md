@@ -2,7 +2,7 @@
 
 This is a simplified replica of the [RAWG's site](https://rawg.io/), which uses the non-commercial access of their [API](https://rawg.io/apidocs).
 
-[![image](public/images/game-hub-screenshot-brave-v.1.png)](https://game-hub.metalevel.tech/)
+[![image](public/images/game-hub-screenshot.webp)](https://game-hub.metalevel.tech/)
 
 The project is based on the Mosh Hamedani's course [React 18 and TypeScript](https://codewithmosh.com/p/ultimate-react-part1) but with a couple of improvements. For example: This is a Next.js 13.6 implementation, also instead of [Bootstrap](https://getbootstrap.com/) and [Chakra UI](https://chakra-ui.com/) are used [Tailwind CSS](https://tailwindcss.com/) and [Shadcn/UI](https://ui.shadcn.com/), and more.
 
