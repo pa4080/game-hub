@@ -24,7 +24,7 @@ Because the application exhaust too quickly the  the image optimization quota of
 - [x] Improve the behaviour of the "color theme selector".
 - [x] Clear all filters and show all games, when click on the logo. A little bit ugly solution which uses `<a href="/">` is applied.
 - [x] Create game-images gallery.
-- [x] Scroll to top button. Fix the known issue of the mobile browsers 100vh bug, see: [`globals.css`](app/globals.css#L113) and [`Games_Navigation_Float.tsx`](components/Games_Navigation_Float.tsx#L26)
+- [x] Scroll to top button. Fix the known issue of the mobile browsers 100vh bug, see: [`globals.css`](app/globals.css#L14) and [`Games_Navigation_Float.tsx`](components/Games_Navigation_Float.tsx#L26)
 
 ## Getting Started Dev
 
