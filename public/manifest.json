@@ -40,14 +40,14 @@
 	],
 	"screenshots": [
 		{
-			"src": "https://game-hub.metalevel.tech/public/images/game-hub-screenshot.png",
+			"src": "https://game-hub.metalevel.tech/images/game-hub-screenshot.png",
 			"sizes": "1644x944",
 			"type": "image/png",
 			"form_factor": "wide",
 			"label": "Screenshot of the app"
 		},
 		{
-			"src": "https://game-hub.metalevel.tech/public/images/game-hub-screenshot.webp",
+			"src": "https://game-hub.metalevel.tech/images/game-hub-screenshot.webp",
 			"sizes": "1644x944",
 			"type": "image/webp",
 			"form_factor": "wide",
