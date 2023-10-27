@@ -41,7 +41,7 @@ const DialogContent = React.forwardRef<
 		<DialogPrimitive.Content
 			ref={ref}
 			className={cn(
-				"fixed left-[50%] top-[50%] z-50 grid translate-x-[-50%] translate-y-[-50%] gap-6 bg-slate-200 dark:bg-slate-900 p-4 shadow-2xl drop-shadow-2xl shadow-slate-600 dark:shadow-slate-950 duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] ",
+				"fixed left-[50%] top-[50%] z-50 grid translate-x-[-50%] translate-y-[-50%] gap-6 bg-slate-200/60 md:bg-slate-200 dark:md:bg-slate-900 dark:bg-slate-900/40 p-4 shadow-2xl drop-shadow-2xl shadow-slate-600 dark:shadow-slate-950 duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] ",
 				"md:rounded-2xl w-full h-full md:w-[calc(100%_-_4rem)] md:h-fit lg:max-w-6xl",
 				className
 			)}
