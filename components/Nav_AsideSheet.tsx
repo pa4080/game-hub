@@ -51,7 +51,7 @@ const Nav_AsideSheet: React.FC = () => {
 				</Button>
 			</SheetTrigger>
 
-			<SheetContent className="flex flex-col pt-4 pr-5 min-w-[280px] z-[100]">
+			<SheetContent className="flex flex-col pt-4 pr-5 min-w-[280px]">
 				<SheetHeader className="h-16">
 					<Nav_Logo />
 					{/* <SheetTitle>Game hub</SheetTitle> */}

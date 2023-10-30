@@ -53,14 +53,14 @@ const SortSelector: React.FC<Props> = ({
 		const selected = sortOptions.find((item) => item.selected);
 
 		if (selected && selected?.value !== e.currentTarget?.platform.value) {
-			const newsortOptions = sortOptions.map((item) => ({
+			const newSortOptions = sortOptions.map((item) => ({
 				...item,
 				selected: item.value === e.currentTarget?.platform.value,
 			}));
 
-			setSortOptions(newsortOptions);
+			setSortOptions(newSortOptions);
 
-			updateSortOrder(order, newsortOptions);
+			updateSortOrder(order, newSortOptions);
 		}
 	};
 
