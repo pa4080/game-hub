@@ -64,7 +64,9 @@ const PlatformSelector: React.FC<Props> = ({ className, classNameTrigger, classN
 	}
 
 	const handleOnChange = (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
+		// e.stopPropagation();
+		// e.nativeEvent.stopImmediatePropagation();
+		// e.preventDefault();
 
 		setGameQuery((prev) => ({
 			...prev,
