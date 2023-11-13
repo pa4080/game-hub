@@ -5,7 +5,7 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { cn } from "@/lib/cn-utils";
 
 import { useAppContext } from "@/contexts/AppContext";
-// import { useBreakpoint } from "@/hooks/useBreakpoint";
+import { useBreakpoint } from "@/hooks/useBreakpoint";
 
 import { GalleryItem } from "@/interfaces/gallery-item";
 
@@ -26,7 +26,7 @@ const GameCard: React.FC<Props> = ({ game, className }) => {
 
 	const [pullScreenshots, setPullScreenshots] = useState(false);
 	const [mouseX, setMouseX] = useState(0); // percent of the card width
-	// const { isAboveSm } = useBreakpoint("sm");
+	const { isAboveSm, isBelowSm } = useBreakpoint("sm");
 
 	const cardRef = useRef<HTMLDivElement>(null);
 	const screenShotRefs = useRef<(HTMLImageElement | null)[]>([]);
@@ -77,7 +77,6 @@ const GameCard: React.FC<Props> = ({ game, className }) => {
 	};
 
 	const handleSetGallery = (game: Game) => {
-		// if (game.background_image && isAboveSm) {
 		if (game.background_image) {
 			let gameImages: GalleryItem[];
 
@@ -103,7 +102,8 @@ const GameCard: React.FC<Props> = ({ game, className }) => {
 			{/* <div className="relative w-full h-0 pb-[56.25%] overflow-hidden bg"> */}
 			<div
 				className="relative w-full rounded-t-2xl overflow-hidden cursor-pointer"
-				onClick={() => handleSetGallery(game)}
+				onClick={() => isAboveSm && handleSetGallery(game)}
+				onDoubleClick={() => isBelowSm && handleSetGallery(game)}
 				onMouseMove={getMouse_X_Position_WithinTheCard}
 			>
 				<AspectRatio ratio={16 / 9}>
